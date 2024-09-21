@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.twilightmoongames.moonlightunityarchitecture": {
+      "version": "https://github.com/TwillightMoon/MoonlightUnity-Architecture.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "54cd4712322e912da1be0372c649d94d6d37293a"
+    },
     "com.unity.2d.animation": {
       "version": "9.1.1",
       "depth": 1,
