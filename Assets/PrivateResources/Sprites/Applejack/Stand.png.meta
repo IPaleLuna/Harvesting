@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 83246aafaee5318469ea332855ccbb1b
+guid: 99fc3b276f8a5d14ca0252bde6450bef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 4
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stand_rainbow_right_0
+      name: Stand_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 362
-        width: 98
-        height: 82
+        x: 0
+        y: 188
+        width: 88
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23a338a9af364ac4e88f3d83767cfc2d
-      internalID: 529451585
+      spriteID: 6047ec3776d166e41880862a5564389d
+      internalID: -391013295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_1
+      name: Stand_1
       rect:
         serializedVersion: 2
-        x: 104
-        y: 362
-        width: 98
-        height: 82
+        x: 88
+        y: 188
+        width: 88
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b2485d613128394a987db9459032d57
-      internalID: -819754598
+      spriteID: d12d2ae0b00891d4b93684f5f25415b6
+      internalID: 381077298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_2
+      name: Stand_2
       rect:
         serializedVersion: 2
-        x: 206
-        y: 362
-        width: 98
-        height: 82
+        x: 176
+        y: 188
+        width: 88
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e16ec6b37283f949b6445574cdf7da2
-      internalID: 1476967933
+      spriteID: f7a60ba13d3b94641a7bfd04fdd4d7b7
+      internalID: 866828114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_3
+      name: Stand_3
       rect:
         serializedVersion: 2
-        x: 316
-        y: 362
-        width: 90
-        height: 82
+        x: 266
+        y: 188
+        width: 86
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71b167b07e438354ca1f577b6f071312
-      internalID: -1459882170
+      spriteID: 2aa6805e4478fcc49a7df24c46c2c117
+      internalID: 1907849063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_4
+      name: Stand_4
       rect:
         serializedVersion: 2
-        x: 414
-        y: 362
-        width: 92
-        height: 84
+        x: 354
+        y: 188
+        width: 86
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdfde579a51a48a4e9aea3602b06b1bb
-      internalID: 1946697377
+      spriteID: 5c63510543fe5354ea138afc25b41a7a
+      internalID: 50695745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_5
+      name: Stand_5
       rect:
         serializedVersion: 2
-        x: 2
-        y: 272
-        width: 94
-        height: 86
+        x: 0
+        y: 94
+        width: 88
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,20 +255,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 876fd2d5762443247b3c4c2f585b3f46
-      internalID: 1360080881
+      spriteID: c4d56035b59c91540b01b86f789750ee
+      internalID: 2145788392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_6
+      name: Stand_6
       rect:
         serializedVersion: 2
-        x: 104
-        y: 272
-        width: 96
-        height: 84
+        x: 88
+        y: 94
+        width: 88
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,20 +276,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c9a7218d25f7554185fe7e3ff3c884b
-      internalID: -560392041
+      spriteID: 40b9e38c0f038fe4f92cfd0b660f2ae5
+      internalID: -1476161655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_7
+      name: Stand_7
       rect:
         serializedVersion: 2
-        x: 206
-        y: 272
-        width: 98
-        height: 82
+        x: 176
+        y: 94
+        width: 88
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,20 +297,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44ac5d392b1f0de49a818f8ebb8d161f
-      internalID: -681286848
+      spriteID: bab28d3224f65e242a9a3ace3bd8b6b8
+      internalID: -1743081572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_8
+      name: Stand_8
       rect:
         serializedVersion: 2
-        x: 308
-        y: 272
-        width: 98
-        height: 82
+        x: 264
+        y: 94
+        width: 78
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,20 +318,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b5235bc554a520408caf4c375b9e97f
-      internalID: -194064409
+      spriteID: dd3ad99d5fc0715438d4cb1c2f8a3b37
+      internalID: -1456042335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_9
+      name: Stand_9
       rect:
         serializedVersion: 2
-        x: 410
-        y: 272
-        width: 98
-        height: 82
+        x: 176
+        y: 0
+        width: 78
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,20 +339,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e52719138bb461e46b7b99ca38e889d4
-      internalID: -679897069
+      spriteID: 471d35fb4a9606440a36a41a4b99d775
+      internalID: -2020240428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_10
+      name: Stand_10
       rect:
         serializedVersion: 2
-        x: 2
-        y: 182
-        width: 98
-        height: 80
+        x: 264
+        y: 0
+        width: 88
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,20 +360,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3c42f6c28f11e048b90c325454e3653
-      internalID: 530400697
+      spriteID: d76978f0562b7b748b9e33b7a479050f
+      internalID: 1998571246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_11
+      name: Stand_11
       rect:
         serializedVersion: 2
-        x: 104
-        y: 182
-        width: 80
-        height: 82
+        x: 352
+        y: 0
+        width: 88
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,20 +381,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96047f1a48dc4b14189ce83ddf8bd19f
-      internalID: -901056367
+      spriteID: 507e121b6eac6064a99d81c94750b03f
+      internalID: -312561511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_12
+      name: Stand_12
       rect:
         serializedVersion: 2
-        x: 214
-        y: 182
-        width: 72
-        height: 84
+        x: 88
+        y: 0
+        width: 78
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -402,20 +402,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91a8989067e3c69418edb926147175b3
-      internalID: -1385710497
+      spriteID: 7fc2aacbe4abd7047bc68ed392fd9cf8
+      internalID: 464273687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_13
+      name: Stand_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 182
+        x: 354
+        y: 94
         width: 76
-        height: 84
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -423,41 +423,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 959e63dbc4ff0ba498ca2aed73661b47
-      internalID: 405297851
+      spriteID: 26240cc60eb78eb4eacfd4cf3db23862
+      internalID: 358174495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stand_rainbow_right_14
-      rect:
-        serializedVersion: 2
-        x: 410
-        y: 182
-        width: 80
-        height: 84
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e10d0585c8c1404b9e832cc5640be3d
-      internalID: -1000895556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stand_rainbow_right_15
+      name: Stand_14
       rect:
         serializedVersion: 2
         x: 2
-        y: 92
-        width: 80
-        height: 82
+        y: 0
+        width: 76
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -465,113 +444,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 768185bc0a903f24baa77cf1bdb5555a
-      internalID: 602087231
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stand_rainbow_right_16
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 92
-        width: 98
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: feacb8df1ba4c4d4eb526804bcd68e46
-      internalID: -230081649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stand_rainbow_right_17
-      rect:
-        serializedVersion: 2
-        x: 206
-        y: 92
-        width: 98
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc67566b66af2fb4795ebfab09287275
-      internalID: 239470548
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stand_rainbow_right_18
-      rect:
-        serializedVersion: 2
-        x: 308
-        y: 92
-        width: 98
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eca040d559f59fb4cbb06cf973562054
-      internalID: 207441864
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stand_rainbow_right_19
-      rect:
-        serializedVersion: 2
-        x: 410
-        y: 92
-        width: 98
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b30542c24d3e40e43bde88decf3712ee
-      internalID: 1084108304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stand_rainbow_right_20
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 2
-        width: 98
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f38c1efcca7ce1439da55a4829e50aa
-      internalID: 1820014327
+      spriteID: d67f7aeb1bab83940be012566ec8b97d
+      internalID: 829336622
       vertices: []
       indices: 
       edges: []
@@ -587,27 +461,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      stand_rainbow_right_0: 529451585
-      stand_rainbow_right_1: -819754598
-      stand_rainbow_right_10: 530400697
-      stand_rainbow_right_11: -901056367
-      stand_rainbow_right_12: -1385710497
-      stand_rainbow_right_13: 405297851
-      stand_rainbow_right_14: -1000895556
-      stand_rainbow_right_15: 602087231
-      stand_rainbow_right_16: -230081649
-      stand_rainbow_right_17: 239470548
-      stand_rainbow_right_18: 207441864
-      stand_rainbow_right_19: 1084108304
-      stand_rainbow_right_2: 1476967933
-      stand_rainbow_right_20: 1820014327
-      stand_rainbow_right_3: -1459882170
-      stand_rainbow_right_4: 1946697377
-      stand_rainbow_right_5: 1360080881
-      stand_rainbow_right_6: -560392041
-      stand_rainbow_right_7: -681286848
-      stand_rainbow_right_8: -194064409
-      stand_rainbow_right_9: -679897069
+      Stand_0: -391013295
+      Stand_1: 381077298
+      Stand_10: 1998571246
+      Stand_11: -312561511
+      Stand_12: 464273687
+      Stand_13: 358174495
+      Stand_14: 829336622
+      Stand_2: 866828114
+      Stand_3: 1907849063
+      Stand_4: 50695745
+      Stand_5: 2145788392
+      Stand_6: -1476161655
+      Stand_7: -1743081572
+      Stand_8: -1456042335
+      Stand_9: -2020240428
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
