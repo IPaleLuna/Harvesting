@@ -2651,7 +2651,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2051873101}
         m_TargetAssemblyTypeName: SwitchPlayerCount, Assembly-CSharp
-        m_MethodName: OnEvent
+        m_MethodName: OnModeChange
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2663,7 +2663,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 945112623}
         m_TargetAssemblyTypeName: SetPlayerCountMode, Assembly-CSharp
-        m_MethodName: OnEvent
+        m_MethodName: OnModeChange
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
