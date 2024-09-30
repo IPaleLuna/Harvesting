@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour, IFixedUpdatable
 
     private Vector2 _currentDirection;
 
+    public PlayerInputActions inputActions => _playerActions;
+
     private void OnValidate()
     {
         _rigidbody2D ??= GetComponent<Rigidbody2D>();
