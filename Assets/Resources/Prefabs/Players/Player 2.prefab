@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5446183210588059727}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8213654737962559789}
   - component: {fileID: 3538567350699446305}
-  m_Layer: 0
+  - component: {fileID: 93470294674138011}
+  - component: {fileID: 796624319299152703}
+  m_Layer: 3
   m_Name: PlayerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +118,42 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
+--- !u!95 &93470294674138011
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2290571672518986999}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 1af797f6bfee24644aab057a590ea4bb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &796624319299152703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2290571672518986999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5171685f344b24bba293614ebd23ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 93470294674138011}
+  _spriteRenderer: {fileID: 3538567350699446305}
 --- !u!1 &2931255533014568882
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +165,7 @@ GameObject:
   - component: {fileID: 3820744932250122632}
   - component: {fileID: 1694879604485842840}
   - component: {fileID: 4573361148206514660}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6680920306861352157}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +273,8 @@ GameObject:
   - component: {fileID: 5150141808581500692}
   - component: {fileID: 5743839935734077437}
   - component: {fileID: 5191534588886676697}
-  m_Layer: 0
+  - component: {fileID: 4920272710582611377}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +290,7 @@ Transform:
   m_GameObject: {fileID: 6285612618211887753}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.76, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -335,6 +373,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 5743839935734077437}
   _speed: 3
+--- !u!70 &4920272710582611377
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285612618211887753}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.108944766, y: -0.17167073}
+  m_Size: {x: 1.125714, y: 0.28978547}
+  m_Direction: 1
 --- !u!1 &7685147452252600890
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +420,7 @@ GameObject:
   - component: {fileID: 4102486235447249459}
   - component: {fileID: 4559699819099849389}
   - component: {fileID: 8130779829790903254}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +467,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -2069813907
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &4559699819099849389
@@ -447,7 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5365970540551486961}
   - component: {fileID: 6418871102802251415}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerTwoCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
