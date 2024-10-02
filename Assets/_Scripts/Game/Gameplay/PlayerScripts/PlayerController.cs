@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour, IFixedUpdatable
+public class PlayerController : MonoBehaviour
 {
     [Header("components")]
     [SerializeField]
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour, IFixedUpdatable
         Subscribe();
     }
 
-    public void FixedFrameRun()
+    public void Move()
     {
         Vector2 velocity = _currentDirection * _speed;
 
@@ -53,15 +53,11 @@ public class PlayerController : MonoBehaviour, IFixedUpdatable
 
     private void Subscribe()
     {
-        _gameLoops.Registration(this);
-
         _playerActions.movementAction.performed += OnGetMoveInput;
         _playerActions.movementAction.canceled += OnGetMoveInput;
     }
     private void Unsubscribe()
     {
-        _gameLoops.Unregistration(this);
-
         _playerActions.movementAction.performed -= OnGetMoveInput;
         _playerActions.movementAction.canceled -= OnGetMoveInput;
     }
