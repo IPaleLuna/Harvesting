@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(SpriteRenderer))]
 public class AnimationControll : MonoBehaviour
 {
     private readonly int IDLE_ANIM_HASH = Animator.StringToHash("Idle");
@@ -11,15 +10,12 @@ public class AnimationControll : MonoBehaviour
     [Header("Autofilling components")]
     [SerializeField]
     private Animator _animator;
-    [SerializeField]
-    private SpriteRenderer _spriteRenderer;
 
     private PlayerInputActions _actions;
 
     private void OnValidate()
     {
         _animator ??= GetComponent<Animator>();
-        _spriteRenderer ??= GetComponent<SpriteRenderer>();
     }
 
     private void Awake()
@@ -30,12 +26,12 @@ public class AnimationControll : MonoBehaviour
     private void OnEnable()
     {
         _actions.movementAction.performed += OnCharacterMove;
-        _actions.movementAction.performed += TryFlipSprite;
         _actions.movementAction.canceled += OnCharacterStand;
     }
 
     private void OnCharacterStand(InputAction.CallbackContext context)
     {
+        if(context.ReadValue<Vector2>().Equals(Vector2.zero))
         _animator.Play(IDLE_ANIM_HASH);
     }
 
@@ -44,18 +40,9 @@ public class AnimationControll : MonoBehaviour
         _animator.Play(WALK_ANIM_HASH);
     }
 
-    private void TryFlipSprite(InputAction.CallbackContext context)
-    {
-        Vector2 direction = context.ReadValue<Vector2>();
-
-        if (direction.x < 0) _spriteRenderer.flipX = true;
-        else if (direction.x > 0) _spriteRenderer.flipX = false;
-    }
-
     private void OnDisable()
     {
         _actions.movementAction.performed -= OnCharacterMove;
-        _actions.movementAction.performed -= TryFlipSprite;
         _actions.movementAction.canceled -= OnCharacterStand;
     }
 }
