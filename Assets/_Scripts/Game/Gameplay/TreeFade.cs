@@ -44,7 +44,7 @@ public class TreeFade : MonoBehaviour, IStartable
             _playerStayInTree++;
 
             if(_playerStayInTree == 1)
-            _spriteRenderer.DOColor(_targetColor, _duration);
+            _spriteRenderer.DOColor(_targetColor, _duration).Play();
         }
     }
 
@@ -54,7 +54,7 @@ public class TreeFade : MonoBehaviour, IStartable
         {
             _playerStayInTree--;
             if (_playerStayInTree == 0)
-                _spriteRenderer.DOColor(_originColor, _duration);
+                _spriteRenderer.DOColor(_originColor, _duration).Play();
         }
     }
 }
