@@ -25,27 +25,19 @@ public class TimeBroadcaster : MonoBehaviour, IStartable, IService
         _gameManager = ServiceManager.Instance
             .SceneLocator
             .Get<GameManager>();
-        ServiceManager.Instance
-            .SceneLocator
-            .Registarion(this);
-
 
         _tickMachine = new TickMachine(TIMER_TICK_IN_SECONDS, OnTimeTick);
         _tickMachine.Start();
-
-        GameEvents.timeBroadcasterInitEvent.Invoke();
     }
 
     private void OnTimeTick()
     {
         print("Tick");
 
-        string min = NumToStringBuffer.GetIntToStringHash((int)(_gameManager.timer.remainingTime / 60));
-        string sec = NumToStringBuffer.GetIntToStringHash((int)(_gameManager.timer.remainingTime % 60));
+        string min = NumToStringBuffer.GetIntToStringTimeHash((int)(_gameManager.timer.remainingTime / 60));
+        string sec = NumToStringBuffer.GetIntToStringTimeHash((int)(_gameManager.timer.remainingTime % 60));
 
         TimeStruct currentTime = new(min, sec);
-
-        print(currentTime.min);
 
         timeTickEvent.Invoke(currentTime);
     }
