@@ -1,11 +1,16 @@
 using Cysharp.Threading.Tasks;
 using PaleLuna.Architecture.Initializer;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class PlayerSpawner : MonoBehaviour, IInitializer
 {
+    [SerializeReference]
+    private List<Transform> _spawnPoints;
+
     private InitStatus _status = InitStatus.Shutdown;
     public InitStatus status => _status;
 
@@ -46,6 +51,11 @@ public class PlayerSpawner : MonoBehaviour, IInitializer
 
         if (playerInput.playerIndex < 2)
             playerInput.SwitchCurrentControlScheme(playerInput.currentControlScheme, Keyboard.current);
+
+        int point = Random.Range(0, _spawnPoints.Count);
+        playerInput.transform.position = _spawnPoints[point].position;
+
+        _spawnPoints.RemoveAt(point);
     }
 
 }
