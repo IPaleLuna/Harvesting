@@ -450,6 +450,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: stand_twilight_right_15
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 214
+        width: 42
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a62fdc0e0cfdc5b4281ef5fa3bd00092
+      internalID: 1745022955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -468,6 +489,7 @@ TextureImporter:
       stand_twilight_right_12: 132037070
       stand_twilight_right_13: -1406932979
       stand_twilight_right_14: 488055533
+      stand_twilight_right_15: 1745022955
       stand_twilight_right_2: -1313807049
       stand_twilight_right_3: -27734674
       stand_twilight_right_4: -2015493614

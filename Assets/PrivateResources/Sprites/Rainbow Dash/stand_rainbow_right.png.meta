@@ -576,6 +576,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: stand_rainbow_right_21
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 406
+        width: 40
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ff4a3ba45d268643a65071c9c2940d6
+      internalID: -677794136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -601,6 +622,7 @@ TextureImporter:
       stand_rainbow_right_19: 1084108304
       stand_rainbow_right_2: 1476967933
       stand_rainbow_right_20: 1820014327
+      stand_rainbow_right_21: -677794136
       stand_rainbow_right_3: -1459882170
       stand_rainbow_right_4: 1946697377
       stand_rainbow_right_5: 1360080881

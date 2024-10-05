@@ -450,6 +450,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Stand_15
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 232
+        width: 52
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33d6d5eeda2b1cd4ab71752733ac04af
+      internalID: -537588453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -468,6 +489,7 @@ TextureImporter:
       Stand_12: -2020240428
       Stand_13: 1998571246
       Stand_14: -312561511
+      Stand_15: -537588453
       Stand_2: 866828114
       Stand_3: 1907849063
       Stand_4: 50695745
