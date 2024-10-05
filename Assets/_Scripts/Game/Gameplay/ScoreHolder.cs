@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+using PaleLuna.Architecture.Services;
+using Services;
 using UnityEngine;
 
-public class ScoreHolder : MonoBehaviour
+public class ScoreHolder : MonoBehaviour, IService
 {
-    // Start is called before the first frame update
-    void Start()
+    private Player _playerWithMaxScore = null;
+
+    public Player playerWithMaxScore => _playerWithMaxScore;
+
+    private void Start()
     {
-        
+        ServiceManager.Instance.SceneLocator.Registarion(this);
+        GameEvents.applePickEvent.AddListener(OnPlayerPickUpApple);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnPlayerPickUpApple(Player player)
     {
-        
+        if (_playerWithMaxScore != null)
+            _playerWithMaxScore = _playerWithMaxScore.applesAmount < player.applesAmount ? player : _playerWithMaxScore;
+        else
+            _playerWithMaxScore = player;
+    }
+
+    private void OnGameEnd()
+    {
+        PlayerPrefs.SetInt(PlayerPrefsKeys.WINNING_PLAYER_ID, _playerWithMaxScore.playerID);
     }
 }
