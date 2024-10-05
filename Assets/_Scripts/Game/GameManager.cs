@@ -4,11 +4,14 @@ using PaleLuna.Timers.Implementations;
 using Services;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour, IStartable, IService
 {
     [SerializeField]
     private int gameTimeInSeconds = 120;
+    [SerializeField]
+    private SpaceKeyListener _spaceListener;
 
     private AsyncTimer _timer;
 
@@ -21,15 +24,21 @@ public class GameManager : MonoBehaviour, IStartable, IService
         if (_isStart) return;
         _isStart = true;
 
-        ServiceManager.Instance.SceneLocator.Registarion(this);
 
-        _timer = new(gameTimeInSeconds, OnGameEnd);
+        _timer = new(gameTimeInSeconds, OnTimeOut);
 
         _timer.Start();
     }
 
-    private void OnGameEnd()
+    private void OnTimeOut()
     {
+        GameEvents.timeOutEvent.Invoke();
 
+        _spaceListener.spaceAction.performed += RestartGame;
+    }
+
+    public void RestartGame(InputAction.CallbackContext context)
+    {
+        ServiceManager.Instance.GlobalServices.Get<SceneLoaderService>().LoadScene(1);
     }
 }

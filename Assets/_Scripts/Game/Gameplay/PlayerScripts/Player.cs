@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, IFixedUpdatable
     private GameLoops _gameLoops;
 
     public int applesAmount => _basketOfApples.appleAmount;
+    public int playerID => _controller.playerInput.playerIndex;
 
     private void OnValidate()
     {
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour, IFixedUpdatable
     private void Awake()
     {
         _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
+        GameEvents.timeOutEvent.AddListener(DisableControll);
     }
 
     public void FixedFrameRun()
@@ -42,11 +44,16 @@ public class Player : MonoBehaviour, IFixedUpdatable
         }
     }
 
+    private void DisableControll()
+    {
+        _gameLoops.Unregistration(this);
+        _controller.Stop();
+    }
+
     #region [ Enable/Disable ]
     private void OnEnable()
     {
         _gameLoops.Registration(this);
-
     }
     private void OnDisable()
     {

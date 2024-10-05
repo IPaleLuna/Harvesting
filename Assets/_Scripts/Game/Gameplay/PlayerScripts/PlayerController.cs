@@ -11,10 +11,13 @@ public class PlayerController : MonoBehaviour
     [Header("components")]
     [SerializeField]
     private Rigidbody2D _rigidbody2D;
+    [SerializeField]
+    private PlayerInput _playerInput;
 
     [Header("Properties")]
     [SerializeField]
     private float _speed = 1.0F;
+    public bool canMove = true;
 
     private PlayerInputActions _playerActions;
     private GameLoops _gameLoops;
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _currentDirection;
 
     public PlayerInputActions inputActions => _playerActions;
+    public PlayerInput playerInput => _playerInput;
 
     private void OnValidate()
     {
@@ -30,7 +34,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _playerActions = new(GetComponent<PlayerInput>());
+        _playerInput = GetComponent<PlayerInput>();
+        _playerActions = new(_playerInput);
         _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
     }
 
@@ -41,9 +46,16 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
+        if (!canMove) return;
         Vector2 velocity = _currentDirection * _speed;
 
         _rigidbody2D.velocity = velocity;
+    }
+
+    public void Stop()
+    {
+        _rigidbody2D.velocity = Vector2.zero;
+        canMove = false;
     }
 
     private void OnGetMoveInput(InputAction.CallbackContext context)

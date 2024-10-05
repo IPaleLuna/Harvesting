@@ -21,6 +21,7 @@ public class AnimationControll : MonoBehaviour
     private void Awake()
     {
         _actions = GetComponentInParent<PlayerController>().inputActions;
+        GameEvents.timeOutEvent.AddListener(OnDisable);
     }
 
     private void OnEnable()
@@ -44,5 +45,7 @@ public class AnimationControll : MonoBehaviour
     {
         _actions.movementAction.performed -= OnCharacterMove;
         _actions.movementAction.canceled -= OnCharacterStand;
+
+        _animator.Play(IDLE_ANIM_HASH);
     }
 }
