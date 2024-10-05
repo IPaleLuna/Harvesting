@@ -138,6 +138,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "WinMemu",
+            "id": "c239f495-ce0e-413b-9d9a-ae6c0ef39fe7",
+            "actions": [
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "c7634805-6159-475c-9e06-8c18c1d50952",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e96cd9c8-55d0-4053-abd9-7206dc82804b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlayerOneScheme;PlayerTwoScheme;Gamepad",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
