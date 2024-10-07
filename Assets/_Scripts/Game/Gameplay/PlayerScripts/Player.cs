@@ -39,8 +39,6 @@ public class Player : MonoBehaviour, IFixedUpdatable
             _basketOfApples.AddApples(apple.cost);
             apple.PickThis();
             GameEvents.applePickEvent.Invoke(this);
-
-            print($"player {gameObject.name} have {applesAmount} apples");
         }
     }
 

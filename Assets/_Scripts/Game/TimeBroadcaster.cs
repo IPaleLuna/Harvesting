@@ -32,8 +32,6 @@ public class TimeBroadcaster : MonoBehaviour, IStartable, IService
 
     private void OnTimeTick()
     {
-        print("Tick");
-
         string min = NumToStringBuffer.GetIntToStringTimeHash((int)(_gameManager.timer.remainingTime / 60));
         string sec = NumToStringBuffer.GetIntToStringTimeHash((int)(_gameManager.timer.remainingTime % 60));
 
