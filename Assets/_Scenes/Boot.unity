@@ -166,8 +166,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d52e155f09435a548855ac0564ec7cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _initEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _startingComponentsStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _startingCompileComponentsEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _initializersMono: []
-  _startablesMono: []
+  _startupsMono: []
+  _clearInitializersAfterInit: 0
+  _gameLoopsConfig: {fileID: 11400000, guid: d75130659638580488a33ec9cd6dbff3, type: 2}
   _nextScene: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

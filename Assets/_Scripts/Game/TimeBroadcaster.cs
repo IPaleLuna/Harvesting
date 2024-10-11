@@ -23,7 +23,7 @@ public class TimeBroadcaster : MonoBehaviour, IStartable, IService
         _isStarted = true;
 
         _gameManager = ServiceManager.Instance
-            .SceneLocator
+            .LocalServices
             .Get<GameManager>();
 
         _tickMachine = new TickMachine(TIMER_TICK_IN_SECONDS, OnTimeTick);

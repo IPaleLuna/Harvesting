@@ -18,7 +18,7 @@ public class GameEndScreen : MonoBehaviour
 
     private void OnTimeOut()
     {
-        Player winPlayer = ServiceManager.Instance.SceneLocator.Get<ScoreHolder>().playerWithMaxScore;
+        Player winPlayer = ServiceManager.Instance.LocalServices.Get<ScoreHolder>().playerWithMaxScore;
 
         _winText.SetText($"Player {winPlayer.playerID + 1} win!");
 

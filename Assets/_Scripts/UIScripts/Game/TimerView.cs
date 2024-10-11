@@ -13,7 +13,7 @@ public class TimerView : MonoBehaviour
 
     private void Start()
     {
-        _timeBroadcaster = ServiceManager.Instance.SceneLocator.Get<TimeBroadcaster>();
+        _timeBroadcaster = ServiceManager.Instance.LocalServices.Get<TimeBroadcaster>();
         _timeBroadcaster.timeTickEvent.AddListener(TimeUpdate);
     }
 

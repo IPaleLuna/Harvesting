@@ -3,23 +3,20 @@ using Services;
 using UnityEngine;
 
 [RequireComponent(typeof(GameManager))]
-public class GameManagerInit : MonoBehaviour, IInitializer
+public class GameManagerInit : InitializerBaseMono
 {
     [SerializeField]
     private GameManager _gameManager;
-
-    private InitStatus _status = InitStatus.Shutdown;
-    public InitStatus status => _status;
 
     private void OnValidate()
     {
         _gameManager ??= GetComponent<GameManager>();
     }
 
-    public void StartInit()
+    public override void StartInit()
     {
         _gameManager.OnStart();
-        ServiceManager.Instance.SceneLocator.Registarion(_gameManager);
+        ServiceManager.Instance.LocalServices.Registarion(_gameManager);
         _status = InitStatus.Done;
     }
 }

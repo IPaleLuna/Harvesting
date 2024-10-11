@@ -6,18 +6,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
-public class PlayerSpawner : MonoBehaviour, IInitializer
+public class PlayerSpawner : InitializerBaseMono
 {
     [SerializeReference]
     private List<Transform> _spawnPoints;
 
-    private InitStatus _status = InitStatus.Shutdown;
-    public InitStatus status => _status;
-
     private string _playerPrefabsPath = "Prefabs/Players/Player";
     private int _playerCount = 0;
 
-    public void StartInit()
+    public override void StartInit()
     {
         _status = InitStatus.Initialization;
 
