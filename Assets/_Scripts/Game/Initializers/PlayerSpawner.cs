@@ -1,5 +1,7 @@
 using Cysharp.Threading.Tasks;
 using PaleLuna.Architecture.Initializer;
+using PaleLuna.Architecture.Services;
+using Services;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +20,9 @@ public class PlayerSpawner : InitializerBaseMono
     {
         _status = InitStatus.Initialization;
 
-        _playerCount = PlayerPrefs.GetInt(PlayerPrefsKeys.PLAYER_COUNT_KEY);
+        _playerCount = ServiceManager.Instance
+            .GlobalServices.Get<SceneLoaderService>()
+            .GetCurrentBaggage().GetInt(StringKeys.PLAYER_COUNT_KEY);
 
         _ = InitPlayers();
     }
@@ -46,13 +50,36 @@ public class PlayerSpawner : InitializerBaseMono
     {
         PlayerInput playerInput = Instantiate(playerPrefab).GetComponentInChildren<PlayerInput>();
 
-        if (playerInput.playerIndex < 2)
+        if (playerInput.playerIndex < 3)
             playerInput.SwitchCurrentControlScheme(playerInput.currentControlScheme, Keyboard.current);
 
         int point = Random.Range(0, _spawnPoints.Count);
         playerInput.transform.position = _spawnPoints[point].position;
 
+        SplitScreen(playerInput.GetComponentInChildren<Camera>(), playerInput.playerIndex);
+
         _spawnPoints.RemoveAt(point);
+    }
+
+    private void SplitScreen(Camera playerCam, int id)
+    {
+
+        if (_playerCount <= 3)
+            SplitScreenVertical(playerCam, id);
+        else
+            SplitScreenVH(playerCam, id);
+    }
+
+    private void SplitScreenVertical(Camera playerCam, int id)
+    {
+        float width = 1f / _playerCount;
+        playerCam.rect = new Rect(id * width, 0, width, 1);
+    }
+    private void SplitScreenVH(Camera playerCam, int id)
+    {
+        float x = (id % 2 == 0) ? 0 : 0.5f;  // Определяем левую или правую половину
+        float y = (id < 2) ? 0.5f : 0;       // Определяем верхнюю или нижнюю половину
+        playerCam.rect = new Rect(x, y, 0.5f, 0.5f);  // Разделение на квадранты
     }
 
 }
