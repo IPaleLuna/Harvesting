@@ -26,7 +26,6 @@ public class AnimationControll : MonoBehaviour
     private void OnInputDirectionChange(InputAction.CallbackContext context)
     {
         Vector2 inputDirection = context.ReadValue<Vector2>();
-        print(inputDirection);
 
         _animator.SetBool(IS_WALK_BOOL, inputDirection.sqrMagnitude > 0);
     }
