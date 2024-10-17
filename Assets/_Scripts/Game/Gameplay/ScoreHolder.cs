@@ -25,6 +25,6 @@ public class ScoreHolder : MonoBehaviour, IService
 
     private void OnGameEnd()
     {
-        PlayerPrefs.SetInt(PlayerPrefsKeys.WINNING_PLAYER_ID, _playerWithMaxScore.playerID);
+        PlayerPrefs.SetInt(StringKeys.WINNING_PLAYER_ID, _playerWithMaxScore.playerID);
     }
 }

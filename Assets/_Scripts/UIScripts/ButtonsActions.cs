@@ -8,7 +8,7 @@ public class ButtonsActions : MonoBehaviour
     {
         ServiceManager.Instance
             .GlobalServices.Get<SceneLoaderService>()
-            .LoadScene(2);
+            .LoadScene("GameScene");
     }
     public void Exit()
     {
