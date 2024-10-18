@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 531370210009738681}
   - component: {fileID: 1537579270725641976}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Outdoor_Decor_Free_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 609750011486970411}
   - component: {fileID: 8555381705561674507}
   - component: {fileID: 7734537681150027253}
+  - component: {fileID: 8219964089964702439}
   m_Layer: 6
   m_Name: Oak_Tree
   m_TagString: Untagged
@@ -285,3 +286,19 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 9074747071757263026}
   _duration: 0.5
   _targetColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+--- !u!114 &8219964089964702439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126662255852640788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12dcd5625b54b348a13abe24d9bb4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxApplesPerSpawn: {x: 1, y: 1}
+  _height: 6.18
+  _width: 4.39
+  _areaPos: {x: 0, y: 1.95, z: 0}
