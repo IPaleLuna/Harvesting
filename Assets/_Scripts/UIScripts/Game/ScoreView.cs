@@ -11,7 +11,7 @@ public class ScoreView : MonoBehaviour
 
         _parentPlayerIndex = transform.root.GetComponentInChildren<Player>().playerID;
 
-        GameEvents.applePickEvent.AddListener(UpdateScore);
+        GameEvents.playerPickApple.AddListener(UpdateScore);
 
         SortLabels();
     }
