@@ -181,7 +181,7 @@ MonoBehaviour:
   _initializersMono: []
   _startupsMono: []
   _clearInitializersAfterInit: 0
-  _gameLoopsConfig: {fileID: 11400000, guid: d75130659638580488a33ec9cd6dbff3, type: 2}
+  _gameLoopsConfig: {fileID: 11400000, guid: e11fa74b1a42e6241be72e1ea80fdd2b, type: 2}
   _nextScene: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
