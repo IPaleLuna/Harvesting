@@ -11,7 +11,7 @@ public class ScoreHolder : MonoBehaviour, IService
     private void Start()
     {
         ServiceManager.Instance.LocalServices.Registarion(this);
-        GameEvents.applePickEvent.AddListener(OnPlayerPickUpApple);
+        GameEvents.playerPickApple.AddListener(OnPlayerPickUpApple);
     }
 
 
