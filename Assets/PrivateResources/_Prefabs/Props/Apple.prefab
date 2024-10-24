@@ -194,8 +194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dcd9e48b6d7b744a707670f2eeabfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 0
-  _cost: 1
+  _appleProperties:
+  - {fileID: 11400000, guid: 1a88e6b60204d4942bdb863600c01316, type: 2}
+  - {fileID: 11400000, guid: 2464cee570993d84db5b1ab75c73b633, type: 2}
+  _appleStateObj:
+  - {fileID: 7559266278127592330}
+  - {fileID: 1581358135605587551}
+  _tickCounter:
+    _targetTicks: 0
 --- !u!1 &7559266278127592330
 GameObject:
   m_ObjectHideFlags: 0

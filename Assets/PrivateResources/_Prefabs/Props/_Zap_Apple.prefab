@@ -300,5 +300,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dcd9e48b6d7b744a707670f2eeabfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 1
-  _cost: 5
+  _appleProperties:
+  - {fileID: 11400000, guid: bde036145955f284091760d0d7ae8696, type: 2}
+  - {fileID: 11400000, guid: 2464cee570993d84db5b1ab75c73b633, type: 2}
+  _appleStateObj:
+  - {fileID: 487851042666931255}
+  - {fileID: 3311503027125086931}
+  _tickCounter:
+    _targetTicks: 0
