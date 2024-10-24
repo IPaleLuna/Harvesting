@@ -1,11 +1,9 @@
 using NaughtyAttributes;
 using PaleLuna.Architecture.GameComponent;
-using PaleLuna.Architecture.Loops;
-using Services;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AppleSpawner : MonoBehaviour, IStartable, IPausable
+public class AppleSpawner : MonoBehaviour, IStartable
 {
     #region [inspector area]
     [Header("Apple prefabs"), HorizontalLine(color: EColor.Red)]
@@ -38,8 +36,6 @@ public class AppleSpawner : MonoBehaviour, IStartable, IPausable
     private List<AppleTree> _appleTrees;
     #endregion
 
-    private GameLoops _gameLoops;
-
     private ObjectPool<Apple> _simpeApplePool;
     private ObjectPool<Apple> _zapApplePool;
 
@@ -49,33 +45,19 @@ public class AppleSpawner : MonoBehaviour, IStartable, IPausable
     private bool _isStarted = false;
     public bool IsStarted => _isStarted;
 
-    public void OnPause()
-    {
-        _gameLoops.Unregistration(_tickHolder);
-    }
-
-    public void OnResume()
-    {
-        _gameLoops.Registration(_tickHolder);
-    }
-
     public void OnStart()
     {
         if (_isStarted) return;
         _isStarted = true;
 
-        _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
-
         PoolInit();
         TreeInit();
 
-        _tickHolder.SetCallback(OnTimeToSpawn);
+        _tickHolder.SetUp(OnTimeToSpawn);
 
-        GameEvents.appleWasPicked.AddListener(ReturnAppleInPool);
+        GameEvents.appleWasDeactivated.AddListener(ReturnAppleInPool);
 
         OnTimeToSpawn();
-
-        OnResume();
     }
 
     private void PoolInit()
