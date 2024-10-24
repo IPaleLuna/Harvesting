@@ -20,7 +20,10 @@ public class GameEndScreen : MonoBehaviour
     {
         Player winPlayer = ServiceManager.Instance.LocalServices.Get<ScoreHolder>().playerWithMaxScore;
 
-        _winText.SetText($"Player {winPlayer.playerID + 1} win!");
+        if (winPlayer)
+            _winText.SetText($"Player {winPlayer.playerID + 1} win!");
+        else
+            _winText.SetText("Did you stand AFK the whole game?");
 
         _winText.gameObject.SetActive(true);
         _hitGo.SetActive(true);
