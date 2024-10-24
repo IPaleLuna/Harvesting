@@ -37,8 +37,17 @@ public class ObjectPool<T> where T : Component
 
     public T Pop()
     {
-        if (_objectPool.Count == 0) return CreateItemAndPop();
+        if (_objectPool.Count == 0) return default;
         return _objectPool.Dequeue();
+    }
+    public bool TryPop(out T item)
+    {
+        bool isNotEmpty = _objectPool.Count > 0;
+
+        if (isNotEmpty) item = _objectPool.Dequeue();
+        else item = default;
+
+        return isNotEmpty;
     }
 
     public void Generate(int count = 0, bool isActive = false)
