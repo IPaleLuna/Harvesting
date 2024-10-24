@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using PaleLuna.Randomizers;
 using UnityEngine;
 
 public class AppleTree : MonoBehaviour
@@ -6,8 +7,6 @@ public class AppleTree : MonoBehaviour
     [Header("Tree properties")]
     [SerializeField, MinMaxSlider(1, 6)]
     private Vector2Int _maxApplesPerSpawn;
-
-    private int _currentApples = 0;
 
     [Header("SpawnArea")]
     [SerializeField]
@@ -17,23 +16,31 @@ public class AppleTree : MonoBehaviour
     [SerializeField]
     private Vector3 _areaPos;
 
+    [Header("CheckArea")]
+    [SerializeField]
+    private CheckSphere _checkSphere;
+
     public void PlaceApple(ObjectPool<Apple> applesPool)
     {
         int amountApple = Random.Range(_maxApplesPerSpawn.x, _maxApplesPerSpawn.y + 1);
 
         for (int i = 0; i < amountApple; i++)
         {
-            Vector3 randomPos = new Vector3(Random.Range(0, _width), Random.Range(0, _height));
+            if (!applesPool.TryPop(out Apple apple)) return;
 
-            randomPos = transform.TransformPoint(randomPos + _areaPos);
+            Vector3 area = new Vector3(_width, _height);
+            Vector3 randomPos = VectorRandomizer.RandomPoint(area, transform.TransformPoint(_areaPos), _checkSphere);;
 
-            applesPool.Pop().RespawnThis(randomPos);
+            apple.RespawnThis(randomPos);
         }
     }
 
     private void OnDrawGizmosSelected()
     {
+        Vector3 center = transform.TransformPoint(_areaPos);
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + _areaPos, new Vector3(_width, _height));
+        Gizmos.DrawWireSphere(center, 0.2F);
     }
 }
