@@ -37,7 +37,7 @@ public class Player : MonoBehaviour, IFixedUpdatable
         if(collision.gameObject.TryGetComponent(out Apple apple))
         {
             _basketOfApples.AddApples(apple.cost);
-            apple.PickThis();
+            apple.DeactivateThis();
             GameEvents.playerPickApple.Invoke(this);
         }
     }
