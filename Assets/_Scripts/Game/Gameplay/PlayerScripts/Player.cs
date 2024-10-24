@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Loops;
 using Services;
@@ -6,15 +7,19 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerController))]
 public class Player : MonoBehaviour, IFixedUpdatable
 {
-    [Header("Auto filling components")]
+    [Header("Auto filling components"), HorizontalLine(color: EColor.Gray)]
     [SerializeField]
     private PlayerController _controller;
 
+    [Header("Characteristics"), HorizontalLine(color: EColor.Violet)]
+    [SerializeField]
+    private PlayerCharacteristics _characteristics;
+
     private readonly Basket _basketOfApples = new();
     private GameLoops _gameLoops;
-
     public int applesAmount => _basketOfApples.appleAmount;
     public int playerID => _controller.playerInput.playerIndex;
+    public PlayerCharacteristics characteristics => _characteristics;
 
     private void OnValidate()
     {

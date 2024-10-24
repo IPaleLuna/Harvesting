@@ -1398,6 +1398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 5191534588886676697}
+  _characteristics: {fileID: 11400000, guid: d2d4a710e1c4f214ab8326ecbf70d8d7, type: 2}
 --- !u!114 &5191534588886676697
 MonoBehaviour:
   m_ObjectHideFlags: 0

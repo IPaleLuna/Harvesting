@@ -1,4 +1,4 @@
-using PaleLuna.Architecture.GameComponent;
+using NaughtyAttributes;
 using PaleLuna.Architecture.Loops;
 using Services;
 using UnityEngine;
@@ -6,18 +6,16 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("components")]
+    [Header("Components"), HorizontalLine(color: EColor.Gray)]
     [SerializeField]
     private Rigidbody2D _rigidbody2D;
     [SerializeField]
     private PlayerInput _playerInput;
-
-    [Header("Properties")]
     [SerializeField]
-    private float _speed = 1.0F;
-    public bool canMove = true;
+    private Player _player;
 
     private PlayerInputActions _playerActions;
     private GameLoops _gameLoops;
@@ -30,11 +28,12 @@ public class PlayerController : MonoBehaviour
     private void OnValidate()
     {
         _rigidbody2D ??= GetComponent<Rigidbody2D>();
+        _playerInput ??= GetComponent<PlayerInput>();
+        _player ??= GetComponent<Player>();
     }
 
     private void Awake()
     {
-        _playerInput = GetComponent<PlayerInput>();
         _playerActions = new(_playerInput);
         _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
     }
@@ -46,8 +45,7 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        if (!canMove) return;
-        Vector2 velocity = _currentDirection * _speed;
+        Vector2 velocity = _currentDirection * _player.characteristics.speed;
 
         _rigidbody2D.velocity = velocity;
     }
@@ -55,7 +53,6 @@ public class PlayerController : MonoBehaviour
     public void Stop()
     {
         _rigidbody2D.velocity = Vector2.zero;
-        canMove = false;
     }
 
     private void OnGetMoveInput(InputAction.CallbackContext context)
