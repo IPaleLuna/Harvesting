@@ -48,7 +48,7 @@ public class TreeFade : MonoBehaviour, IStartable
             if(_playerStayInTree == 1)
             {
                 _tween?.Kill();
-                _tween = _spriteRenderer.DOColor(_targetColor, _duration).Play();
+                _tween = _spriteRenderer?.DOColor(_targetColor, _duration).Play();
             }
         }
     }
@@ -61,7 +61,7 @@ public class TreeFade : MonoBehaviour, IStartable
             if (_playerStayInTree == 0)
             {
                 _tween?.Kill();
-                _spriteRenderer.DOColor(_originColor, _duration).Play();
+                _spriteRenderer?.DOColor(_originColor, _duration).Play();
             }
         }
     }

@@ -32,7 +32,7 @@ public class Apple : MonoBehaviour
     public void DeactivateThis()
     {
         gameObject.SetActive(false);
-        _tickCounter.OnPause();
+        _tickCounter?.OnPause();
         GameEvents.appleWasDeactivated.Invoke(this);
     }
 
@@ -41,7 +41,7 @@ public class Apple : MonoBehaviour
         ChangeState(0);
         transform.position = pos;
         gameObject.SetActive(true);
-        _tickCounter.OnResume();
+        _tickCounter?.OnResume();
     }
 
     private void OnTimeToChangeState()
@@ -66,6 +66,7 @@ public class Apple : MonoBehaviour
 
     private void OnDestroy()
     {
+        _tickCounter.OnPause();
         _tickCounter = null;
     }
 }
