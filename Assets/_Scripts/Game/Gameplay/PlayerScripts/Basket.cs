@@ -7,7 +7,6 @@ public class Basket
     public int appleAmount => _appleAmount;
 
     public void AddApples(int count) =>
-        _appleAmount += count;
-    public void RemoveApples(int count) =>
-        _appleAmount = Mathf.Max(0, _appleAmount - count);
+        _appleAmount = Mathf.Max(0, _appleAmount + count);
+
 }
