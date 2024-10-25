@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Components"), HorizontalLine(color: EColor.Gray)]
@@ -29,7 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody2D ??= GetComponent<Rigidbody2D>();
         _playerInput ??= GetComponent<PlayerInput>();
-        _player ??= GetComponent<Player>();
     }
 
     private void Awake()

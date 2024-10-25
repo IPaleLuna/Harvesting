@@ -31,10 +31,8 @@ public class CheckSphere
         if(isCollide)
         {
             for(int i = 0; i < colliders.Length; i++)
-            {
                 center += colliders[i].transform.position;
-                Debug.Log($"border With: {colliders[i].gameObject}");
-            }
+
             center /= colliders.Length;
         }
 
