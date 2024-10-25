@@ -23,8 +23,10 @@ public class ScoreHolder : MonoBehaviour, IService
             _playerWithMaxScore = player;
     }
 
-    private void OnGameEnd()
+    public void OnGameEnd()
     {
-        PlayerPrefs.SetInt(StringKeys.WINNING_PLAYER_ID, _playerWithMaxScore.playerID);
+        ServiceManager.Instance
+            .GlobalServices.Get<SceneLoaderService>()
+            .GetNextBaggage().SetInt(StringKeys.WINNING_PLAYER_ID, _playerWithMaxScore.playerID);
     }
 }

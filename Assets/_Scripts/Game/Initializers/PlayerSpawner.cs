@@ -20,9 +20,7 @@ public class PlayerSpawner : InitializerBaseMono
     {
         _status = InitStatus.Initialization;
 
-        _playerCount = ServiceManager.Instance
-            .GlobalServices.Get<SceneLoaderService>()
-            .GetCurrentBaggage().GetInt(StringKeys.PLAYER_COUNT_KEY);
+        _playerCount = PlayerPrefs.GetInt(StringKeys.PLAYER_COUNT_KEY);
 
         _ = InitPlayers();
     }
