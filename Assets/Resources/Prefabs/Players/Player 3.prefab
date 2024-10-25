@@ -1413,8 +1413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 5743839935734077437}
   _playerInput: {fileID: 5150141808581500692}
-  _speed: 3
-  canMove: 1
+  _player: {fileID: 8321221439259584449}
 --- !u!70 &4920272710582611377
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
