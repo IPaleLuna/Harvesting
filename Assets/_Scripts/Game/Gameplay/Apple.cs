@@ -66,7 +66,7 @@ public class Apple : MonoBehaviour
 
     private void OnDestroy()
     {
-        _tickCounter.OnPause();
+        _tickCounter.ShutDown();
         _tickCounter = null;
     }
 }

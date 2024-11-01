@@ -7,6 +7,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour, IStartable, IService
 {
     [SerializeField]
+    private BackstageScreen _startScreen;
+
+    [SerializeField]
     private int _gameTimeInSeconds = 120;
     [SerializeField]
     private int _timeToNextScene;
@@ -38,6 +41,11 @@ public class GameManager : MonoBehaviour, IStartable, IService
     public void LoadNextScene()
     {
         ServiceManager.Instance.LocalServices.Get<ScoreHolder>().OnGameEnd();
-        ServiceManager.Instance.GlobalServices.Get<SceneLoaderService>().LoadScene("EndGame");
+        ServiceManager.Instance.GlobalServices.Get<SceneLoaderService>().LoadSceneAsync(3, false);
+
+        _startScreen.FadeOut(() =>
+        {
+            ServiceManager.Instance.GlobalServices.Get<SceneLoaderService>().AllowNextScene();
+        });
     }
 }

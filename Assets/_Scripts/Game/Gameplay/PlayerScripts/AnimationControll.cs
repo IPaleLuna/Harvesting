@@ -17,32 +17,8 @@ public class AnimationControll : MonoBehaviour
         _animator ??= GetComponent<Animator>();
     }
 
-    private void Awake()
+    public void OnInputDirectionChanged(Vector2 direction)
     {
-        _actions = GetComponentInParent<PlayerController>().inputActions;
-        GameEvents.timeOutEvent.AddListener(OnDisable);
+        _animator.SetBool(IS_WALK_BOOL, direction.sqrMagnitude > 0);
     }
-
-    private void OnInputDirectionChange(InputAction.CallbackContext context)
-    {
-        Vector2 inputDirection = context.ReadValue<Vector2>();
-
-        _animator.SetBool(IS_WALK_BOOL, inputDirection.sqrMagnitude > 0);
-    }
-
-    #region [On Enable/Disable]
-    private void OnEnable()
-    {
-        _actions.movementAction.performed += OnInputDirectionChange;
-        _actions.movementAction.canceled += OnInputDirectionChange;
-    }
-
-    private void OnDisable()
-    {
-        _actions.movementAction.performed -= OnInputDirectionChange;
-        _actions.movementAction.canceled -= OnInputDirectionChange;
-
-        _animator.SetBool(IS_WALK_BOOL, false);
-    }
-    #endregion
 }

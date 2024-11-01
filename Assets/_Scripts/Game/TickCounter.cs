@@ -47,6 +47,11 @@ public class TickCounter : ITickUpdatable, IPausable
     {
         _gameLoops?.Registration(this);
     }
+    public void ShutDown()
+    {
+        OnPause();
+        _gameLoops?.pausablesHolder.Unregistration(this);
+    }
 
     public void EveryTickRun()
     {
@@ -67,8 +72,7 @@ public class TickCounter : ITickUpdatable, IPausable
 
     ~TickCounter()
     {
-        OnPause();
-        _gameLoops.pausablesHolder.Unregistration(this);
+        ShutDown();
     }
     
 }

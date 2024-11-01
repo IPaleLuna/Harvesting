@@ -22,17 +22,14 @@ public class SpriteFlipper : MonoBehaviour
 
     private void Awake()
     {
-        _actions = GetComponentInParent<PlayerController>().inputActions;
-
         _shadowRight = _shadowSpriteTransform.localPosition;
 
         _shadowLeft = _shadowRight;
         _shadowLeft.x *= -1;
     }
 
-    private void FlipPlayer(InputAction.CallbackContext context)
+    public void OnInputDirectionChanged(Vector2 direction)
     {
-        Vector2 direction = context.ReadValue<Vector2>();
         if (direction.x < 0)
         {
             _playerSpriteRenderer.flipX = true;
@@ -44,14 +41,5 @@ public class SpriteFlipper : MonoBehaviour
             _playerSpriteRenderer.flipX = false;
             _shadowSpriteTransform.localPosition = _shadowRight;
         }
-    }
-
-    private void OnEnable()
-    {
-        _actions.movementAction.performed += FlipPlayer;
-    }
-    private void OnDisable()
-    {
-        _actions.movementAction.performed -= FlipPlayer;
     }
 }

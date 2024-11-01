@@ -8,13 +8,19 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Components"), HorizontalLine(color: EColor.Gray)]
+    [Header("Main Components"), HorizontalLine(color: EColor.Violet)]
     [SerializeField]
     private Rigidbody2D _rigidbody2D;
     [SerializeField]
     private PlayerInput _playerInput;
     [SerializeField]
     private Player _player;
+
+    [Header("Additions ñomponents"), HorizontalLine(color: EColor.Gray)]
+    [SerializeField]
+    private SpriteFlipper _spriteFlipper;
+    [SerializeField]
+    private AnimationControll _animationControl;
 
     private PlayerInputActions _playerActions;
     private GameLoops _gameLoops;
@@ -28,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody2D ??= GetComponent<Rigidbody2D>();
         _playerInput ??= GetComponent<PlayerInput>();
+        _player ??= GetComponent<Player>();
     }
 
     private void Awake()
@@ -56,6 +63,9 @@ public class PlayerController : MonoBehaviour
     private void OnGetMoveInput(InputAction.CallbackContext context)
     {
         _currentDirection = context.ReadValue<Vector2>();
+
+        _spriteFlipper.OnInputDirectionChanged(_currentDirection);
+        _animationControl.OnInputDirectionChanged(_currentDirection);
     }
 
     private void Subscribe()

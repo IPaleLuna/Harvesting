@@ -27,6 +27,8 @@ public class ScoreHolder : MonoBehaviour, IService
     {
         ServiceManager.Instance
             .GlobalServices.Get<SceneLoaderService>()
-            .GetNextBaggage().SetInt(StringKeys.WINNING_PLAYER_ID, _playerWithMaxScore.playerID);
+            .GetNextBaggage()
+            .SetInt(StringKeys.WINNING_PLAYER_ID, _playerWithMaxScore.playerID)
+            .SetInt(StringKeys.MAX_SCORE_IN_SESSION, _playerWithMaxScore.applesAmount);
     }
 }

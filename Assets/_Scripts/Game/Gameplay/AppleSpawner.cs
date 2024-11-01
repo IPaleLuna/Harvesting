@@ -111,4 +111,9 @@ public class AppleSpawner : MonoBehaviour, IStartable
                 break;
         }
     }
+
+    private void OnDestroy()
+    {
+        _tickHolder.ShutDown();
+    }
 }

@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class ButtonsActions : MonoBehaviour
 {
+    [SerializeField]
+    private BackstageScreen _startScreen;
+
     public void StartGame()
     {
-        ServiceManager.Instance
+        _startScreen.FadeOut(() =>
+        {
+            ServiceManager.Instance
             .GlobalServices.Get<SceneLoaderService>()
             .LoadScene("GameScene");
+        });
     }
     public void Exit()
     {

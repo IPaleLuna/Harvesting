@@ -178,8 +178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 9999
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64cae8efada42b94ba600c90320fce30, type: 2}
-  m_sharedMaterial: {fileID: -3832413195878389697, guid: 64cae8efada42b94ba600c90320fce30, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1bd984e69fc438442a56f04e0c83d8e3, type: 2}
+  m_sharedMaterial: {fileID: -5139697593302324434, guid: 1bd984e69fc438442a56f04e0c83d8e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -278,7 +278,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &5257696118310166332
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 8582122221339789648}
   - component: {fileID: 7318833272574066018}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -348,8 +348,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64cae8efada42b94ba600c90320fce30, type: 2}
-  m_sharedMaterial: {fileID: -3832413195878389697, guid: 64cae8efada42b94ba600c90320fce30, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1bd984e69fc438442a56f04e0c83d8e3, type: 2}
+  m_sharedMaterial: {fileID: -5139697593302324434, guid: 1bd984e69fc438442a56f04e0c83d8e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -425,6 +425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9102551031675600413}
   - component: {fileID: 6777011142487692426}
+  - component: {fileID: 6070421489019857516}
   m_Layer: 0
   m_Name: ScoreCard
   m_TagString: Untagged
@@ -451,9 +452,9 @@ RectTransform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 532, y: 0}
+  m_SizeDelta: {x: 670, y: 75}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &6777011142487692426
 MonoBehaviour:
@@ -468,13 +469,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 100
+  m_MinWidth: 670
   m_MinHeight: -1
   m_PreferredWidth: 100
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &6070421489019857516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6247059449587066790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1066601d2b49cb44c91920ec26ee9d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _placeLabel: {fileID: 7318833272574066018}
+  _nameLabel: {fileID: 4696076230197147119}
+  _scoreLabel: {fileID: 1690844798648179307}
 --- !u!1 &6623087756849679365
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,8 +558,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: BEST NAME
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64cae8efada42b94ba600c90320fce30, type: 2}
-  m_sharedMaterial: {fileID: -3832413195878389697, guid: 64cae8efada42b94ba600c90320fce30, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1bd984e69fc438442a56f04e0c83d8e3, type: 2}
+  m_sharedMaterial: {fileID: -5139697593302324434, guid: 1bd984e69fc438442a56f04e0c83d8e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
