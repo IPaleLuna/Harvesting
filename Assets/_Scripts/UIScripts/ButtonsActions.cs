@@ -16,8 +16,4 @@ public class ButtonsActions : MonoBehaviour
             .LoadScene("GameScene");
         });
     }
-    public void Exit()
-    {
-        Application.Quit();
-    }
 }
