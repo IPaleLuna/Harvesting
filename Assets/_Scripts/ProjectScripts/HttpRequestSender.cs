@@ -11,7 +11,6 @@ namespace PaleLuna.httpRequests
 {
     public static class HttpRequestSender
     {
-        private static IProgress<float> progress = Progress.Create<float>(x => Debug.Log(x));
         private const string API_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNzA2ODAiLCJuYW1lIjoiUGFsZUx1bmEiLCJpYXQiOjE3MzA0NDg4MTV9.u1QfZ6IMDhrHBl1pRbTBXM1EYJtfOFDq0oB0s_RyjC4";
 
         public static void Report(float value)
@@ -24,16 +23,12 @@ namespace PaleLuna.httpRequests
             UnityWebRequest request = UnityWebRequest.Get(url);
             request.SetRequestHeader("Authorization", $"Bearer {API_TOKEN}");
 
-            await request.SendWebRequest().ToUniTask(progress: progress);
+            await request.SendWebRequest();
 
-            // Обработка ответа
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
                 Debug.LogError("Error: " + request.error);
-            }
-            else
-            {
-                Debug.Log("Response: " + request.downloadHandler.text);
             }
 
             return request.downloadHandler.text;
@@ -54,7 +49,7 @@ namespace PaleLuna.httpRequests
 
             request.SetRequestHeader("Content-Type", "application/json; charset=UTF-8");
 
-            // Отправка запроса и ожидание ответа
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             await request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
