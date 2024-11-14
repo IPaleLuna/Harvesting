@@ -31,18 +31,19 @@ public class UIInputListener : MonoBehaviour, IService, IStartable
         IsStarted = true;
 
         ServiceManager.Instance.LocalServices.Registarion(this);
+    }
 
+    private void CreateGameInputs()
+    {
         _gameInputs = new GameInputsClass();
         _gameInputs.UI.Enable();
-        
-        print("Init");
     }
 
     #region [ Enable/Disable ]
 
     private void OnEnable()
     {
-        if(_gameInputs == null) return;
+        if(_gameInputs == null) CreateGameInputs();
         _gameInputs.UI.Submit.performed += OnSubmit;
         _gameInputs.UI.Cancel.performed += OnCancel;
     }
