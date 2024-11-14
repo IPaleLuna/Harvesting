@@ -27,7 +27,7 @@ public class Apple : MonoBehaviour, IPausable
         _currentProperties = _appleProperties[0];
 
         _tickCounter.SetUp(OnTimeToChangeState);
-        _tickCounter.OnResume();
+        _tickCounter.Start();
 
         _tickCounter.SetTarget(_currentProperties.ticksToNextState);
         
@@ -39,7 +39,7 @@ public class Apple : MonoBehaviour, IPausable
     public void DeactivateThis()
     {
         gameObject.SetActive(false);
-        _tickCounter?.OnPause();
+        _tickCounter?.Pause();
         GameEvents.appleWasDeactivated.Invoke(this);
     }
 
@@ -48,7 +48,7 @@ public class Apple : MonoBehaviour, IPausable
         ChangeState(0);
         transform.position = pos;
         gameObject.SetActive(true);
-        _tickCounter?.OnResume();
+        _tickCounter?.Start();
     }
 
     private void OnTimeToChangeState()
@@ -76,21 +76,20 @@ public class Apple : MonoBehaviour, IPausable
         _tickCounter.ShutDown();
         _tickCounter = null;
         ServiceManager.Instance
-            .GlobalServices.Get<GameLoops>()
-            .pausablesHolder.Unregistration(this);
-        
+            ?.GlobalServices?.Get<GameLoops>()
+            .pausablesHolder?.Unregistration(this);
     }
 
     #region [ IPausable implementation ]
 
     public void OnPause()
     {
-        _tickCounter.OnPause();
+        _tickCounter.Pause();
     }
 
     public void OnResume()
     {
-        _tickCounter.OnResume();
+        _tickCounter.Start();
     }
 
     #endregion
