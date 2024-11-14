@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
-public class TickCounter : ITickUpdatable, IPausable
+public class TickCounter : ITickUpdatable
 {
     private GameLoops _gameLoops;
 
@@ -28,8 +28,6 @@ public class TickCounter : ITickUpdatable, IPausable
     {
         SetCallback(callback);
         _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
-
-        _gameLoops.pausablesHolder.Registration(this);
     }
 
     public void SetTarget(int target)
@@ -38,19 +36,19 @@ public class TickCounter : ITickUpdatable, IPausable
         ResetCounter();
     }
 
-    public void OnPause()
+    public void Pause()
     {
         _gameLoops?.Unregistration(this);
     }
 
-    public void OnResume()
+    public void Start()
     {
         _gameLoops?.Registration(this);
     }
     public void ShutDown()
     {
-        OnPause();
-        _gameLoops?.pausablesHolder.Unregistration(this);
+        Pause();
+        _currentTicks = 0;
     }
 
     public void EveryTickRun()

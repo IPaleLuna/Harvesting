@@ -122,8 +122,8 @@ public class AppleSpawner : MonoBehaviour, IStartable, IPausable
     {
         _tickHolder.ShutDown();
         ServiceManager.Instance
-            .GlobalServices.Get<GameLoops>()
-            .pausablesHolder.Unregistration(this);
+            ?.GlobalServices?.Get<GameLoops>()
+            ?.pausablesHolder?.Unregistration(this);
         
     }
 
@@ -131,12 +131,12 @@ public class AppleSpawner : MonoBehaviour, IStartable, IPausable
 
     public void OnPause()
     {
-        _tickHolder.OnPause();
+        _tickHolder.Pause();
     }
 
     public void OnResume()
     {
-        _tickHolder.OnResume();
+        _tickHolder.Start();
     }
 
     #endregion
