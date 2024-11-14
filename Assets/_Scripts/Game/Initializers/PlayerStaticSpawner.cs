@@ -11,6 +11,8 @@ public class PlayerStaticSpawner : MonoBehaviour, IStartable
     [SerializeField]
     private Transform[] _spawnPoints;
 
+    private int pointer = 1;
+    
     private bool _isStart = false;
     public bool IsStarted => _isStart;
 
@@ -29,7 +31,8 @@ public class PlayerStaticSpawner : MonoBehaviour, IStartable
             if(i == winnerId)
                 Instantiate(_playerTransforms[i], _spawnPoints[0]);
             else
-                Instantiate(_playerTransforms[i], _spawnPoints[i != 0 ? i : i+1]);
+                Instantiate(_playerTransforms[i], _spawnPoints[pointer++]);
+            
         }
     }
 }
