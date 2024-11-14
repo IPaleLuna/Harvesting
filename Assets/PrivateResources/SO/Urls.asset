@@ -15,4 +15,4 @@ MonoBehaviour:
   _urls:
     _items:
     - key: score_url
-      item: http://5.34.214.49:3000/score
+      item: https://derpy-postoffice.ru:8443/api/score
