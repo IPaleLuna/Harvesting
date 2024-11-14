@@ -5,6 +5,10 @@ public class GameEvents : MonoBehaviour
 {
     public static readonly UnityEvent<Player> playerPickApple = new();
     public static readonly UnityEvent<Apple> appleWasDeactivated = new();
+    
+    public static readonly UnityEvent<bool> gameOnPauseEvent = new();
+    
+    public static readonly UnityEvent exitSessionEvent = new();
 
     public static readonly UnityEvent timeOutEvent = new();
 }

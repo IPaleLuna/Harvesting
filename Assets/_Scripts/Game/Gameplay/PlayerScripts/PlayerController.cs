@@ -16,18 +16,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Player _player;
 
-    [Header("Additions ñomponents"), HorizontalLine(color: EColor.Gray)]
+    [Header("Additions components"), HorizontalLine(color: EColor.Gray)]
     [SerializeField]
     private SpriteFlipper _spriteFlipper;
     [SerializeField]
     private AnimationControll _animationControl;
 
     private PlayerInputActions _playerActions;
-    private GameLoops _gameLoops;
 
     private Vector2 _currentDirection;
-
-    public PlayerInputActions inputActions => _playerActions;
+    
     public PlayerInput playerInput => _playerInput;
 
     private void OnValidate()
@@ -40,7 +38,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _playerActions = new(_playerInput);
-        _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
     }
 
     private void OnEnable()
@@ -55,9 +52,14 @@ public class PlayerController : MonoBehaviour
         _rigidbody2D.velocity = velocity;
     }
 
+    public void Run()
+    {
+        Subscribe();
+    }
     public void Stop()
     {
         _rigidbody2D.velocity = Vector2.zero;
+        Unsubscribe();
     }
 
     private void OnGetMoveInput(InputAction.CallbackContext context)

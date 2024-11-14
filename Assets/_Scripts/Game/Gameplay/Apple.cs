@@ -1,7 +1,10 @@
 using NaughtyAttributes;
+using PaleLuna.Architecture.GameComponent;
+using PaleLuna.Architecture.Loops;
+using Services;
 using UnityEngine;
 
-public class Apple : MonoBehaviour
+public class Apple : MonoBehaviour, IPausable
 {
     [Header("Apple properties"), HorizontalLine(color: EColor.Green)]
     [SerializeField]
@@ -27,6 +30,10 @@ public class Apple : MonoBehaviour
         _tickCounter.OnResume();
 
         _tickCounter.SetTarget(_currentProperties.ticksToNextState);
+        
+        ServiceManager.Instance
+            .GlobalServices.Get<GameLoops>()
+            .pausablesHolder.Registration(this);
     }
 
     public void DeactivateThis()
@@ -68,5 +75,23 @@ public class Apple : MonoBehaviour
     {
         _tickCounter.ShutDown();
         _tickCounter = null;
+        ServiceManager.Instance
+            .GlobalServices.Get<GameLoops>()
+            .pausablesHolder.Unregistration(this);
+        
     }
+
+    #region [ IPausable implementation ]
+
+    public void OnPause()
+    {
+        _tickCounter.OnPause();
+    }
+
+    public void OnResume()
+    {
+        _tickCounter.OnResume();
+    }
+
+    #endregion
 }

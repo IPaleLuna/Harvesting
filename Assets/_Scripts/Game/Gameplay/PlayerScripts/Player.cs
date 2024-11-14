@@ -1,11 +1,13 @@
+using System;
 using NaughtyAttributes;
 using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Loops;
 using Services;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
-public class Player : MonoBehaviour, IFixedUpdatable
+public class Player : MonoBehaviour, IFixedUpdatable, IPausable
 {
     [Header("Auto filling components"), HorizontalLine(color: EColor.Gray)]
     [SerializeField]
@@ -29,7 +31,9 @@ public class Player : MonoBehaviour, IFixedUpdatable
     private void Awake()
     {
         _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
+        
         GameEvents.timeOutEvent.AddListener(DisableControll);
+        _gameLoops.pausablesHolder.Registration(this);
     }
 
     public void FixedFrameRun()
@@ -53,14 +57,27 @@ public class Player : MonoBehaviour, IFixedUpdatable
         _controller.Stop();
     }
 
-    #region [ Enable/Disable ]
-    private void OnEnable()
+    private void EnableControll()
     {
         _gameLoops.Registration(this);
+        _controller.Run();
     }
-    private void OnDisable()
+
+    private void OnDestroy()
     {
         _gameLoops.Unregistration(this);
+        _gameLoops.pausablesHolder.Unregistration(this);
     }
+    #region [ Pausable implementation ]
+    public void OnPause()
+    {
+        DisableControll();
+    }
+
+    public void OnResume()
+    {
+        EnableControll();
+    }
+
     #endregion
 }
