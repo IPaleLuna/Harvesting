@@ -41,7 +41,6 @@ public class ScoreTableView : MonoBehaviour
 
     private void OnEnable()
     {
-        print("Enable");
         _ = Refresh();
     }
 }
