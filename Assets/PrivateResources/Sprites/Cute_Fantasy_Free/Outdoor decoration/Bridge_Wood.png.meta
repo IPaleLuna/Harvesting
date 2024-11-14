@@ -227,8 +227,8 @@ TextureImporter:
         y: 10
         width: 38
         height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.8}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -282,6 +282,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Bridge_Wood_7
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 12
+        width: 6
+        height: 11
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b890d8f174e7374da4ea52ad4e018d8
+      internalID: -1443040278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bridge_Wood_9
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 23
+        width: 2
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: -10.28}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d55ec9fbe9bd42a4ca1f5565a7594dfd
+      internalID: -807402863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -300,6 +342,9 @@ TextureImporter:
       Bridge_Wood_4: -1768677736
       Bridge_Wood_5: 436147530
       Bridge_Wood_6: -874414627
+      Bridge_Wood_7: -1443040278
+      Bridge_Wood_8: 1155407397
+      Bridge_Wood_9: -807402863
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
