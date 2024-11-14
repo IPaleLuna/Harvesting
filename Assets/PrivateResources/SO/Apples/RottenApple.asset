@@ -15,4 +15,4 @@ MonoBehaviour:
   _type: 0
   _state: 1
   _cost: -1
-  _ticksToNextState: {x: 8, y: 13}
+  _ticksToNextState: {x: 4, y: 6}
