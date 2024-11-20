@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FluttershyPrevie
+  m_Controller: {fileID: 9100000, guid: 00a423ad5f1933d448ee8dcfc78d91da, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: e8e6cee1af6de614e96510239bb504b0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2bdb152f027ed7540bab6dcd108cb738, type: 2}
