@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     public void Stop()
     {
         _rigidbody2D.velocity = Vector2.zero;
+        _animationControl.ResetAnim();
         Unsubscribe();
     }
 
