@@ -33,16 +33,16 @@ public class SavePlayerScore : MonoBehaviour
     {
         PlayerScore playerScore = new PlayerScore(playerName, score);
 
-        if (!await CheckScore(playerScore))
-            return;
-
-        await _scoreTable.Post(playerScore);
+        if (await CheckScore(playerScore))
+            await _scoreTable.Post(playerScore);
 
         ServiceManager.Instance
             .GlobalServices
             .Get<SceneLoaderService>()
             .LoadScene(1);
     }
+    
+    
 
     private async UniTask<bool> CheckScore(PlayerScore playerScore)
     {
