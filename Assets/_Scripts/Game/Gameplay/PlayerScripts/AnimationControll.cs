@@ -21,4 +21,9 @@ public class AnimationControll : MonoBehaviour
     {
         _animator.SetBool(IS_WALK_BOOL, direction.sqrMagnitude > 0);
     }
+
+    public void ResetAnim()
+    {
+        _animator.SetBool(IS_WALK_BOOL, false);
+    }
 }
