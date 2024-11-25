@@ -34,7 +34,6 @@ namespace PaleLuna.Tab
                 .LocalServices.Get<UIInputListener>();
 
             gameObject.SetActive(_activeOnStart);
-            
         }
 
         public void OpenOtherTab(SequentialTab other)
