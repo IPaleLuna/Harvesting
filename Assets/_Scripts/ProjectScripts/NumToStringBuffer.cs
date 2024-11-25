@@ -31,7 +31,7 @@ public static class NumToStringBuffer
     }
     private static void ResizeBuffer(int newCapacity)
     {
-        for (int i = _numbersBuffer.Count; i < newCapacity; i++)
+        for (int i = _numbersBuffer.Count; i <= newCapacity; i++)
         {
             _numbersBuffer.Add(i.ToString());
             _numbersTimeFormatBuffer.Add(string.Format("{0:D2}", i));
