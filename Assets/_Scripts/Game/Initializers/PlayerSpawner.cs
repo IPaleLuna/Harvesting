@@ -75,9 +75,9 @@ public class PlayerSpawner : InitializerBaseMono
     }
     private void SplitScreenVH(Camera playerCam, int id)
     {
-        float x = (id % 2 == 0) ? 0 : 0.5f;  // Определяем левую или правую половину
-        float y = (id < 2) ? 0.5f : 0;       // Определяем верхнюю или нижнюю половину
-        playerCam.rect = new Rect(x, y, 0.5f, 0.5f);  // Разделение на квадранты
+        float x = (id % 2 == 0) ? 0 : 0.5f;
+        float y = (id < 2) ? 0.5f : 0;
+        playerCam.rect = new Rect(x, y, 0.5f, 0.5f);
     }
 
 }
