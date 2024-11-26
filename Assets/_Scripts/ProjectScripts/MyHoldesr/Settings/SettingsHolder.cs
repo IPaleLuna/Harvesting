@@ -7,7 +7,7 @@ namespace GameSettings
 {
     public class SettingsHolder : IService
     {
-        private const string SETTINGS_FILE = "Settings/settings.json";
+        private const string SETTINGS_FILE = "settings.json";
         private const string ROOT_FOLDER = "Resources";
         
         public readonly string SETTINGS_PATH;

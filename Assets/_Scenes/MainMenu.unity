@@ -6253,7 +6253,6 @@ GameObject:
   m_Component:
   - component: {fileID: 948195586}
   - component: {fileID: 948195587}
-  - component: {fileID: 948195588}
   m_Layer: 0
   m_Name: Sliders
   m_TagString: Untagged
@@ -6309,22 +6308,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &948195588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948195585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3e34103ad0f4da4aa736573cf6fd15a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mixer: {fileID: 24100000, guid: dac78c064bdd312488805fb1af20a70d, type: 2}
-  _masterVolumeSlider: {fileID: 1762105915}
-  _musicVolumeSlider: {fileID: 633618228}
-  _sfxVolumeSlider: {fileID: 1568268458}
 --- !u!1 &958077305
 GameObject:
   m_ObjectHideFlags: 0
@@ -6456,7 +6439,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 948195588}
+      - m_Target: {fileID: 1323363169}
         m_TargetAssemblyTypeName: AudioSettingsMaster, Assembly-CSharp
         m_MethodName: SaveAudioSettings
         m_Mode: 1
@@ -8331,6 +8314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1323363167}
   - component: {fileID: 1323363168}
+  - component: {fileID: 1323363169}
   m_Layer: 0
   m_Name: ------------UI------------
   m_TagString: Untagged
@@ -8368,6 +8352,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startScreen: {fileID: 143883521}
   _backgrounMusic: {fileID: 1702794883}
+--- !u!114 &1323363169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323363166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e34103ad0f4da4aa736573cf6fd15a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mixer: {fileID: 24100000, guid: dac78c064bdd312488805fb1af20a70d, type: 2}
+  _masterVolumeSlider: {fileID: 1762105915}
+  _musicVolumeSlider: {fileID: 633618228}
+  _sfxVolumeSlider: {fileID: 1568268458}
 --- !u!1 &1340981717
 GameObject:
   m_ObjectHideFlags: 0

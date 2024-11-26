@@ -30,17 +30,18 @@ public class AudioSettingsMaster : MonoBehaviour
             .Get<SettingsHolder>();
         _audioSettings = _settingsHolder.settings.audio;
         
-        _masterVolumeSlider.SetValue(_audioSettings.masterVolume);
-        _musicVolumeSlider.SetValue(_audioSettings.musicVolume);
-        _sfxVolumeSlider.SetValue(_audioSettings.sfxVolume);
-        
         _masterVolumeSlider.OnValueChanged(OnMasterVolumeChanged);
         _musicVolumeSlider.OnValueChanged(OnMusicVolumeChanged);
         _sfxVolumeSlider.OnValueChanged(OnSfxVolumeChanged);
+        
+        _masterVolumeSlider.SetValue(_audioSettings.masterVolume);
+        _musicVolumeSlider.SetValue(_audioSettings.musicVolume);
+        _sfxVolumeSlider.SetValue(_audioSettings.sfxVolume);
     }
 
     private void OnMasterVolumeChanged(float value)
     {
+        print("Master change");
         _audioSettings.masterVolume = value;
         _mixer.SetFloat(AudioSettings.MIXER_MASTER, SoundConverter.ConvertVolume(value));
     }
