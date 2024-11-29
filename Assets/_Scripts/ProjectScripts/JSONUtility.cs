@@ -9,7 +9,6 @@ namespace PaleLuna.JSONUtility
         {
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(objectToWrite);
             File.WriteAllText(path, json);
-            Debug.Log("Успешная запись");
         }
 
         public static bool TryReadFromFile<T>(string path, out T objectToRead)
