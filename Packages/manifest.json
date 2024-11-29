@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.github-glitchenzo.nugetforunity": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
     "com.twilightmoongames.moonlightunityarchitecture": "https://github.com/TwillightMoon/MoonlightUnity-Architecture.git",
     "com.unity.collab-proxy": "2.5.1",
     "com.unity.feature.2d": "2.0.1",
@@ -9,13 +8,13 @@
     "com.unity.inputsystem": "1.7.0",
     "com.unity.netcode.gameobjects": "1.11.0",
     "com.unity.render-pipelines.universal": "14.0.11",
+    "com.unity.services.lobby": "1.2.2",
     "com.unity.test-framework": "1.1.33",
     "com.unity.textmeshpro": "3.0.7",
     "com.unity.timeline": "1.7.6",
-    "com.unity.toolchain.win-x86_64-linux-x86_64": "2.0.9",
+    "com.unity.toolchain.win-x86_64-linux-x86_64": "2.0.10",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.4",
-    "jillejr.newtonsoft.json-for-unity": "https://github.com/jilleJr/Newtonsoft.Json-for-Unity.git#upm",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
