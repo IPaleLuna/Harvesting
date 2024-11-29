@@ -9,7 +9,7 @@ namespace PaleLuna.Tab
             m_uiInputListener.OnInputCancel.AddListener(OnCancel);
         }
 
-        protected override void OnCancel()
+        public override void OnCancel()
         {
             if (gameObject.activeSelf)
                 ResumeGame();

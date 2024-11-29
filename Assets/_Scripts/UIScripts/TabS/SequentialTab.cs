@@ -19,7 +19,7 @@ namespace PaleLuna.Tab
             m_uiInputListener.OnInputCancel.RemoveListener(OnCancel);
         }
 
-        protected override void OnCancel()
+        public override void OnCancel()
         {
             if (previousSequentialTab)
                 OpenOtherTab(previousSequentialTab);

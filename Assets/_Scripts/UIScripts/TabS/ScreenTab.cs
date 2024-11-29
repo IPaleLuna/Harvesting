@@ -55,8 +55,6 @@ namespace PaleLuna.Tab
             gameObject.SetActive(false);
             _OnTabClose.Invoke();
         }
-        protected abstract void OnCancel();
-
-        
+        public abstract void OnCancel();
     }
 }
