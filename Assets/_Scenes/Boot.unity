@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 945112622}
   - component: {fileID: 945112623}
   - component: {fileID: 945112624}
+  - component: {fileID: 945112625}
   m_Layer: 0
   m_Name: ------------MAIN------------
   m_TagString: Untagged
@@ -321,6 +322,7 @@ MonoBehaviour:
   _initializersMono:
   - {fileID: 945112623}
   - {fileID: 945112624}
+  - {fileID: 945112625}
   _startupsMono: []
   _clearInitializersAfterInit: 0
   _gameLoopsConfig: {fileID: 11400000, guid: e11fa74b1a42e6241be72e1ea80fdd2b, type: 2}
@@ -351,6 +353,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mixer: {fileID: 24100000, guid: dac78c064bdd312488805fb1af20a70d, type: 2}
+--- !u!114 &945112625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945112620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e758676632497824a8f9bcdf4bc48a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &980108496
 GameObject:
   m_ObjectHideFlags: 0
