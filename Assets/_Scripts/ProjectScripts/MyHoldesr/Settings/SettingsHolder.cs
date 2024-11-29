@@ -17,7 +17,7 @@ namespace GameSettings
 
         public SettingsHolder()
         {
-            SETTINGS_PATH = Path.Combine(Application.dataPath, ROOT_FOLDER, SETTINGS_FILE);
+            SETTINGS_PATH = Path.Combine(Application.persistentDataPath, SETTINGS_FILE);
             Debug.Log(SETTINGS_FILE);
         }
 
