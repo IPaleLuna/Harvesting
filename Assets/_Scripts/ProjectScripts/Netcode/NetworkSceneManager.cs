@@ -27,7 +27,7 @@ namespace NetWorking
                 _numberOfClientsLoaded = 0;
                 SwapBaggage();
                 
-                NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+                NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
             }
             else
             {
