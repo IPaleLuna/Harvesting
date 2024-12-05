@@ -9,20 +9,20 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using NetworkSceneManager = NetWorking.NetworkSceneManager;
 
-namespace Harvesting.UI.LobbySettings
+namespace Harvesting.UI.LobbyСreator
 {
-    [RequireComponent(typeof(LobbySettingsView))]
-    public class LobbySettings : MonoBehaviour
+    [RequireComponent(typeof(LobbyСreatorView))]
+    public class LobbyСreator : MonoBehaviour
     {
         [SerializeField]
-        private LobbySettingsView _view;
-        private readonly LobbySettingsModel _model = new();
+        private LobbyСreatorView _view;
+        private readonly LobbyСreatorModel _model = new();
         
         private NetworkSceneManager _networkSceneManager; 
 
         private void OnValidate()
         {
-            _view ??= GetComponent<LobbySettingsView>();
+            _view ??= GetComponent<LobbyСreatorView>();
         }
 
         private void Start()
@@ -60,7 +60,7 @@ namespace Harvesting.UI.LobbySettings
                 // Параметры лобби
                 var lobby = await LobbyService.Instance.CreateLobbyAsync(
                     _model.lobbyName,
-                    LobbySettingsModel.MAX_PLAYERS,
+                    LobbyСreatorModel.MAX_PLAYERS,
                     new CreateLobbyOptions
                     {
                         IsPrivate = _model.isPrivate, // Публичное лобби
@@ -88,8 +88,8 @@ namespace Harvesting.UI.LobbySettings
             }
 
             // Установка порта для сервера
-            utp.SetConnectionData("0.0.0.0", LobbySettingsModel.PORT);
-            Debug.Log($"UnityTransport настроен на порт {LobbySettingsModel.PORT}");
+            utp.SetConnectionData("0.0.0.0", LobbyСreatorModel.PORT);
+            Debug.Log($"UnityTransport настроен на порт {LobbyСreatorModel.PORT}");
         }
         private void CreateHost()
         {

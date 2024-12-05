@@ -5,9 +5,9 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
-namespace Harvesting.UI.LobbySettings
+namespace Harvesting.UI.LobbyСreator
 {
-    public class LobbySettingsView : MonoBehaviour
+    public class LobbyСreatorView : MonoBehaviour
     {
         [SerializeField]
         private TMP_InputField _lobbyNameInputField;

@@ -1,6 +1,6 @@
-namespace Harvesting.UI.LobbySettings
+namespace Harvesting.UI.LobbyСreator
 {
-    public class LobbySettingsModel
+    public class LobbyСreatorModel
     {
         public const int MAX_PLAYERS = 4;
         public const int PORT = 7777;
