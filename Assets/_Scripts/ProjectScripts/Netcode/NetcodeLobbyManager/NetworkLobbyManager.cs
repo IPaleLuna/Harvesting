@@ -87,14 +87,14 @@ namespace Harvesting.Networking
 
         private void SettingUtpForLan()
         {
-            if (TryGetUnityTransport(out UnityTransport utp))
+            if (!TryGetUnityTransport(out UnityTransport utp))
             {
                 Debug.LogError("UnityTransport не найден на NetworkManager!");
                 return;
             }
 
             // Установка порта для сервера
-            utp.SetConnectionData("0.0.0.0", LobbyСreatorModel.PORT);
+            utp.SetConnectionData("127.0.0.1", LobbyСreatorModel.PORT);
             Debug.Log($"UnityTransport настроен на порт {LobbyСreatorModel.PORT}");
         }
 
