@@ -1,9 +1,7 @@
-using System;
 using NaughtyAttributes;
 using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Loops;
 using Services;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
