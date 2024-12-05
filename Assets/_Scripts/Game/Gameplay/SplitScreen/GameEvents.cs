@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class GameEvents : MonoBehaviour
 {
-    public static readonly UnityEvent<Player> playerPickApple = new();
+    public static readonly UnityEvent<PlayerController> playerPickApple = new();
     public static readonly UnityEvent<Apple> appleWasDeactivated = new();
     
     public static readonly UnityEvent<bool> gameOnPauseEvent = new();

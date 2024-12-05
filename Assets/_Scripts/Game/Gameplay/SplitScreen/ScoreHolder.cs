@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ScoreHolder : MonoBehaviour, IService
 {
-    private Player _playerWithMaxScore = null;
+    private PlayerController _playerLeader = null;
 
-    public Player playerWithMaxScore => _playerWithMaxScore;
+    public PlayerController playerLeader => _playerLeader;
 
     private void Start()
     {
@@ -15,20 +15,26 @@ public class ScoreHolder : MonoBehaviour, IService
     }
 
 
-    private void OnPlayerPickUpApple(Player player)
+    private void OnPlayerPickUpApple(PlayerController playerPickedApple)
     {
-        if (_playerWithMaxScore != null)
-            _playerWithMaxScore = _playerWithMaxScore.applesAmount < player.applesAmount ? player : _playerWithMaxScore;
+        if (_playerLeader != null)
+        {
+            PlayerInfo leaderInfo = _playerLeader.playerInfo;
+            PlayerInfo playerInfo = playerPickedApple.playerInfo;
+            
+            _playerLeader = leaderInfo.appleAmount >= playerInfo.appleAmount ? playerLeader : playerPickedApple;
+        }
         else
-            _playerWithMaxScore = player;
+            _playerLeader = playerPickedApple;
     }
+    
 
     public void OnGameEnd()
     {
         ServiceManager.Instance
             .GlobalServices.Get<SceneLoaderService>()
             .GetNextBaggage()
-            .SetInt(StringKeys.WINNING_PLAYER_ID, _playerWithMaxScore.playerID)
-            .SetInt(StringKeys.MAX_SCORE_IN_SESSION, _playerWithMaxScore.applesAmount);
+            .SetInt(StringKeys.WINNING_PLAYER_ID, _playerLeader.playerInfo.playerID)
+            .SetInt(StringKeys.MAX_SCORE_IN_SESSION, _playerLeader.playerInfo.appleAmount);
     }
 }
