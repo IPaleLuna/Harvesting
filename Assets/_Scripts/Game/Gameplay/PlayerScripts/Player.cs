@@ -3,47 +3,56 @@ using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Loops;
 using Services;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-[RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(PlayerMovement))]
 public class Player : MonoBehaviour, IFixedUpdatable, IPausable
 {
+    [FormerlySerializedAs("movement")]
+    [FormerlySerializedAs("_controller")]
     [Header("Auto filling components"), HorizontalLine(color: EColor.Gray)]
     [SerializeField]
-    private PlayerController _controller;
+    private PlayerMovement _movement;
 
     [Header("Characteristics"), HorizontalLine(color: EColor.Violet)]
     [SerializeField]
     private PlayerCharacteristics _characteristics;
-
-    private readonly Basket _basketOfApples = new();
+    
     private GameLoops _gameLoops;
-    public int applesAmount => _basketOfApples.appleAmount;
-    public int playerID => _controller.playerInput.playerIndex;
-    public PlayerCharacteristics characteristics => _characteristics;
+    
+    private readonly PlayerModel _model = new();
+    private PlayerView _view;
+    
+    public int applesAmount => _model.appleAmount;
+    public int playerID => _movement.playerInput.playerIndex;
 
     private void OnValidate()
     {
-        _controller ??= GetComponent<PlayerController>();
+        _movement ??= GetComponent<PlayerMovement>();
     }
 
     private void Awake()
     {
+        
         _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
         
         GameEvents.timeOutEvent.AddListener(DisableControll);
         _gameLoops.pausablesHolder.Registration(this);
+        
+        _model.speed = _characteristics.speed;
+        _movement.SetModel(_model);
     }
 
     public void FixedFrameRun()
     {
-        _controller.Move();
+        _movement.Move();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.TryGetComponent(out Apple apple))
         {
-            _basketOfApples.AddApples(apple.cost);
+            _model.AddApples(apple.cost);
             apple.DeactivateThis();
             GameEvents.playerPickApple.Invoke(this);
         }
@@ -52,13 +61,13 @@ public class Player : MonoBehaviour, IFixedUpdatable, IPausable
     private void DisableControll()
     {
         _gameLoops.Unregistration(this);
-        _controller.Stop();
+        _movement.Stop();
     }
 
     private void EnableControll()
     {
         _gameLoops.Registration(this);
-        _controller.Run();
+        _movement.Run();
     }
 
     private void OnDestroy()
