@@ -10,7 +10,7 @@ public class CreateLobbyTest : MonoBehaviour
     {
         _ = CreateLobbyAsync("Test name", 4);
     }
-    
+
     
     private async UniTaskVoid CreateLobbyAsync(string lobbyName, int maxPlayers)
     {
