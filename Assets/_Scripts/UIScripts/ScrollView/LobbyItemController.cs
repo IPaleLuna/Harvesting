@@ -1,5 +1,4 @@
-using Cysharp.Threading.Tasks;
-using Unity.Services.Lobbies;
+using Harvesting.Networking;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 
@@ -10,6 +9,8 @@ public class LobbyItemController : ListItem
     private LobbyItemView _lobbyItemView;
     
     private Lobby _currentLobby;
+    
+    private NetworkLobbyManager _networkLobbyManager;
 
     private void OnValidate()
     {
@@ -24,19 +25,7 @@ public class LobbyItemController : ListItem
 
     public void ConnectToLobby()
     {
-        if(_currentLobby == null) return;
-        _ = ConnectAsync();
+        _networkLobbyManager.JoinLobbyById(_currentLobby.Id);
     }
-
-    private async UniTaskVoid ConnectAsync()
-    {
-        try
-        {
-            await Lobbies.Instance.JoinLobbyByIdAsync(_currentLobby.Id);
-        }
-        catch (LobbyServiceException e)
-        {
-            Debug.LogException(e);
-        }
-    }
+    
 }
