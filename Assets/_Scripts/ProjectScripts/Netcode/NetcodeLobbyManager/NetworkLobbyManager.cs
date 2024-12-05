@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Harvesting.UI.LobbyСreator;
-using Harvesting.UI.ManualConnection;
 using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Services;
 using Services;
