@@ -3909,10 +3909,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1340981719}
+    m_SelectOnDown: {fileID: 2094315518}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -11755,7 +11755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ba4ab421aee474694b673e960b19d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _networkLobbyManager: {fileID: 1938192685}
   _view: {fileID: 1304599813}
 --- !u!114 &1304599813
 MonoBehaviour:
@@ -12251,10 +12250,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1658183913}
+    m_SelectOnDown: {fileID: 453913654}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -14599,10 +14598,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 2094315518}
+    m_SelectOnDown: {fileID: 1340981719}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -17068,7 +17067,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1938192683}
   - component: {fileID: 1938192684}
-  - component: {fileID: 1938192685}
   m_Layer: 0
   m_Name: Multiplayer Screen
   m_TagString: Untagged
@@ -17120,18 +17118,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   previousSequentialTab: {fileID: 1610095687}
---- !u!114 &1938192685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938192682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d383b9c8ce426554fb3239c449886bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1951255292
 GameObject:
   m_ObjectHideFlags: 0
@@ -18635,10 +18621,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 453913654}
+    m_SelectOnDown: {fileID: 1658183913}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
