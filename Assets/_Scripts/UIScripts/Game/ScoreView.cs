@@ -9,7 +9,7 @@ public class ScoreView : MonoBehaviour
     {
        _labels = transform.GetComponentsInChildren<ScoreCard>();
 
-        _parentPlayerIndex = transform.root.GetComponentInChildren<Player>().playerID;
+        _parentPlayerIndex = transform.root.GetComponentInChildren<PlayerController>().playerInfo.playerID;
 
         GameEvents.playerPickApple.AddListener(UpdateScore);
 
@@ -19,16 +19,14 @@ public class ScoreView : MonoBehaviour
     private void SortLabels()
     {
         for (int i = 0; i < _parentPlayerIndex; i++)
-        {
-            ScoreCard temp = _labels[i + 1];
-            _labels[i + 1] = _labels[i];
-            _labels[i] = temp;
-        }
+            (_labels[i + 1], _labels[i]) = (_labels[i], _labels[i + 1]);
     }
 
-    private void UpdateScore(Player player)
+    private void UpdateScore(PlayerController playerController)
     {
-        _labels[player.playerID].SetText(NumToStringBuffer.GetIntToStringHash(player.applesAmount));
-        _labels[player.playerID].PlayAnim();
+        PlayerInfo playerInfo = playerController.playerInfo;
+        
+        _labels[playerInfo.playerID].SetText(NumToStringBuffer.GetIntToStringHash(playerInfo.appleAmount));
+        _labels[playerInfo.playerID].PlayAnim();
     }
 }

@@ -18,10 +18,10 @@ public class GameEndScreen : MonoBehaviour
 
     private void OnTimeOut()
     {
-        Player winPlayer = ServiceManager.Instance.LocalServices.Get<ScoreHolder>().playerWithMaxScore;
+        PlayerController winPlayerController = ServiceManager.Instance.LocalServices.Get<ScoreHolder>().playerLeader;
 
-        if (winPlayer)
-            _winText.SetText($"Player {winPlayer.playerID + 1} win!");
+        if (winPlayerController)
+            _winText.SetText($"Player {winPlayerController.playerInfo.playerID + 1} win!");
         else
             _winText.SetText("Did you stand AFK the whole game?");
 
