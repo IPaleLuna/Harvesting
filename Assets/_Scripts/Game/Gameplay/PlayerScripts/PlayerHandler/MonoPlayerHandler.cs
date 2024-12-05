@@ -54,7 +54,6 @@ public class MonoPlayerHandler : MonoBehaviour, IFixedUpdatable, IPausable
     {
         EnableControl();
     }
-
     #endregion
     
     private void EnableControl()
