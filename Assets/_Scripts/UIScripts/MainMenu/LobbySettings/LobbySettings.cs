@@ -1,11 +1,13 @@
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Cysharp.Threading.Tasks;
+using PaleLuna.Architecture.Services;
+using Services;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
+using NetworkSceneManager = NetWorking.NetworkSceneManager;
 
 namespace Harvesting.UI.LobbySettings
 {
@@ -14,29 +16,41 @@ namespace Harvesting.UI.LobbySettings
     {
         [SerializeField]
         private LobbySettingsView _view;
-        private LobbySettingsModel _model;
+        private readonly LobbySettingsModel _model = new();
+        
+        private NetworkSceneManager _networkSceneManager; 
+
+        private void OnValidate()
+        {
+            _view ??= GetComponent<LobbySettingsView>();
+        }
 
         private void Start()
         {
             _view.OnLobbyNameChanged.AddListener(OnNameChanged);
-            _view.OnPublicChanged.AddListener(OnIsPublicChanged);
+            _view.OnPrivateChanged.AddListener(OnIsPrivateChanged);
             _view.OnIsLanChanged.AddListener(OnIsLanChanged);
+
+            _networkSceneManager = ServiceManager.Instance
+                .GlobalServices
+                .Get<NetworkSceneManager>();
         }
 
         private void OnNameChanged(string newName) => _model.lobbyName = newName;
         private void OnIsLanChanged(bool isLan) => _model.isLan = isLan;
-        private void OnIsPublicChanged(bool isPublic) => _model.isPublic = isPublic;
+        private void OnIsPrivateChanged(bool isPrivate) => _model.isPrivate = isPrivate;
         
         #region CreateGame
         
         public void CreateLobby()
         {
             if (!_model.isLan)
-            {
-                SettingUTPForLAN();
                 _ = CreateLobbyAsync();
-            }
+            else
+                SettingUTPForLAN();
+            
             CreateHost();
+            LoadLobbyScene();
         }
 
         private async UniTaskVoid CreateLobbyAsync()
@@ -49,7 +63,7 @@ namespace Harvesting.UI.LobbySettings
                     LobbySettingsModel.MAX_PLAYERS,
                     new CreateLobbyOptions
                     {
-                        IsPrivate = _model.isPublic, // Публичное лобби
+                        IsPrivate = _model.isPrivate, // Публичное лобби
                         Data = new Dictionary<string, DataObject>
                         {
                             { "Map", new DataObject(DataObject.VisibilityOptions.Public, "Apple valley") }
@@ -89,15 +103,16 @@ namespace Harvesting.UI.LobbySettings
             }
         }
 
-        #endregion
-
-        #region StartClient
-
-        public void ConnectToServerByIP() //TODO
+        private void LoadLobbyScene()
         {
-            if(!TryGetUnityTransport(out UnityTransport utp)) return;
-            //utp.SetConnectionData(ClearIPAddress(ipAddress), LobbySettingsModel.PORT);
+            _networkSceneManager.RegisterCallback();
+            _networkSceneManager
+                .CurrentSceneBaggage
+                .AddBaggage(StringKeys.IS_LAN_KEY, new BoolBaggage(_model.isLan));
+            
+            _networkSceneManager.SwitchScene("Lobby");
         }
+
         #endregion
 
         private bool TryGetUnityTransport(out UnityTransport transport)
@@ -109,7 +124,5 @@ namespace Harvesting.UI.LobbySettings
             
             return transport != null;
         }
-
-        private string ClearIPAddress(string dirtyIp) => Regex.Replace(dirtyIp, "[^A-Za-z0-9.]", "");
     }
 }
