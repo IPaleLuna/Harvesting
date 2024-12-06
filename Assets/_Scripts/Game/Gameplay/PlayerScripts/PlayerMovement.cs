@@ -2,8 +2,6 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerView))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -31,14 +29,17 @@ public class PlayerMovement : MonoBehaviour
         _view ??= GetComponent<PlayerView>();
     }
 
-    private void Awake()
+    public void Init()
     {
+        _playerInput.enabled = true;
+        
         _playerActions = new(_playerInput);
+        Subscribe();
     }
     
     private void OnEnable()
     {
-        Subscribe();
+        //Subscribe();
     }
 
     public void SetModel(PlayerModel model) => _model = model;
@@ -46,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
     public void Move()
     {
         Vector2 velocity = _currentDirection * _model.speed;
-
         _rigidbody2D.velocity = velocity;
     }
 
@@ -80,6 +80,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        Unsubscribe();
+        //Unsubscribe();
+    }
+
+    public void Remove()
+    {
+        Destroy(_playerInput);
+        Destroy(this);
     }
 }

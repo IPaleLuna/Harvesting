@@ -1,7 +1,6 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMovement))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Auto filling components"), HorizontalLine(color: EColor.Gray)]
@@ -26,7 +25,11 @@ public class PlayerController : MonoBehaviour
     {
         _model.speed = _characteristics.speed;
         _model.playerID = _movement.playerInput.playerIndex;
-        
+    }
+
+    public void SetUpMovement()
+    {
+        _movement.Init();
         _movement.SetModel(_model);
     }
 
@@ -44,5 +47,13 @@ public class PlayerController : MonoBehaviour
     {
         if(isActive) _movement.Run();
         else _movement.Stop();
+    }
+
+    public void Remove()
+    {
+        _movement.Remove();
+        
+        Destroy(_view);
+        Destroy(this);
     }
 }
