@@ -16,7 +16,7 @@ public class NetWorkPlayerHandler : NetworkBehaviour, IFixedUpdatable
         _playerController ??= GetComponent<PlayerController>();
     }
 
-    private void Start()
+    public override void OnNetworkSpawn()
     {
         if (!IsOwner)
         {
