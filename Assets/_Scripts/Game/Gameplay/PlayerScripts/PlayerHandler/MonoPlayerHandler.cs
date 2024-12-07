@@ -22,6 +22,8 @@ public class MonoPlayerHandler : MonoBehaviour, IFixedUpdatable, IPausable
         
         GameEvents.timeOutEvent.AddListener(DisableControl);
         _gameLoops.pausablesHolder.Registration(this);
+        
+        _playerController.SetUpMovement();
     }
     
     public void FixedFrameRun()
