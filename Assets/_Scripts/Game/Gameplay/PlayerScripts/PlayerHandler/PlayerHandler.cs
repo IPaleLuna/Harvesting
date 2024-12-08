@@ -46,5 +46,10 @@ namespace Harvesting.PlayerHandler
         {
         
         }
+
+        ~PlayerHandler()
+        {
+            _gameLoops.Unregistration(this);
+        }
     }
 }
