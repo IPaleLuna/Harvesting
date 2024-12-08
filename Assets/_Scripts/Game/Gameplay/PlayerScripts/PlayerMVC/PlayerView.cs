@@ -4,10 +4,6 @@ using UnityEngine.Serialization;
 
 public class PlayerView : MonoBehaviour, IPlayerView
 {
-    [FormerlySerializedAs("monoSpriteFlipper")]
-    [FormerlySerializedAs("networkSpriteFlipper")]
-    [FormerlySerializedAs("netWorkSpriteFlipper")]
-    [FormerlySerializedAs("_spriteFlipper")]
     [Header("Player visual components"), HorizontalLine(color: EColor.Green)]
     [SerializeField]
     private MonoSpriteFlipper _monoSpriteFlipper;
