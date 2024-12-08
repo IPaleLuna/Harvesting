@@ -47,8 +47,8 @@ public class NetWorkPlayerHandler : NetworkBehaviour, IFixedUpdatable
             GameEvents.playerPickApple.Invoke(_playerController);
         }
     }
-    
-    private void OnDestroy()
+
+    public override void OnDestroy()
     {
         _gameLoops?.Unregistration(this);
     }
