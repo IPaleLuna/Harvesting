@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc19bd2903694904aa041a42448c3cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteFlipper: {fileID: 1681223727065311780}
+  _monoSpriteFlipper: {fileID: 864627139887855209}
   _animationControl: {fileID: 3420541719431551545}
 --- !u!1 &1194294533556719697
 GameObject:
@@ -835,7 +835,7 @@ GameObject:
   - component: {fileID: 3842914020452832923}
   - component: {fileID: 4567594256637488785}
   - component: {fileID: 3420541719431551545}
-  - component: {fileID: 1681223727065311780}
+  - component: {fileID: 864627139887855209}
   m_Layer: 3
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -944,7 +944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 4567594256637488785}
---- !u!114 &1681223727065311780
+--- !u!114 &864627139887855209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -953,7 +953,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2710209744825527027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80959982a7819554182ccd4acc8b0b52, type: 3}
+  m_Script: {fileID: 11500000, guid: 736145a40f4ef4749b372420f4d6c932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSpriteRenderer: {fileID: 3842914020452832923}

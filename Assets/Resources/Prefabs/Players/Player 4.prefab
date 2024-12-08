@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 3538567350699446305}
   - component: {fileID: 5020805920457188110}
   - component: {fileID: 4893357227395660715}
-  - component: {fileID: 6447699662709019103}
+  - component: {fileID: 1117508610466473507}
   m_Layer: 3
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 5020805920457188110}
---- !u!114 &6447699662709019103
+--- !u!114 &1117508610466473507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2290571672518986999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80959982a7819554182ccd4acc8b0b52, type: 3}
+  m_Script: {fileID: 11500000, guid: 736145a40f4ef4749b372420f4d6c932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSpriteRenderer: {fileID: 3538567350699446305}
@@ -1394,7 +1394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc19bd2903694904aa041a42448c3cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteFlipper: {fileID: 6447699662709019103}
+  _monoSpriteFlipper: {fileID: 1117508610466473507}
   _animationControl: {fileID: 4893357227395660715}
 --- !u!1 &7108978330978216450
 GameObject:
