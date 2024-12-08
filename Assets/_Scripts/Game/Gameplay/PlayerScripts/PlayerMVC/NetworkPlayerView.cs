@@ -51,9 +51,4 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
     {
         _animationControl.OnInputDirectionChanged(newDirection);
     }
-    
-    public void DestroySelf()
-    {
-        Destroy(this);
-    }
 }

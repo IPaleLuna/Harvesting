@@ -19,9 +19,4 @@ public class PlayerView : MonoBehaviour, IPlayerView
     {
         _animationControl.ResetAnim();
     }
-
-    public void DestroySelf()
-    {
-        Destroy(this);
-    }
 }
