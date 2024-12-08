@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-public class PlayerView : MonoBehaviour
+public class PlayerView : MonoBehaviour, IPlayerView
 {
     [Header("Player visual components"), HorizontalLine(color: EColor.Green)]
     [SerializeField]
@@ -18,5 +18,10 @@ public class PlayerView : MonoBehaviour
     public void ResetAnimations()
     {
         _animationControl.ResetAnim();
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(this);
     }
 }
