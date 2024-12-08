@@ -1178,7 +1178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48e2926794e6f44fa28218bdf4c4295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerController: {fileID: 0}
+  _playerController: {fileID: 3351586010234482040}
 --- !u!114 &3351586010234482040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,6 +1193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movement: {fileID: 5191534588886676697}
   _characteristics: {fileID: 11400000, guid: d2d4a710e1c4f214ab8326ecbf70d8d7, type: 2}
+  _playerViewComponent: {fileID: 6329354329273300059}
 --- !u!114 &5191534588886676697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,7 +1208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 5743839935734077437}
   _playerInput: {fileID: 5150141808581500692}
-  _view: {fileID: 6329354329273300059}
 --- !u!114 &6329354329273300059
 MonoBehaviour:
   m_ObjectHideFlags: 0

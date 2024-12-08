@@ -501,6 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movement: {fileID: 570095975552561365}
   _characteristics: {fileID: 11400000, guid: d2d4a710e1c4f214ab8326ecbf70d8d7, type: 2}
+  _playerViewComponent: {fileID: 3830950595815715627}
 --- !u!114 &570095975552561365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +516,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 4341165716441939274}
   _playerInput: {fileID: 6572266446643792799}
-  _view: {fileID: 3830950595815715627}
 --- !u!114 &3830950595815715627
 MonoBehaviour:
   m_ObjectHideFlags: 0
