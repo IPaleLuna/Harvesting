@@ -3,46 +3,48 @@ using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Loops;
 using Services;
 
-
-public class PlayerHandler : IPlayerHandler, IFixedUpdatable
+namespace Harvesting.PlayerHandler
 {
-    private readonly PlayerController _playerController;
-    private readonly GameLoops _gameLoops;
+    public class PlayerHandler : IPlayerHandler, IFixedUpdatable
+    {
+        private readonly PlayerController _playerController;
+        private readonly GameLoops _gameLoops;
     
-    public event Action OnFixedFrame;
+        public event Action OnFixedFrame;
 
-    public PlayerHandler(PlayerController playerController)
-    {
-        _playerController = playerController;
+        public PlayerHandler(PlayerController playerController)
+        {
+            _playerController = playerController;
         
-        _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
-        _gameLoops.Registration(this);
+            _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
+            _gameLoops.Registration(this);
         
-        GameEvents.timeOutEvent.AddListener(DisableControl);
+            GameEvents.timeOutEvent.AddListener(DisableControl);
         
-        _playerController.SetUpMovement();
-    }
+            _playerController.SetUpMovement();
+        }
 
-    public void FixedFrameRun()
-    {
-        _playerController.Move();
+        public void FixedFrameRun()
+        {
+            _playerController.Move();
         
-        OnFixedFrame?.Invoke();
-    }
+            OnFixedFrame?.Invoke();
+        }
 
-    public void EnableControl()
-    {
-        _gameLoops.Registration(this);
-        _playerController.IsActive(true);
-    }
-    public void DisableControl()
-    {
-        _gameLoops.Unregistration(this);
-        _playerController.IsActive(false);
-    }
+        public void EnableControl()
+        {
+            _gameLoops.Registration(this);
+            _playerController.IsActive(true);
+        }
+        public void DisableControl()
+        {
+            _gameLoops.Unregistration(this);
+            _playerController.IsActive(false);
+        }
 
-    public void OnDestroyThis() //TODO
-    {
+        public void OnDestroyThis() //TODO
+        {
         
+        }
     }
 }

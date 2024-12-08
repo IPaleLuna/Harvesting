@@ -1,43 +1,45 @@
-using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Loops;
-using Services;
 using Unity.Netcode;
 using UnityEngine;
 
-
-public class NetWorkPlayerHandler : NetworkBehaviour
+namespace Harvesting.PlayerHandler
 {
-    [SerializeField]
-    private PlayerController _playerController;
-    
-    private PlayerHandler _playerHandler;
-    
-    private GameLoops _gameLoops;
-
-    private void OnValidate()
+    public class NetWorkPlayerHandler : NetworkBehaviour
     {
-        _playerController ??= GetComponent<PlayerController>();
-    }
+        [SerializeField]
+        private PlayerController _playerController;
+    
+        private PlayerHandler _playerHandler;
+    
+        private GameLoops _gameLoops;
 
-    public override void OnNetworkSpawn()
-    {
-        if (!IsOwner)
+        private void OnValidate()
         {
-            _playerController.Remove();
-            Destroy(this);
-            return;
+            _playerController ??= GetComponent<PlayerController>();
         }
 
-        _playerHandler = new(_playerController);
-    }
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.TryGetComponent(out Apple apple))
+        public override void OnNetworkSpawn()
         {
-            _playerController.CollectApple(apple);
-            apple.DeactivateThis();
-            GameEvents.playerPickApple.Invoke(_playerController);
+            if (!IsOwner)
+            {
+                _playerController.Remove();
+                Destroy(this);
+                return;
+            }
+
+            _playerHandler = new(_playerController);
+        }
+    
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.gameObject.TryGetComponent(out Apple apple))
+            {
+                _playerController.CollectApple(apple);
+                apple.DeactivateThis();
+                GameEvents.playerPickApple.Invoke(_playerController);
+            }
         }
     }
 }
+
+
