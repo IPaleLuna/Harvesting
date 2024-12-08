@@ -1,12 +1,15 @@
 using NaughtyAttributes;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class NetworkPlayerView : NetworkBehaviour, IPlayerView
 {
+    [FormerlySerializedAs("netWorkSpriteFlipper")]
+    [FormerlySerializedAs("_spriteFlipper")]
     [Header("Player visual components"), HorizontalLine(color: EColor.Green)]
     [SerializeField]
-    private SpriteFlipper _spriteFlipper;
+    private NetworkSpriteFlipper networkSpriteFlipper;
     [SerializeField]
     private AnimationControll _animationControl;
 
@@ -44,7 +47,7 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
 
     private void FlipSprite(Vector2 direction)
     {
-        _spriteFlipper.OnInputDirectionChanged(direction);
+        networkSpriteFlipper.OnInputDirectionChanged(direction);
     }
 
     private void SetAnim(Vector2 newDirection)

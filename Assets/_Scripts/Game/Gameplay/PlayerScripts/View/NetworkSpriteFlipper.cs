@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class SpriteFlipper : NetworkBehaviour
+public class NetworkSpriteFlipper : NetworkBehaviour
 {
     [SerializeField]
     private SpriteRenderer _playerSpriteRenderer;
