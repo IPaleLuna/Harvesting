@@ -4,17 +4,19 @@ using UnityEngine.Serialization;
 
 public class PlayerView : MonoBehaviour, IPlayerView
 {
+    [FormerlySerializedAs("monoSpriteFlipper")]
+    [FormerlySerializedAs("networkSpriteFlipper")]
     [FormerlySerializedAs("netWorkSpriteFlipper")]
     [FormerlySerializedAs("_spriteFlipper")]
     [Header("Player visual components"), HorizontalLine(color: EColor.Green)]
     [SerializeField]
-    private NetworkSpriteFlipper networkSpriteFlipper;
+    private MonoSpriteFlipper _monoSpriteFlipper;
     [SerializeField]
     private AnimationControll _animationControl;
     
     public void UpdateDirection(Vector2 direction)
     {
-        networkSpriteFlipper.OnInputDirectionChanged(direction);
+        _monoSpriteFlipper.OnInputDirectionChanged(direction);
         _animationControl.OnInputDirectionChanged(direction);
     }
 
