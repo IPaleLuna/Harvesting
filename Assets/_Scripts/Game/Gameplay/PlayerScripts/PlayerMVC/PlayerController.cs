@@ -7,12 +7,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerMovement _movement;
 
-    [Header("Characteristics"), HorizontalLine(color: EColor.Violet)]
+    [Header("Characteristics"), HorizontalLine(color: EColor.Green)]
     [SerializeField]
     private PlayerCharacteristics _characteristics;
     
     private readonly PlayerModel _model = new();
-    private PlayerView _view;
+    [Header("MVC components"), HorizontalLine(color: EColor.Violet)]
+    [SerializeField, Required]
+    private Component _playerViewComponent;
+    
+    private IPlayerView _view;
     
     public PlayerInfo playerInfo => PlayerInfo.CreatePlayerInfo(_model);
 
@@ -23,19 +27,20 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        _view = _playerViewComponent as IPlayerView;
+        
         _model.speed = _characteristics.speed;
         _model.playerID = _movement.playerInput.playerIndex;
     }
 
-    public void SetUpMovement()
-    {
-        _movement.Init();
-        _movement.SetModel(_model);
-    }
+    public void SetUpMovement() => _movement.Init();
 
     public void Move()
     {
-        _movement.Move();
+        _movement.Move(_model.speed);
+        
+        if(_movement.isDirectionChanged)
+            _view.UpdateDirection(_movement.currentDirection);
     }
 
     public void CollectApple(Apple apple)
@@ -52,8 +57,6 @@ public class PlayerController : MonoBehaviour
     public void Remove()
     {
         _movement.Remove();
-        
-        Destroy(_view);
         Destroy(this);
     }
 }

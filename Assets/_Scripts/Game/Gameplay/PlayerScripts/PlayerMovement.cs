@@ -1,8 +1,8 @@
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
-[RequireComponent(typeof(PlayerView))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Main Components"), HorizontalLine(color: EColor.Green)]
@@ -11,22 +11,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private PlayerInput _playerInput;
 
-    [Header("MVC components"), HorizontalLine(color: EColor.Violet)]
-    [SerializeField]
-    private PlayerView _view;
-    private PlayerModel _model;
+    public bool isDirectionChanged { get; private set; } = false;
 
     private PlayerInputActions _playerActions;
 
-    private Vector2 _currentDirection;
+    public Vector2 currentDirection { get; private set;}
     
     public PlayerInput playerInput => _playerInput;
+    
+    private Vector2 _lastDirection = Vector2.zero;
 
     private void OnValidate()
     {
         _rigidbody2D ??= GetComponent<Rigidbody2D>();
         _playerInput ??= GetComponent<PlayerInput>();
-        _view ??= GetComponent<PlayerView>();
     }
 
     public void Init()
@@ -36,17 +34,11 @@ public class PlayerMovement : MonoBehaviour
         _playerActions = new(_playerInput);
         Subscribe();
     }
-    
-    private void OnEnable()
-    {
-        //Subscribe();
-    }
 
-    public void SetModel(PlayerModel model) => _model = model;
 
-    public void Move()
+    public void Move(float speed)
     {
-        Vector2 velocity = _currentDirection * _model.speed;
+        Vector2 velocity = currentDirection * speed;
         _rigidbody2D.velocity = velocity;
     }
 
@@ -57,14 +49,16 @@ public class PlayerMovement : MonoBehaviour
     public void Stop()
     {
         _rigidbody2D.velocity = Vector2.zero;
-        _view.ResetAnimations();
         Unsubscribe();
     }
 
     private void OnGetMoveInput(InputAction.CallbackContext context)
     {
-        _currentDirection = context.ReadValue<Vector2>();
-        _view.UpdateDirection(_currentDirection);
+        currentDirection = context.ReadValue<Vector2>();
+
+        isDirectionChanged = _lastDirection != currentDirection;
+        if (isDirectionChanged)
+            _lastDirection = currentDirection;            
     }
 
     private void Subscribe()
@@ -78,6 +72,11 @@ public class PlayerMovement : MonoBehaviour
         _playerActions.movementAction.canceled -= OnGetMoveInput;
     }
 
+    private void OnEnable()
+    {
+        //Subscribe();
+    }
+    
     private void OnDisable()
     {
         //Unsubscribe();
