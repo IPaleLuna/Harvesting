@@ -51,7 +51,11 @@ public class PlayerController : MonoBehaviour
     public void IsActive(bool isActive)
     {
         if(isActive) _movement.Run();
-        else _movement.Stop();
+        else
+        {
+            _movement.Stop();
+            _view.ResetAnimations();            
+        }
     }
 
     public void Remove()

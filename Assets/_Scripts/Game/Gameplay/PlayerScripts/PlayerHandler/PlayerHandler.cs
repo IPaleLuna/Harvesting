@@ -2,6 +2,7 @@ using System;
 using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Loops;
 using Services;
+using UnityEngine;
 
 namespace Harvesting.PlayerHandler
 {
@@ -17,7 +18,6 @@ namespace Harvesting.PlayerHandler
             _playerController = playerController;
         
             _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
-            _gameLoops.Registration(this);
         
             GameEvents.timeOutEvent.AddListener(DisableControl);
         
@@ -27,7 +27,6 @@ namespace Harvesting.PlayerHandler
         public void FixedFrameRun()
         {
             _playerController.Move();
-        
             OnFixedFrame?.Invoke();
         }
 
