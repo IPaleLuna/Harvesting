@@ -4,11 +4,12 @@ using Services;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
-public class MonoPlayerHandler : MonoBehaviour, IFixedUpdatable, IPausable
+public class MonoPlayerHandler : MonoBehaviour, IPausable
 {
     [SerializeField]
     private PlayerController _playerController;
     
+    private PlayerHandler _playerHandler;
     private GameLoops _gameLoops;
 
     private void OnValidate()
@@ -19,16 +20,9 @@ public class MonoPlayerHandler : MonoBehaviour, IFixedUpdatable, IPausable
     private void Awake()
     {
         _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
-        
-        GameEvents.timeOutEvent.AddListener(DisableControl);
         _gameLoops.pausablesHolder.Registration(this);
         
-        _playerController.SetUpMovement();
-    }
-    
-    public void FixedFrameRun()
-    {
-        _playerController.Move();
+        _playerHandler = new(_playerController);
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,29 +37,17 @@ public class MonoPlayerHandler : MonoBehaviour, IFixedUpdatable, IPausable
     
     private void OnDestroy()
     {
-        _gameLoops.Unregistration(this);
         _gameLoops.pausablesHolder.Unregistration(this);
     }
     #region [ Pausable implementation ]
     public void OnPause()
     {
-        DisableControl();
+        _playerHandler.DisableControl();
     }
-
     public void OnResume()
     {
-        EnableControl();
+        _playerHandler.EnableControl();
     }
     #endregion
     
-    private void EnableControl()
-    {
-        _gameLoops.Registration(this);
-        _playerController.IsActive(true);
-    }
-    private void DisableControl()
-    {
-        _gameLoops.Unregistration(this);
-        _playerController.IsActive(false);
-    }
 }

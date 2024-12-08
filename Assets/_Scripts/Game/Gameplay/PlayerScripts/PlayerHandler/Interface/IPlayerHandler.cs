@@ -1,6 +1,9 @@
-using Unity.Services.Lobbies.Models;
+using PaleLuna.Architecture.GameComponent;
 
 public interface IPlayerHandler
 {
-    public PlayerModel model { get; } 
+    public void EnableControl();
+    public void DisableControl();
+    public void OnDestroyThis();
+
 }

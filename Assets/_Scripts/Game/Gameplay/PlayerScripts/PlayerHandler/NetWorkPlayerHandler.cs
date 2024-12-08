@@ -4,10 +4,13 @@ using Services;
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetWorkPlayerHandler : NetworkBehaviour, IFixedUpdatable
+
+public class NetWorkPlayerHandler : NetworkBehaviour
 {
     [SerializeField]
     private PlayerController _playerController;
+    
+    private PlayerHandler _playerHandler;
     
     private GameLoops _gameLoops;
 
@@ -24,18 +27,8 @@ public class NetWorkPlayerHandler : NetworkBehaviour, IFixedUpdatable
             Destroy(this);
             return;
         }
-        
-        _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
-        _gameLoops.Registration(this);
-        
-        _playerController.SetUpMovement();
-        
-        GameEvents.timeOutEvent.AddListener(DisableControl);
-    }
-    
-    public void FixedFrameRun()
-    {
-        _playerController.Move();
+
+        _playerHandler = new(_playerController);
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,32 +39,5 @@ public class NetWorkPlayerHandler : NetworkBehaviour, IFixedUpdatable
             apple.DeactivateThis();
             GameEvents.playerPickApple.Invoke(_playerController);
         }
-    }
-
-    public override void OnDestroy()
-    {
-        _gameLoops?.Unregistration(this);
-    }
-    #region [ Pausable implementation ]
-    public void OnPause()
-    {
-        DisableControl();
-    }
-
-    public void OnResume()
-    {
-        EnableControl();
-    }
-    #endregion
-    
-    private void EnableControl()
-    {
-        _gameLoops?.Registration(this);
-        _playerController?.IsActive(true);
-    }
-    private void DisableControl()
-    {
-        _gameLoops?.Unregistration(this);
-        _playerController?.IsActive(false);
     }
 }
