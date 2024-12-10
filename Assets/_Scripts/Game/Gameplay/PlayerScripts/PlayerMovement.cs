@@ -72,7 +72,16 @@ public class PlayerMovement : MonoBehaviour
         _playerActions.movementAction.canceled -= OnGetMoveInput;
     }
 
+    
+
+    public void Remove()
+    {
+        Destroy(_playerInput);
+        Destroy(this);
+    }
+
     //TODO
+    #region [ TODO ]
     private void OnEnable()
     {
         //Subscribe();
@@ -83,9 +92,5 @@ public class PlayerMovement : MonoBehaviour
         //Unsubscribe();
     }
 
-    public void Remove()
-    {
-        Destroy(_playerInput);
-        Destroy(this);
-    }
+    #endregion
 }
