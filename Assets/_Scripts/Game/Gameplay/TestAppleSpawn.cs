@@ -6,13 +6,13 @@ using UnityEngine;
 public class TestAppleSpawn : NetworkBehaviour
 {
     [SerializeField]
-    private NetworkAppleHandler applePrefab;
+    private NetworkAppleController applePrefab;
     
     [SerializeField]
     private Vector3 spawnPosition;
     
     [SerializeField]
-    private NetworkAppleHandler existingApple;
+    private NetworkAppleController existingApple;
 
     private void Update()
     {
@@ -24,7 +24,7 @@ public class TestAppleSpawn : NetworkBehaviour
 
     private void SpawnApple()
     {
-        NetworkAppleHandler apple = Instantiate(applePrefab);
+        NetworkAppleController apple = Instantiate(applePrefab);
         
         apple.RespawnApple(spawnPosition);
     }
