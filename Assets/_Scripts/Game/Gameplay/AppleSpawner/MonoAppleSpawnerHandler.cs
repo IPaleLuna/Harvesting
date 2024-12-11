@@ -1,4 +1,5 @@
 using System;
+using Harvesting.Utility.Spawner;
 using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Loops;
 using Services;
@@ -17,7 +18,7 @@ public class MonoAppleSpawnerHandler : MonoBehaviour, IPausable
     private void Start()
     {
         _model.CollectTrees();
-        _spawner = new AppleSpawner(_model);
+        _spawner = new AppleSpawner(_model, new MonoSpawner<AppleHandler>());
         
         _tickHolder.SetUp(OnTick);
         

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Harvesting.Utility.Spawner;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ public class NetworkAppleSpawnerHandler : NetworkBehaviour
         }
         
         _model.CollectTrees();
-        _spawner = new AppleSpawner(_model);
+        _spawner = new AppleSpawner(_model, new NetSpawner<AppleHandler>());
 
         _ = FirstSpawn();
 
@@ -31,9 +32,6 @@ public class NetworkAppleSpawnerHandler : NetworkBehaviour
 
     private async UniTask FirstSpawn()
     {
-        InitApples(_spawner.simpleAppleList);
-        InitApples(_spawner.zapAppleList);
-        
         await UniTask.WaitForSeconds(5);
                 
         _tickHolder.SetUp(OnTick);
@@ -46,14 +44,5 @@ public class NetworkAppleSpawnerHandler : NetworkBehaviour
     {
         _spawner.Spawn();
     }
-
-    private void InitApples(List<AppleHandler> apples)
-    {
-        foreach (var t in apples)
-        {
-            NetworkObject apple = t.GetComponent<NetworkObject>();
-            apple.Spawn();
-            apple.gameObject.SetActive(false);
-        }
-    }
+    
 }

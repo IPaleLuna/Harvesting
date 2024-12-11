@@ -1,12 +1,8 @@
-using NaughtyAttributes;
-using PaleLuna.Architecture.GameComponent;
 using System.Collections.Generic;
-using Harvesting.Collectable.Apple;
-using PaleLuna.Architecture.Loops;
+using Harvesting.Utility.Spawner;
 using PaleLuna.Architecture.Services;
 using Services;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class AppleSpawner : IService
@@ -19,16 +15,14 @@ public class AppleSpawner : IService
     private int _treeStep;
     private int _totalSteps;
     
-    public bool IsStarted { get; private set; } = false;
-
     public List<AppleHandler> simpleAppleList => _simpleApplePool.list;
     public List<AppleHandler> zapAppleList => _zapApplePool.list;
 
-    public AppleSpawner(AppleSpawnerModel model)
+    public AppleSpawner(AppleSpawnerModel model, ISpawner<AppleHandler> spawner)
     {
         _model = model;
         
-        PoolInit();
+        PoolInit(spawner);
         TreeInit();
 
         ServiceManager.Instance.LocalServices.Registarion(this);
@@ -60,20 +54,25 @@ public class AppleSpawner : IService
         }
     }
     
-    private void PoolInit()
+    private void PoolInit(ISpawner<AppleHandler> spawner)
     {
         _simpleApplePool = new(
             _model.maxApplesOnLevel,
-            _model.simpleApplePrefab
+            _model.simpleApplePrefab,
+            _model.parentForSimpleApples,
+            spawner
             );
         
         _zapApplePool = new(
-            (int)(_model.maxApplesOnLevel * _model.zapAppleSpawnChance), 
-            _model.zapApplePrefab
+            (int)(
+            _model.maxApplesOnLevel * _model.zapAppleSpawnChance), 
+            _model.zapApplePrefab,
+            _model.parentForZapApples,
+            spawner
             );
 
-        _simpleApplePool.Generate(isActive:true);
-        _zapApplePool.Generate(isActive:true);
+        _simpleApplePool.Generate();
+        _zapApplePool.Generate();
     }
     private void TreeInit()
     {
