@@ -1,3 +1,4 @@
+using Harvesting.Collectable.Apple;
 using NaughtyAttributes;
 using PaleLuna.Randomizers;
 using UnityEngine;
@@ -20,18 +21,18 @@ public class AppleTree : MonoBehaviour
     [SerializeField]
     private CheckSphere _checkSphere;
 
-    public void PlaceApple(ObjectPool<Apple> applesPool)
+    public void PlaceApple(ObjectPool<MonoAppleHandler> applesPool)
     {
         int amountApple = Random.Range(_maxApplesPerSpawn.x, _maxApplesPerSpawn.y + 1);
 
         for (int i = 0; i < amountApple; i++)
         {
-            if (!applesPool.TryPop(out Apple apple)) return;
+            if (!applesPool.TryPop(out MonoAppleHandler apple)) return;
 
             Vector3 area = new Vector3(_width, _height);
             Vector3 randomPos = VectorRandomizer.RandomPoint(area, transform.TransformPoint(_areaPos), _checkSphere);;
 
-            apple.RespawnThis(randomPos);
+            apple.RespawnApple(randomPos);
         }
     }
 
