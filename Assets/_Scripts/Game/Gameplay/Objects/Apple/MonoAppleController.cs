@@ -1,3 +1,4 @@
+using System;
 using NaughtyAttributes;
 using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Loops;
@@ -17,12 +18,15 @@ namespace Harvesting.Collectable.Apple
         [SerializeField]
         private AppleProperties _currentProperties;
         
+        public Action onAppleDeactivate { get; set; }
+
+        
         private Apple _apple;
 
         public AppleType type => _apple.type;
         public int cost => _apple.cost;
 
-        private void Start()
+        private void Awake()
         {
             _apple = new Apple(_appleProperties, _appleStateObj, this);
             
@@ -32,11 +36,10 @@ namespace Harvesting.Collectable.Apple
                 .GlobalServices.Get<GameLoops>()
                 .pausablesHolder.Registration(this);
         }
-
+        
         public void HideApple()
         {
             _apple.Hide();
-            
             GameEvents.appleWasDeactivated.Invoke(this);
         }
 

@@ -1,10 +1,19 @@
 using Harvesting.Collectable.Apple;
+using Services;
+using Unity.Netcode;
 using UnityEngine;
 
 public class AppleHandler : MonoBehaviour
 {
     [SerializeField]
-    private Component _appleController;
+    private Component _appleControllerComponent;
     
-    public IAppleController appleController => _appleController as IAppleController;
+    private IAppleController _appleController;
+
+    private void Awake()
+    {
+        _appleController = _appleControllerComponent as IAppleController;
+    }
+
+    public IAppleController appleController => _appleController;
 }

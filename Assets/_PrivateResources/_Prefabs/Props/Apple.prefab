@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e79c5f5d5532afd4c806fbd46e3291c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _appleController: {fileID: 5439405082868635439}
+  _appleControllerComponent: {fileID: 5439405082868635439}
 --- !u!114 &5439405082868635439
 MonoBehaviour:
   m_ObjectHideFlags: 0
