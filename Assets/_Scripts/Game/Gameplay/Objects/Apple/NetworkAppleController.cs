@@ -1,3 +1,4 @@
+using System;
 using NaughtyAttributes;
 using Unity.Netcode;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Harvesting.Collectable.Apple
 
         public AppleType type => _apple.type;
         public int cost => _apple.cost;
+        public Action onAppleDeactivate { get; set; }
 
         public override void OnNetworkSpawn()
         {
