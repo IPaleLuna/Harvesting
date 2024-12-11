@@ -40,7 +40,6 @@ namespace Harvesting.Collectable.Apple
             _tickCounter = new();
             
             _tickCounter.SetUp(onTick);
-            _tickCounter.Start();
             _tickCounter.SetTarget(_currentProperties.ticksToNextState);
         }
         
@@ -79,6 +78,7 @@ namespace Harvesting.Collectable.Apple
         {
             _tickCounter?.Pause();
             _gameObject.SetActive(false);
+            _appleController.onAppleDeactivate.Invoke();
         }
         
         ~Apple()
