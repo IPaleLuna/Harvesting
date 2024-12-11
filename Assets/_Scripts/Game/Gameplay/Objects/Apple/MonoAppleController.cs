@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Harvesting.Collectable.Apple
 {
-    public class MonoAppleHandler : MonoBehaviour, IPausable, IAppleHandler
+    public class MonoAppleController : MonoBehaviour, IPausable, IAppleController
     {
         [Header("Apple properties"), HorizontalLine(color: EColor.Green)] [SerializeField]
         private AppleProperties[] _appleProperties;

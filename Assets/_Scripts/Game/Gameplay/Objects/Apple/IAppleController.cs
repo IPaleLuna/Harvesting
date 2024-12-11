@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Harvesting.Collectable.Apple
 {
-    public interface IAppleHandler
+    public interface IAppleController
     {
         public AppleType type { get; }
         public int cost { get; }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Harvesting.Collectable.Apple
 {
-    public class NetworkAppleHandler : NetworkBehaviour, IAppleHandler
+    public class NetworkAppleController : NetworkBehaviour, IAppleController
     {
         [Header("Apple properties"), HorizontalLine(color: EColor.Green)] [SerializeField]
         private AppleProperties[] _appleProperties;
