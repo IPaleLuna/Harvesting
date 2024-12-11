@@ -18,9 +18,6 @@ namespace Harvesting.Collectable.Apple
         [SerializeField]
         private AppleProperties _currentProperties;
         
-        [SerializeField]
-        private int ticks;
-        
         public Action onAppleDeactivate { get; set; }
 
         
@@ -43,7 +40,6 @@ namespace Harvesting.Collectable.Apple
         public void HideApple()
         {
             _apple.Hide();
-            
             GameEvents.appleWasDeactivated.Invoke(this);
         }
 
