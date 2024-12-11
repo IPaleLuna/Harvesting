@@ -1,5 +1,6 @@
 using Harvesting.Collectable.Apple;
 using Services;
+using Unity.Netcode;
 using UnityEngine;
 
 public class AppleHandler : MonoBehaviour
@@ -12,15 +13,7 @@ public class AppleHandler : MonoBehaviour
     private void Awake()
     {
         _appleController = _appleControllerComponent as IAppleController;
-        _appleController.onAppleDeactivate += ReturnThis;
     }
 
     public IAppleController appleController => _appleController;
-
-    private void ReturnThis()
-    {
-        ServiceManager.Instance
-            .LocalServices.Get<AppleSpawner>()
-            ?.ReturnToPool(this);
-    }
 }
