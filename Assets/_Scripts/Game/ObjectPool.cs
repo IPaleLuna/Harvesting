@@ -1,27 +1,32 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Harvesting.Utility.Spawner;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 public class ObjectPool<T> where T : Component
 {
-    private Queue<T> _objectPool;
-    private T _prefab;
+    private readonly Queue<T> _objectPool;
+    private readonly T _prefab;
 
-    private int _capacity;
-    private Transform _poolParent;
+    private readonly int _capacity;
+    private readonly Transform _poolParent;
+    
+    private readonly ISpawner<T> _spawner;
 
     public int count => _objectPool.Count;
     public T prefab => _prefab;
     
     public List<T> list => _objectPool.ToList();
 
-    public ObjectPool(int startCapacity, T prefab, Transform poolParent)
+    public ObjectPool(int startCapacity, T prefab, Transform poolParent, ISpawner<T> spawner)
     {
         _capacity = startCapacity;
         _poolParent = poolParent;
         _prefab = prefab;
+        
+        _spawner = spawner;
 
         _objectPool = new Queue<T>(_capacity);
         this._poolParent = poolParent;
@@ -49,8 +54,7 @@ public class ObjectPool<T> where T : Component
 
     public T Pop()
     {
-        if (_objectPool.Count == 0) return default;
-        return _objectPool.Dequeue();
+        return _objectPool.Count == 0 ? default : _objectPool.Dequeue();
     }
     public bool TryPop(out T item)
     {
@@ -68,18 +72,16 @@ public class ObjectPool<T> where T : Component
 
         for (int i = 0; i < count; i++)
         {
-            T obj = CreateItemAndPop(isActive);
+            var obj = CreateItemAndPop(isActive);
             
             if(_poolParent) obj.transform.SetParent(_poolParent);
 
             Enqueue(obj);
         }
     }
-    public T CreateItemAndPop(bool isActive = false)
-    {
-        T obj = Object.Instantiate(_prefab).GetComponent<T>();
-        obj.gameObject.SetActive(isActive);
 
-        return obj;
+    private T CreateItemAndPop(bool isActive = false)
+    {
+        return _spawner.SpawnObject(_prefab, _poolParent, isActive);
     }
 }
