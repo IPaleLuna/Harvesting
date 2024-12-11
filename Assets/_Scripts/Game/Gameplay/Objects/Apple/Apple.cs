@@ -77,8 +77,8 @@ namespace Harvesting.Collectable.Apple
         public void Hide()
         {
             _tickCounter?.Pause();
-            _gameObject.SetActive(false);
-            _appleController.onAppleDeactivate.Invoke();
+            _gameObject?.SetActive(false);
+            _appleController.onAppleDeactivate?.Invoke();
         }
         
         ~Apple()
