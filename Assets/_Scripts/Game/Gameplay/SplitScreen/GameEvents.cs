@@ -1,10 +1,11 @@
+using Harvesting.Collectable.Apple;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class GameEvents : MonoBehaviour
 {
     public static readonly UnityEvent<PlayerController> playerPickApple = new();
-    public static readonly UnityEvent<Apple> appleWasDeactivated = new();
+    public static readonly UnityEvent<MonoAppleHandler> appleWasDeactivated = new();
     
     public static readonly UnityEvent<bool> gameOnPauseEvent = new();
     
