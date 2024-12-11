@@ -21,6 +21,9 @@ public class AppleSpawner : IService
     
     public bool IsStarted { get; private set; } = false;
 
+    public List<AppleHandler> simpleAppleList => _simpleApplePool.list;
+    public List<AppleHandler> zapAppleList => _zapApplePool.list;
+
     public AppleSpawner(AppleSpawnerModel model)
     {
         _model = model;
@@ -61,18 +64,16 @@ public class AppleSpawner : IService
     {
         _simpleApplePool = new(
             _model.maxApplesOnLevel,
-            _model.simpleApplePrefab,
-            _model.parentForSimpleApples
+            _model.simpleApplePrefab
             );
         
         _zapApplePool = new(
             (int)(_model.maxApplesOnLevel * _model.zapAppleSpawnChance), 
-            _model.zapApplePrefab, 
-            _model.parentForZapApples
+            _model.zapApplePrefab
             );
 
-        _simpleApplePool.Generate();
-        _zapApplePool.Generate();
+        _simpleApplePool.Generate(isActive:true);
+        _zapApplePool.Generate(isActive:true);
     }
     private void TreeInit()
     {
