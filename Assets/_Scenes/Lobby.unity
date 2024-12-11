@@ -1927,8 +1927,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4731110779497779175, guid: b36753ae2e3755a40b04af7d6027994e, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1639333014}
   m_SourcePrefab: {fileID: 100100000, guid: b36753ae2e3755a40b04af7d6027994e, type: 3}
+--- !u!1 &339514472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4731110779497779175, guid: b36753ae2e3755a40b04af7d6027994e, type: 3}
+  m_PrefabInstance: {fileID: 339514471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &424685022
 GameObject:
   m_ObjectHideFlags: 0
@@ -17283,12 +17291,25 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3198264508819722877, guid: b36753ae2e3755a40b04af7d6027994e, type: 3}
   m_PrefabInstance: {fileID: 339514471}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 339514472}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a322a107af703de418bf253e2bd8f2cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1639333014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339514472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e79c5f5d5532afd4c806fbd46e3291c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _appleController: {fileID: 1639333013}
 --- !u!1001 &1827959013
 PrefabInstance:
   m_ObjectHideFlags: 0

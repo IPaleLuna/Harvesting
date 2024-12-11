@@ -12,7 +12,7 @@ namespace Harvesting.Collectable.Apple
         
         private AppleProperties _currentProperties;
         
-        private readonly IAppleHandler _appleHandler;
+        private readonly IAppleController _appleController;
         
         private readonly GameObject _gameObject;
         private readonly Transform _transform;
@@ -30,7 +30,7 @@ namespace Harvesting.Collectable.Apple
             _gameObject = ctx.gameObject;
             _transform = ctx.transform;
             
-            _appleHandler = ctx as IAppleHandler;
+            _appleController = ctx as IAppleController;
             
             _currentProperties = _appleProperties[0];
         }
@@ -48,11 +48,11 @@ namespace Harvesting.Collectable.Apple
         {
             if (_currentProperties.state == AppleState.Rotten)
             {
-                _appleHandler.HideApple();
+                _appleController.HideApple();
                 return;
             }
 
-            _appleHandler.ChangeAppleState((int)_currentProperties.state + 1);
+            _appleController.ChangeAppleState((int)_currentProperties.state + 1);
         }
         
         public void SetState(int stateNum)
