@@ -43,12 +43,12 @@ namespace Harvesting.PlayerHandler
 
         public void OnDestroyThis() //TODO
         {
-        
+            DisableControl();
         }
 
         ~PlayerHandler()
         {
-            _gameLoops.Unregistration(this);
+            //_gameLoops.Unregistration(this);
         }
     }
 }
