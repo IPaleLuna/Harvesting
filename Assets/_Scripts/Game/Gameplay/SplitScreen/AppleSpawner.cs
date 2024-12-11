@@ -1,19 +1,23 @@
 using NaughtyAttributes;
 using PaleLuna.Architecture.GameComponent;
 using System.Collections.Generic;
+using Harvesting.Collectable.Apple;
 using PaleLuna.Architecture.Loops;
 using Services;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class AppleSpawner : MonoBehaviour, IStartable, IPausable
 {
     #region [inspector area]
+    [FormerlySerializedAs("simpleMonoApple")]
+    [FormerlySerializedAs("_simpleApple")]
     [Header("Apple prefabs"), HorizontalLine(color: EColor.Red)]
     [SerializeField]
-    private Apple _simpleApple;
-    [SerializeField]
-    private Apple _zapApple;
+    private MonoAppleHandler simpleMonoAppleHandler;
+    [FormerlySerializedAs("zapMonoApple")] [FormerlySerializedAs("_zapApple")] [SerializeField]
+    private MonoAppleHandler zapMonoAppleHandler;
 
     [Header("Spawn properties"), HorizontalLine(color: EColor.Blue)]
 
@@ -39,8 +43,8 @@ public class AppleSpawner : MonoBehaviour, IStartable, IPausable
     private List<AppleTree> _appleTrees;
     #endregion
 
-    private ObjectPool<Apple> _simpeApplePool;
-    private ObjectPool<Apple> _zapApplePool;
+    private ObjectPool<MonoAppleHandler> _simpeApplePool;
+    private ObjectPool<MonoAppleHandler> _zapApplePool;
 
     private int _treeStep;
     private int _totalSteps;
@@ -68,8 +72,8 @@ public class AppleSpawner : MonoBehaviour, IStartable, IPausable
 
     private void PoolInit()
     {
-        _simpeApplePool = new(_maxApplesOnLevel, _simpleApple, _paretnForSimpleApples);
-        _zapApplePool = new((int)(_maxApplesOnLevel * _zapAppleSpawnChance), _zapApple, _paretnForZapApples);
+        _simpeApplePool = new(_maxApplesOnLevel, simpleMonoAppleHandler, _paretnForSimpleApples);
+        _zapApplePool = new((int)(_maxApplesOnLevel * _zapAppleSpawnChance), zapMonoAppleHandler, _paretnForZapApples);
 
         _simpeApplePool.Generate();
         _zapApplePool.Generate();
@@ -105,15 +109,15 @@ public class AppleSpawner : MonoBehaviour, IStartable, IPausable
         return _appleTrees[randomIndex];
     }
 
-    private void ReturnAppleInPool(Apple apple)
+    private void ReturnAppleInPool(MonoAppleHandler monoAppleHandler)
     {
-        switch (apple.type)
+        switch (monoAppleHandler.type)
         {
             case AppleType.SimpleApple:
-                _simpeApplePool.Enqueue(apple);
+                _simpeApplePool.Enqueue(monoAppleHandler);
                 break;
             case AppleType.ZapApple:
-                _zapApplePool.Enqueue(apple);
+                _zapApplePool.Enqueue(monoAppleHandler);
                 break;
         }
     }

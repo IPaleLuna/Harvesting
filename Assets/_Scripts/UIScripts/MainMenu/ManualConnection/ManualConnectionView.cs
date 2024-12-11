@@ -22,6 +22,7 @@ namespace Harvesting.UI.ManualConnection
         {
             _onIpChanged = _ipInputField.onValueChanged;
             _onPortChanged = _portInputField.onValueChanged;
+            _onLobbyCodeChanged = _lobbyCodeInputField.onValueChanged;
         }
     }
 }

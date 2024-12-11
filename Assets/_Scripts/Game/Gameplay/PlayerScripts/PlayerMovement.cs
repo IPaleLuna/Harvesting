@@ -1,54 +1,44 @@
 using NaughtyAttributes;
-using PaleLuna.Architecture.Loops;
-using Services;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
-[RequireComponent(typeof(PlayerInput))]
-[RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [Header("Main Components"), HorizontalLine(color: EColor.Violet)]
+    [Header("Main Components"), HorizontalLine(color: EColor.Green)]
     [SerializeField]
     private Rigidbody2D _rigidbody2D;
     [SerializeField]
     private PlayerInput _playerInput;
-    [SerializeField]
-    private Player _player;
 
-    [Header("Additions components"), HorizontalLine(color: EColor.Gray)]
-    [SerializeField]
-    private SpriteFlipper _spriteFlipper;
-    [SerializeField]
-    private AnimationControll _animationControl;
+    public bool isDirectionChanged { get; private set; } = false;
 
     private PlayerInputActions _playerActions;
 
-    private Vector2 _currentDirection;
+    public Vector2 currentDirection { get; private set;}
     
     public PlayerInput playerInput => _playerInput;
+    
+    private Vector2 _lastDirection = Vector2.zero;
 
     private void OnValidate()
     {
         _rigidbody2D ??= GetComponent<Rigidbody2D>();
         _playerInput ??= GetComponent<PlayerInput>();
-        _player ??= GetComponent<Player>();
     }
 
-    private void Awake()
+    public void Init()
     {
+        _playerInput.enabled = true;
+        
         _playerActions = new(_playerInput);
-    }
-
-    private void OnEnable()
-    {
         Subscribe();
     }
 
-    public void Move()
-    {
-        Vector2 velocity = _currentDirection * _player.characteristics.speed;
 
+    public void Move(float speed)
+    {
+        Vector2 velocity = currentDirection * speed;
         _rigidbody2D.velocity = velocity;
     }
 
@@ -59,16 +49,16 @@ public class PlayerController : MonoBehaviour
     public void Stop()
     {
         _rigidbody2D.velocity = Vector2.zero;
-        _animationControl.ResetAnim();
         Unsubscribe();
     }
 
     private void OnGetMoveInput(InputAction.CallbackContext context)
     {
-        _currentDirection = context.ReadValue<Vector2>();
+        currentDirection = context.ReadValue<Vector2>();
 
-        _spriteFlipper.OnInputDirectionChanged(_currentDirection);
-        _animationControl.OnInputDirectionChanged(_currentDirection);
+        isDirectionChanged = _lastDirection != currentDirection;
+        if (isDirectionChanged)
+            _lastDirection = currentDirection;            
     }
 
     private void Subscribe()
@@ -82,8 +72,25 @@ public class PlayerController : MonoBehaviour
         _playerActions.movementAction.canceled -= OnGetMoveInput;
     }
 
+    
+
+    public void Remove()
+    {
+        Destroy(_playerInput);
+        Destroy(this);
+    }
+
+    //TODO
+    #region [ TODO ]
+    private void OnEnable()
+    {
+        //Subscribe();
+    }
+    
     private void OnDisable()
     {
-        Unsubscribe();
+        //Unsubscribe();
     }
+
+    #endregion
 }
