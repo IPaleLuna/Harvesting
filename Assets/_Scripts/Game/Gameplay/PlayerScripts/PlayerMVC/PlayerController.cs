@@ -1,3 +1,4 @@
+using Harvesting.Collectable.Apple;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -43,9 +44,9 @@ public class PlayerController : MonoBehaviour
             _view.UpdateDirection(_movement.currentDirection);
     }
 
-    public void CollectApple(Apple apple)
+    public void AddScore(int score)
     {
-        _model.AddApples(apple.cost);
+        _model.AddApples(score);
     }
 
     public void IsActive(bool isActive)

@@ -1,3 +1,4 @@
+using Harvesting.Collectable.Apple;
 using PaleLuna.Architecture.Loops;
 using Unity.Netcode;
 using UnityEngine;
@@ -28,16 +29,22 @@ namespace Harvesting.PlayerHandler
             }
 
             _playerHandler = new(_playerController);
+            _playerHandler.EnableControl();
         }
     
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(collision.gameObject.TryGetComponent(out Apple apple))
+            if(collision.gameObject.TryGetComponent(out NetworkAppleHandler apple))
             {
-                _playerController.CollectApple(apple);
-                apple.DeactivateThis();
+                _playerController.AddScore(apple.cost);
+                apple.HideApple();
                 GameEvents.playerPickApple.Invoke(_playerController);
             }
+        }
+
+        public override void OnDestroy()
+        {
+            _playerHandler?.OnDestroyThis();
         }
     }
 }
