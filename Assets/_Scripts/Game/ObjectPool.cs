@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class ObjectPool<T> where T : Component
 {
@@ -12,6 +14,8 @@ public class ObjectPool<T> where T : Component
 
     public int count => _objectPool.Count;
     public T prefab => _prefab;
+    
+    public List<T> list => _objectPool.ToList();
 
     public ObjectPool(int startCapacity, T prefab, Transform poolParent)
     {
@@ -21,6 +25,14 @@ public class ObjectPool<T> where T : Component
 
         _objectPool = new Queue<T>(_capacity);
         this._poolParent = poolParent;
+    }
+
+    public ObjectPool(int startCapacity, T prefab)
+    {
+        _capacity = startCapacity;
+        _prefab = prefab;
+
+        _objectPool = new Queue<T>(_capacity);
     }
 
     public void Enqueue(T item)
@@ -57,13 +69,15 @@ public class ObjectPool<T> where T : Component
         for (int i = 0; i < count; i++)
         {
             T obj = CreateItemAndPop(isActive);
+            
+            if(_poolParent) obj.transform.SetParent(_poolParent);
 
             Enqueue(obj);
         }
     }
     public T CreateItemAndPop(bool isActive = false)
     {
-        T obj = GameObject.Instantiate(_prefab, _poolParent).GetComponent<T>();
+        T obj = Object.Instantiate(_prefab).GetComponent<T>();
         obj.gameObject.SetActive(isActive);
 
         return obj;
