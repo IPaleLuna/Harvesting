@@ -43,7 +43,6 @@ namespace Harvesting.PlayerHandler
             {
                 _playerController.AddScore(apple.cost);
                 apple.HideApple();
-                GameEvents.playerPickApple.Invoke(_playerController);
             }
         }
 
