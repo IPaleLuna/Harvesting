@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Harvesting.Collectable.Apple;
 using PaleLuna.Architecture.Loops;
 using Unity.Netcode;
@@ -13,6 +14,9 @@ namespace Harvesting.PlayerHandler
         private PlayerHandler _playerHandler;
     
         private GameLoops _gameLoops;
+        
+        [SerializeReference]
+        private List<GameObject> _objectsToDestroyIfNotOwner;
 
         private void OnValidate()
         {
@@ -24,6 +28,7 @@ namespace Harvesting.PlayerHandler
             if (!IsOwner)
             {
                 _playerController.Remove();
+                _objectsToDestroyIfNotOwner.ForEach(Destroy);
                 Destroy(this);
                 return;
             }
