@@ -1,11 +1,15 @@
-using System;
-using Harvesting.Game.GameTimer;
-
-public interface ITimeController
+namespace Harvesting.Game.GameTimer
 {
-    public void StartGameTimer();
-    public void StartAfterGameTimer();
+    public interface ITimeController
+    {
+        public bool isInit { get; }
     
-    public void Pause();
-    public void Resume();
+        public void StartGameTimer();
+        public void StartAfterGameTimer();
+    
+        public void Pause();
+        public void Resume();
+    }
 }
+
+
