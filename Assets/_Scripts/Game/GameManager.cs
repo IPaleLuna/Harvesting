@@ -34,8 +34,6 @@ public class GameManager : MonoBehaviour, IStartable, IService
 
         GlobalTimeEvents.onGameTimerFinished += OnTimeOut;
         GlobalTimeEvents.onAfterGameTimerFinished += LoadNextScene;
-        
-        _timeController.StartGameTimer();
     }
 
     private void OnTimeOut()
