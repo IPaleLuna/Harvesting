@@ -24,9 +24,9 @@ public class AppleSpawnerModel : MonoBehaviour
     [SerializeField, Range(0, 300)]
     private int _maxApplesOnLevel;
 
-    [FormerlySerializedAs("_paretnForSimpleApples")] [Space, SerializeField, Required]
+    [Space, SerializeField]
     private Transform _parentForSimpleApples;
-    [FormerlySerializedAs("_paretnForZapApples")] [Space, SerializeField, Required]
+    [Space, SerializeField]
     private Transform _parentForZapApples;
     
     [Header("List of tree"), HorizontalLine(color: EColor.Orange)]
