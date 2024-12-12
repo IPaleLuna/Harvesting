@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PlayerModel
 {
-    private int _appleAmount = 0;
+    private int _score = 0;
     private float _speed = 0F;
-    public int playerID = -1;
+    public short playerID = -1;
 
-    public int appleAmount => _appleAmount;
+    public int score => _score;
 
     public float speed
     {
@@ -16,7 +16,7 @@ public class PlayerModel
     
     
     public void AddApples(int count) =>
-        _appleAmount = Mathf.Max(0, _appleAmount + count);
+        _score = Mathf.Max(0, _score + count);
 }
 
 public struct PlayerInfo
@@ -34,6 +34,6 @@ public struct PlayerInfo
 
     public static PlayerInfo CreatePlayerInfo(PlayerModel playerModel)
     {
-        return new PlayerInfo(playerModel.appleAmount, playerModel.speed, playerModel.playerID);
+        return new PlayerInfo(playerModel.score, playerModel.speed, playerModel.playerID);
     }
 }
