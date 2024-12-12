@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 3938864886259198452}
   - component: {fileID: 2871696825036945817}
   m_Layer: 3
-  m_Name: Counter (1)
+  m_Name: Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -894,6 +894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkSpriteFlipper: {fileID: 6355218695143209201}
   _animationControl: {fileID: 8865310413814577025}
+  _playerScoreText: {fileID: 2871696825036945817}
 --- !u!1 &6746077715177977842
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,7 +907,7 @@ GameObject:
   - component: {fileID: 7521782243236541632}
   - component: {fileID: 2566438125549289245}
   m_Layer: 3
-  m_Name: Counter
+  m_Name: X
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
