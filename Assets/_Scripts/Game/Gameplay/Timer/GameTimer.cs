@@ -12,7 +12,7 @@ namespace Harvesting.Game.GameTimer
         private readonly int _timeToNextScene;
     
         private AsyncTimer _timer;
-        private TickMachine _tickMachine;
+        private readonly TickMachine _tickMachine;
         
         public Action onGameTimerFinished;
         public Action onAfterGameTimerFinished;
@@ -83,6 +83,12 @@ namespace Harvesting.Game.GameTimer
         {
             min = NumToStringBuffer.GetIntToStringTimeHash((int)(seconds / 60));
             sec = NumToStringBuffer.GetIntToStringTimeHash((int)(seconds % 60));
+        }
+
+        public TimeStruct(string min, string sec)
+        {
+            this.min = min;
+            this.sec = sec;
         }
     }
 }
