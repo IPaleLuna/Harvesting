@@ -3,24 +3,28 @@ using PaleLuna.Architecture.Services;
 using Services;
 using UnityEngine;
 
-public class TimeHandler : MonoBehaviour, IService, IStartable
+namespace Harvesting.Game.GameTimer
 {
-    [SerializeField]
-    private Component _timerComponent;
-    
-    private ITimeController _timeController;
-    
-    public bool IsStarted { get; private set; }
-    
-    public ITimeController timeController => _timeController;
-    
-    public void OnStart()
+    public class TimeHandler : MonoBehaviour, IService, IStartable
     {
-        if(IsStarted) return;
-        IsStarted = true;
-        
-        ServiceManager.Instance.LocalServices.Registarion(this);
-        _timeController = _timerComponent as ITimeController;
-    }
+        [SerializeField]
+        private Component _timerComponent;
     
+        private ITimeController _timeController;
+    
+        public bool IsStarted { get; private set; }
+    
+        public ITimeController timeController => _timeController;
+    
+        public void OnStart()
+        {
+            if(IsStarted) return;
+            IsStarted = true;
+        
+            ServiceManager.Instance.LocalServices.Registarion(this);
+            _timeController = _timerComponent as ITimeController;
+        }
+    }
 }
+
+
