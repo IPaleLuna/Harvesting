@@ -8,8 +8,8 @@ public class PlayerView : MonoBehaviour, IPlayerView
     [Header("Player visual components"), HorizontalLine(color: EColor.Green)]
     [SerializeField]
     private MonoSpriteFlipper _monoSpriteFlipper;
-    [SerializeField]
-    private AnimationControll _animationControl;
+    [FormerlySerializedAs("_animationControl")] [SerializeField]
+    private MonoAnimationController monoAnimationControl;
     
     [Header("UI")]
     [SerializeField]
@@ -23,11 +23,11 @@ public class PlayerView : MonoBehaviour, IPlayerView
     public void UpdateDirection(Vector2 direction)
     {
         _monoSpriteFlipper.OnInputDirectionChanged(direction);
-        _animationControl.OnInputDirectionChanged(direction);
+        monoAnimationControl.OnInputDirectionChanged(direction);
     }
 
     public void ResetAnimations()
     {
-        _animationControl.ResetAnim();
+        monoAnimationControl.ResetAnim();
     }
 }

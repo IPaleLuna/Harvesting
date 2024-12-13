@@ -66,15 +66,12 @@ namespace Harvesting.Collectable.Apple
         [ServerRpc(RequireOwnership = false)]
         private void RequestSyncServerRpc()
         {
-            print(gameObject.activeSelf);
             SendSyncClientRpc(transform.position, _apple.currentState, gameObject.activeSelf);
         }
 
         [ServerRpc]
         private void RequestToReturnAppleServerRpc()
         {
-            print("Return");
-            
             ServiceManager.Instance
                 .LocalServices.Get<AppleSpawner>()
                 ?.ReturnToPool(GetComponent<AppleHandler>());

@@ -1,19 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-public class AnimationControll : MonoBehaviour
+public class AnimControllerBase
 {
     private readonly int IS_WALK_BOOL = Animator.StringToHash("IsWalk");
 
-    [Header("Autofilling components")]
-    [SerializeField]
-    private Animator _animator;
+    private readonly Animator _animator;
 
-    private PlayerInputActions _actions;
-
-    private void OnValidate()
+    public AnimControllerBase(Animator animator)
     {
-        _animator ??= GetComponent<Animator>();
+        _animator = animator;
     }
 
     public void OnInputDirectionChanged(Vector2 direction)
@@ -24,5 +21,10 @@ public class AnimationControll : MonoBehaviour
     public void ResetAnim()
     {
         _animator.SetBool(IS_WALK_BOOL, false);
+    }
+
+    public void SetSpriteLib(int index)
+    {
+        throw new System.NotImplementedException();
     }
 }

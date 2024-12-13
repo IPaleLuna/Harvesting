@@ -3,14 +3,16 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
+
 public class NetworkPlayerView : NetworkBehaviour, IPlayerView
 {
     [Header("Player visual components"), HorizontalLine(color: EColor.Green)]
     [SerializeField]
     private NetworkSpriteFlipper networkSpriteFlipper;
     [SerializeField]
-    private AnimationControll _animationControl;
-    
+    private NetWorkAnimController networkAnimator;
+
+
     [Header("UI")]
     [SerializeField]
     private TextMeshProUGUI _playerScoreText;
@@ -21,6 +23,13 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
         NetworkVariableWritePermission.Owner
         );
 
+    private readonly NetworkVariable<ulong> _skinIndex = new(
+        0,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Owner
+        );
+
+
     public override void OnNetworkSpawn()
     {
         _movementDirection.OnValueChanged += (direction, newDirection) =>
@@ -28,6 +37,12 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
             SetAnim(newDirection);
             FlipSprite(newDirection);
         };
+        _skinIndex.OnValueChanged += (index, newValue) =>
+        {
+            ApplySpriteLib((int)newValue);
+        };
+        
+        _skinIndex.Value = OwnerClientId;
         
         if (IsClient)
         {
@@ -49,7 +64,13 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
 
     public void ResetAnimations()
     {
-        _animationControl.ResetAnim();
+        networkAnimator.ResetAnim();
+    }
+
+    public void SetNewSkin(ulong skinIndex)
+    {
+        if (IsOwner)
+            _skinIndex.Value = skinIndex;
     }
 
     private void FlipSprite(Vector2 direction)
@@ -58,6 +79,11 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
     }
     private void SetAnim(Vector2 newDirection)
     {
-        _animationControl.OnInputDirectionChanged(newDirection);
+        networkAnimator.OnInputDirectionChanged(newDirection);
+    }
+    private void ApplySpriteLib(int index)
+    {
+        print("Change");
+        networkAnimator.SetSpriteLib(index);
     }
 }

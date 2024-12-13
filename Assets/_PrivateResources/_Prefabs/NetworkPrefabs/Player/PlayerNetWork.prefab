@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 158043727563291623}
   - component: {fileID: 542565736025291264}
   - component: {fileID: 2779146467749496392}
-  - component: {fileID: 8865310413814577025}
+  - component: {fileID: 826169951086903783}
   - component: {fileID: 6355218695143209201}
   - component: {fileID: 2622318960617370236}
   - component: {fileID: 5094929264233921021}
@@ -493,7 +493,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8865310413814577025
+--- !u!114 &826169951086903783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -502,10 +502,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4222456379444866310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b5171685f344b24bba293614ebd23ff, type: 3}
+  m_Script: {fileID: 11500000, guid: ea2f55fc27ecd5240a52de1d369024d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2779146467749496392}
+  _spriteLibrary: {fileID: 2622318960617370236}
+  _libs:
+  - {fileID: 7108339969198208228, guid: e008be14d74f49c459ff8c3bf33e161b, type: 3}
+  - {fileID: 7108339969198208228, guid: e0eac5def155ac44681b1d48d8f2c8af, type: 3}
+  - {fileID: 7108339969198208228, guid: a8b6de665a5c4c14b9ac7ff4b074b2f4, type: 3}
+  - {fileID: 7108339969198208228, guid: 734d81c009045184782323aae27e7f85, type: 3}
 --- !u!114 &6355218695143209201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2063746384
+  GlobalObjectIdHash: 3399848155
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -880,6 +886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerController: {fileID: 7642714392237588069}
+  _networkPlayerView: {fileID: 2903574521820823280}
   _objectsToDestroyIfNotOwner:
   - {fileID: 4145667148509726723}
   - {fileID: 6973062473292225211}
@@ -925,7 +932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkSpriteFlipper: {fileID: 6355218695143209201}
-  _animationControl: {fileID: 8865310413814577025}
+  networkAnimator: {fileID: 826169951086903783}
   _playerScoreText: {fileID: 2871696825036945817}
 --- !u!1 &6746077715177977842
 GameObject:

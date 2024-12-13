@@ -10,6 +10,8 @@ namespace Harvesting.PlayerHandler
     {
         [SerializeField]
         private PlayerController _playerController;
+        [SerializeField]
+        private NetworkPlayerView _networkPlayerView;
     
         private PlayerHandler _playerHandler;
     
@@ -33,6 +35,7 @@ namespace Harvesting.PlayerHandler
                 return;
             }
 
+            print(OwnerClientId);
             _playerHandler = new(_playerController);
             _playerHandler.EnableControl();
         }
