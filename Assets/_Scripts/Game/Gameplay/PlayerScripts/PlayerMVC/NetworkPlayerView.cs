@@ -1,19 +1,21 @@
 using NaughtyAttributes;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class NetworkPlayerView : NetworkBehaviour, IPlayerView
 {
-    [FormerlySerializedAs("netWorkSpriteFlipper")]
-    [FormerlySerializedAs("_spriteFlipper")]
     [Header("Player visual components"), HorizontalLine(color: EColor.Green)]
     [SerializeField]
     private NetworkSpriteFlipper networkSpriteFlipper;
     [SerializeField]
     private AnimationControll _animationControl;
+    
+    [Header("UI")]
+    [SerializeField]
+    private TextMeshProUGUI _playerScoreText;
 
-    private NetworkVariable<Vector2> _movementDirection = new(
+    private readonly NetworkVariable<Vector2> _movementDirection = new(
         Vector2.zero,
         NetworkVariableReadPermission.Everyone,
         NetworkVariableWritePermission.Owner
@@ -33,7 +35,12 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
             //FlipSprite(_movementDirection.Value);
         }
     }
-    
+
+    public void UpdateScore(int score)
+    {
+        _playerScoreText.text = NumToStringBuffer.GetIntToStringHash(score);
+    }
+
     public void UpdateDirection(Vector2 direction)
     {
         if (IsOwner)
@@ -49,7 +56,6 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
     {
         networkSpriteFlipper.OnInputDirectionChanged(direction);
     }
-
     private void SetAnim(Vector2 newDirection)
     {
         _animationControl.OnInputDirectionChanged(newDirection);

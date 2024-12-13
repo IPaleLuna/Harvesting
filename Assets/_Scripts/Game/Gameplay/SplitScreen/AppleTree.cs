@@ -21,18 +21,18 @@ public class AppleTree : MonoBehaviour
     [SerializeField]
     private CheckSphere _checkSphere;
 
-    public void PlaceApple(ObjectPool<MonoAppleHandler> applesPool)
+    public void PlaceApple(ObjectPool<AppleHandler> applesPool)
     {
         int amountApple = Random.Range(_maxApplesPerSpawn.x, _maxApplesPerSpawn.y + 1);
 
         for (int i = 0; i < amountApple; i++)
         {
-            if (!applesPool.TryPop(out MonoAppleHandler apple)) return;
+            if (!applesPool.TryPop(out AppleHandler appleHandler)) return;
 
             Vector3 area = new Vector3(_width, _height);
             Vector3 randomPos = VectorRandomizer.RandomPoint(area, transform.TransformPoint(_areaPos), _checkSphere);;
 
-            apple.RespawnApple(randomPos);
+            appleHandler.appleController.RespawnApple(randomPos);
         }
     }
 

@@ -11,15 +11,16 @@ namespace Harvesting.Collectable.Apple
         private TickCounter _tickCounter = new();
         
         private AppleProperties _currentProperties;
-        
-        private readonly IAppleHandler _appleHandler;
+
+        private readonly IAppleController _appleController;
         
         private readonly GameObject _gameObject;
         private readonly Transform _transform;
 
         public AppleType type => _currentProperties.appleType;
         public int cost => _currentProperties.cost;
-        
+        public int currentState { get; private set; } = 0;
+
         public TickCounter tickCounter => _tickCounter;
 
         public Apple(AppleProperties[] appleProperties, GameObject[] appleStateObj, MonoBehaviour ctx)
@@ -30,7 +31,7 @@ namespace Harvesting.Collectable.Apple
             _gameObject = ctx.gameObject;
             _transform = ctx.transform;
             
-            _appleHandler = ctx as IAppleHandler;
+            _appleController = ctx as IAppleController;
             
             _currentProperties = _appleProperties[0];
         }
@@ -40,7 +41,6 @@ namespace Harvesting.Collectable.Apple
             _tickCounter = new();
             
             _tickCounter.SetUp(onTick);
-            _tickCounter.Start();
             _tickCounter.SetTarget(_currentProperties.ticksToNextState);
         }
         
@@ -48,16 +48,17 @@ namespace Harvesting.Collectable.Apple
         {
             if (_currentProperties.state == AppleState.Rotten)
             {
-                _appleHandler.HideApple();
+                _appleController.HideApple();
                 return;
             }
 
-            _appleHandler.ChangeAppleState((int)_currentProperties.state + 1);
+            _appleController.ChangeAppleState((int)_currentProperties.state + 1);
         }
         
         public void SetState(int stateNum)
         {
             _currentProperties = _appleProperties[stateNum];
+            currentState = stateNum;
 
             _tickCounter.SetTarget(_currentProperties.ticksToNextState);
 
@@ -78,7 +79,8 @@ namespace Harvesting.Collectable.Apple
         public void Hide()
         {
             _tickCounter?.Pause();
-            _gameObject.SetActive(false);
+            _gameObject?.SetActive(false);
+            _appleController.onAppleDeactivate?.Invoke();
         }
         
         ~Apple()

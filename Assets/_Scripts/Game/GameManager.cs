@@ -1,10 +1,9 @@
+using Harvesting.Game.GameTimer;
 using PaleLuna.Architecture.GameComponent;
 using PaleLuna.Architecture.Loops;
 using PaleLuna.Architecture.Services;
 using PaleLuna.Patterns.State.Game;
-using PaleLuna.Timers.Implementations;
 using Services;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour, IStartable, IService
@@ -13,38 +12,35 @@ public class GameManager : MonoBehaviour, IStartable, IService
     private BackstageScreen _startScreen;
 
     [SerializeField]
-    private int _gameTimeInSeconds = 120;
-    [SerializeField]
-    private int _timeToNextScene;
-
+    private ITimeController _timeController;
     
     private GameLoops _gameLoops;
-    
-    private AsyncTimer _timer;
 
     public bool IsStarted { get; private set; } = false;
-    public AsyncTimer timer => _timer;
 
     public void OnStart()
     {
         if (IsStarted) return;
         IsStarted = true;
 
-        _timer = new(_gameTimeInSeconds, OnTimeOut);
+        _timeController = ServiceManager.Instance
+            .LocalServices.Get<TimeHandler>()
+            .timeController;
+
         _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
         
         GameEvents.gameOnPauseEvent.AddListener(OnPause);
         GameEvents.exitSessionEvent.AddListener(OnExit);
 
-        _timer.Start();
+        GlobalTimeEvents.onGameTimerFinished += OnTimeOut;
+        GlobalTimeEvents.onAfterGameTimerFinished += LoadNextScene;
     }
 
     private void OnTimeOut()
     {
         GameEvents.timeOutEvent.Invoke();
 
-        _timer = new(_timeToNextScene, LoadNextScene);
-        _timer.Start();
+        _timeController.StartAfterGameTimer();
     }
 
     private void OnPause(bool isPaused)
@@ -52,12 +48,12 @@ public class GameManager : MonoBehaviour, IStartable, IService
         print(isPaused);
         if(isPaused)
         {
-            _timer.OnPause();
+            _timeController.Pause();
             _gameLoops.stateHolder.ChangeState<PauseState>();
         }
         else
         {
-            _timer.OnResume();
+            _timeController.Resume();
             _gameLoops.stateHolder.ChangeState<PlayState>();
         }
     }
@@ -71,7 +67,7 @@ public class GameManager : MonoBehaviour, IStartable, IService
             );
     }
 
-    public void LoadNextScene()
+    private void LoadNextScene()
     {
         ServiceManager.Instance.LocalServices.Get<ScoreHolder>().OnGameEnd();
         ServiceManager.Instance.GlobalServices.Get<SceneLoaderService>().LoadSceneAsync(3, false);

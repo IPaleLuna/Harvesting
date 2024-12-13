@@ -57,10 +57,10 @@ namespace Harvesting.Networking
             _currentSceneBaggage = _baggageForNextScene;
         }
         
-        private void OnLoadComplite(ulong clientid, string scenename, LoadSceneMode loadscenemode)
+        private void OnLoadComplite(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
         {
             _numberOfClientsLoaded++;
-            OnClientLoadedEvent.Invoke(clientid);
+            OnClientLoadedEvent.Invoke(clientId);
         }
         
         

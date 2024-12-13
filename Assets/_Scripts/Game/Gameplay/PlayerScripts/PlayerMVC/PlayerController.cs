@@ -31,7 +31,12 @@ public class PlayerController : MonoBehaviour
         _view = _playerViewComponent as IPlayerView;
         
         _model.speed = _characteristics.speed;
-        _model.playerID = _movement.playerInput.playerIndex;
+        _model.playerID = (short)_movement.playerInput.playerIndex;
+    }
+
+    private void SetID(short id)
+    {
+        _model.playerID = id;
     }
 
     public void SetUpMovement() => _movement.Init();
@@ -47,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public void AddScore(int score)
     {
         _model.AddApples(score);
+        _view.UpdateScore(_model.score);
     }
 
     public void IsActive(bool isActive)
