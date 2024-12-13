@@ -849,8 +849,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerController: {fileID: 7642714392237588069}
   _objectsToDestroyIfNotOwner:
-  - {fileID: 6973062473292225211}
   - {fileID: 4145667148509726723}
+  - {fileID: 6973062473292225211}
 --- !u!114 &7642714392237588069
 MonoBehaviour:
   m_ObjectHideFlags: 0

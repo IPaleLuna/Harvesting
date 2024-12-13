@@ -34,10 +34,10 @@ namespace Harvesting.Networking
 
         public void CreateLobby(LobbyInfo lobbyInfo)
         {
-            if (!lobbyInfo.isLan)
-                _ = CreateLobbyAsync(lobbyInfo);
-            else
-                SettingUtpForLan();
+            //if (!lobbyInfo.isLan)
+                //_ = CreateLobbyAsync(lobbyInfo);
+            //else
+                //SettingUtpForLan();
 
             CreateHost();
             LoadLobbyScene(lobbyInfo);
@@ -107,8 +107,9 @@ namespace Harvesting.Networking
         public void JoinLANGame(ConnectionInfo cInfo)
         {
             if (!TryGetUnityTransport(out UnityTransport utp)) return;
-            
-            utp.SetConnectionData(cInfo.ip, cInfo.port);
+
+            utp.ConnectionData.Address = cInfo.ip;
+            utp.ConnectionData.Port = cInfo.port;
                 
             if(!NetworkManager.Singleton.StartClient())
                 Debug.LogError("Failled to connect to server by IP!");
