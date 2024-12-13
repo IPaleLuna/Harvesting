@@ -27,12 +27,14 @@ namespace Harvesting.Collectable.Apple
         {
             _apple = new Apple(_appleProperties, _appleStateObj, this);
 
-            if(!IsOwner) return;
-            RequestSyncPosServerRpc();
+            if (!IsOwner)
+            {
+                RequestSyncServerRpc();
+                return;                
+            }
             
             onAppleDeactivate += RequestToReturnAppleServerRpc;
-            
-            if(IsServer) _apple.SetUpTickHolder(OnTimeToChangeState);
+            _apple.SetUpTickHolder(OnTimeToChangeState);
         }
 
         public void RespawnApple(Vector2 pos)
@@ -61,15 +63,18 @@ namespace Harvesting.Collectable.Apple
             SendHideAppleClientRpc();
         }
 
-        [ServerRpc]
-        private void RequestSyncPosServerRpc()
+        [ServerRpc(RequireOwnership = false)]
+        private void RequestSyncServerRpc()
         {
-            SendSyncPosClientRpc(transform.position);
+            print(gameObject.activeSelf);
+            SendSyncClientRpc(transform.position, _apple.currentState, gameObject.activeSelf);
         }
 
         [ServerRpc]
         private void RequestToReturnAppleServerRpc()
         {
+            print("Return");
+            
             ServiceManager.Instance
                 .LocalServices.Get<AppleSpawner>()
                 ?.ReturnToPool(GetComponent<AppleHandler>());
@@ -97,9 +102,11 @@ namespace Harvesting.Collectable.Apple
         }
 
         [ClientRpc]
-        private void SendSyncPosClientRpc(Vector2 pos)
+        private void SendSyncClientRpc(Vector2 pos, int appleState, bool isActive)
         {
             transform.position = pos;
+            _apple.SetState(appleState);
+            gameObject.SetActive(isActive);
         }
 
         #endregion

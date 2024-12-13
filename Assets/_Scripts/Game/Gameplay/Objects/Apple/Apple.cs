@@ -11,7 +11,7 @@ namespace Harvesting.Collectable.Apple
         private TickCounter _tickCounter = new();
         
         private AppleProperties _currentProperties;
-        
+
         private readonly IAppleController _appleController;
         
         private readonly GameObject _gameObject;
@@ -19,7 +19,8 @@ namespace Harvesting.Collectable.Apple
 
         public AppleType type => _currentProperties.appleType;
         public int cost => _currentProperties.cost;
-        
+        public int currentState { get; private set; } = 0;
+
         public TickCounter tickCounter => _tickCounter;
 
         public Apple(AppleProperties[] appleProperties, GameObject[] appleStateObj, MonoBehaviour ctx)
@@ -57,6 +58,7 @@ namespace Harvesting.Collectable.Apple
         public void SetState(int stateNum)
         {
             _currentProperties = _appleProperties[stateNum];
+            currentState = stateNum;
 
             _tickCounter.SetTarget(_currentProperties.ticksToNextState);
 
