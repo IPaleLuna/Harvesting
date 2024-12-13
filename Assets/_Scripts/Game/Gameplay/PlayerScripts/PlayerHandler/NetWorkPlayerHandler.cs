@@ -35,7 +35,6 @@ namespace Harvesting.PlayerHandler
                 return;
             }
 
-            print(OwnerClientId);
             _playerHandler = new(_playerController);
             _playerHandler.EnableControl();
         }
