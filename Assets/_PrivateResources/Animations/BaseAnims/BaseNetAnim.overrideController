@@ -8,4 +8,8 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: BaseNetAnim
   m_Controller: {fileID: 9100000, guid: 703fa44f151dc37499080b602292f8e5, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 2a3ccec0bf4664247a474fcf513c32fe, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f3ddfb6c1185eb24ca4d9eba6bb45b6f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 92ba7f50b43c2694fad75cbcf0db9dbe, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3db722427dfd05c4d9f2c6cfa1d91415, type: 2}

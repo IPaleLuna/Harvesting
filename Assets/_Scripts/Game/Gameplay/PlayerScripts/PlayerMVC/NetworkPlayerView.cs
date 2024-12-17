@@ -47,6 +47,7 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
         if (IsClient)
         {
             SetAnim(_movementDirection.Value);
+            ApplySpriteLib((int)_skinIndex.Value);
             //FlipSprite(_movementDirection.Value);
         }
     }

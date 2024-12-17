@@ -17,7 +17,8 @@ public class PlayerView : MonoBehaviour, IPlayerView
 
     public void UpdateScore(int score)
     {
-        _playerScoreText.text = NumToStringBuffer.GetIntToStringHash(score);
+        
+        //_playerScoreText.text = NumToStringBuffer.GetIntToStringHash(score);
     }
 
     public void UpdateDirection(Vector2 direction)

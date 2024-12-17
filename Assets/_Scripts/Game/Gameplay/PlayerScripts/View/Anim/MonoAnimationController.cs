@@ -21,6 +21,7 @@ public class MonoAnimationController : MonoBehaviour, IAnimController
     
     public void OnInputDirectionChanged(Vector2 direction)
     {
+        print(direction);
         _animController?.OnInputDirectionChanged(direction);
     }
 
