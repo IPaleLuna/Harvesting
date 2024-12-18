@@ -27,6 +27,11 @@ namespace Harvesting.PlayerHandler
 
         public override void OnNetworkSpawn()
         {
+            if (IsServer)
+            {
+                _networkPlayerView.SetNewSkin(NetworkManager.Singleton.ConnectedClients.Count-1);
+            }
+            
             if (!IsOwner)
             {
                 _playerController.Remove();
@@ -34,7 +39,9 @@ namespace Harvesting.PlayerHandler
                 Destroy(this);
                 return;
             }
-
+            
+            print(OwnerClientId);
+            
             _playerHandler = new(_playerController);
             _playerHandler.EnableControl();
         }

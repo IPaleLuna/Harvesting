@@ -23,10 +23,10 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
         NetworkVariableWritePermission.Owner
         );
 
-    private readonly NetworkVariable<ulong> _skinIndex = new(
+    private readonly NetworkVariable<int> _skinIndex = new(
         0,
         NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Owner
+        NetworkVariableWritePermission.Server
         );
 
 
@@ -39,17 +39,12 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
         };
         _skinIndex.OnValueChanged += (index, newValue) =>
         {
-            ApplySpriteLib((int)newValue);
+            ApplySpriteLib(newValue);
         };
-        
-        _skinIndex.Value = OwnerClientId;
-        
-        if (IsClient)
-        {
-            SetAnim(_movementDirection.Value);
-            ApplySpriteLib((int)_skinIndex.Value);
-            //FlipSprite(_movementDirection.Value);
-        }
+
+        if (!IsClient) return;
+        SetAnim(_movementDirection.Value);
+        ApplySpriteLib(_skinIndex.Value);
     }
 
     public void UpdateScore(int score)
@@ -68,10 +63,10 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
         networkAnimator.ResetAnim();
     }
 
-    public void SetNewSkin(ulong skinIndex)
+    public void SetNewSkin(int skinIndex)
     {
-        if (IsOwner)
-            _skinIndex.Value = skinIndex;
+        print($"value skin: {skinIndex}");
+        _skinIndex.Value = skinIndex;
     }
 
     private void FlipSprite(Vector2 direction)
@@ -82,7 +77,7 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
     {
         networkAnimator.OnInputDirectionChanged(newDirection);
     }
-    private void ApplySpriteLib(int index)
+    public void ApplySpriteLib(int index)
     {
         print("Change");
         networkAnimator.SetSpriteLib(index);
