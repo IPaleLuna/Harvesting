@@ -3265,6 +3265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 761176755}
   - component: {fileID: 761176756}
+  - component: {fileID: 761176757}
   m_Layer: 0
   m_Name: ----------MAIN----------
   m_TagString: Untagged
@@ -3326,12 +3327,28 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _initializersMono:
-  - {fileID: 1809565623}
+  - {fileID: 761176757}
+  - {fileID: 1809565625}
   - {fileID: 1797077326}
   _startupsMono: []
   _clearInitializersAfterInit: 0
   _setManualGameState: 1
   _defaultGameState: 1
+--- !u!114 &761176757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761176754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9afba94780d04394499aedbd5a72b0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _networkBehaviours:
+  - {fileID: 1809565622}
+  - {fileID: 965757150}
 --- !u!1001 &856062635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3870,6 +3887,8 @@ GameObject:
   m_Component:
   - component: {fileID: 965757148}
   - component: {fileID: 965757149}
+  - component: {fileID: 965757151}
+  - component: {fileID: 965757150}
   m_Layer: 0
   m_Name: StartGameTrigger
   m_TagString: Untagged
@@ -3937,6 +3956,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 4}
   m_EdgeRadius: 0
+--- !u!114 &965757150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965757147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d28b94d73a251a34bab7d48e598f5e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tickCounter:
+    _targetTicks: 3
+    _currentTicks: 0
+--- !u!114 &965757151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965757147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2728707406
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &1005678020
 GameObject:
   m_ObjectHideFlags: 0
@@ -17948,7 +18003,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1809565620}
   - component: {fileID: 1809565621}
-  - component: {fileID: 1809565623}
+  - component: {fileID: 1809565625}
   - component: {fileID: 1809565624}
   - component: {fileID: 1809565622}
   m_Layer: 0
@@ -18009,19 +18064,6 @@ MonoBehaviour:
   _gameTimeInSeconds: 500
   _afterGameTimeInSeconds: 5
   _autoRun: 1
---- !u!114 &1809565623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809565619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a85fbce3fc845fc4e9ca52bc34cfaa18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeHandler: {fileID: 1809565624}
 --- !u!114 &1809565624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18035,6 +18077,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerComponent: {fileID: 1809565622}
+--- !u!114 &1809565625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809565619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85fbce3fc845fc4e9ca52bc34cfaa18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeHandler: {fileID: 1809565624}
 --- !u!1001 &1827959013
 PrefabInstance:
   m_ObjectHideFlags: 0
