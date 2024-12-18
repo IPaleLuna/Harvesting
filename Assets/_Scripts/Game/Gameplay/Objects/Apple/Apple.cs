@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -36,7 +37,7 @@ namespace Harvesting.Collectable.Apple
             _currentProperties = _appleProperties[0];
         }
 
-        public void SetUpTickHolder(UnityAction onTick)
+        public void SetUpTickHolder(Action onTick)
         {
             _tickCounter = new();
             
