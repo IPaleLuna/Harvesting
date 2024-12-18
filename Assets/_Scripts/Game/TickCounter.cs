@@ -19,16 +19,19 @@ public class TickCounter : ITickUpdatable
     [SerializeField, ReadOnly]
     private int _currentTicks = 0;
 
-    private UnityAction _callbackAction;
+    public Action onEveryTickAction;
     
+    private Action _callbackAction;
+    
+    public int targetTicks => _targetTicks;
     public int currentTicks => _currentTicks;
 
-    public void SetCallback(UnityAction callback)
+    public void SetCallback(Action callback)
     {
         _callbackAction = callback;
     }
 
-    public void SetUp(UnityAction callback)
+    public void SetUp(Action callback)
     {
         SetCallback(callback);
         _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
@@ -67,6 +70,8 @@ public class TickCounter : ITickUpdatable
     public void EveryTickRun()
     {
         _currentTicks += 1;
+        
+        onEveryTickAction?.Invoke();
         CheckCounter();
     }
 
