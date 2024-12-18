@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using PaleLuna.Architecture.Initializer;
 using UnityEngine;
 
@@ -21,14 +20,6 @@ namespace Harvesting.Game.GameTimer
         
             _timeHandler.OnStart();
 
-            _ = Init();
-        }
-
-        private async UniTaskVoid Init()
-        {
-            while (!_timeHandler.timeController.isInit)
-                await UniTask.DelayFrame(1);
-            
             _status = InitStatus.Done;
         }
     }
