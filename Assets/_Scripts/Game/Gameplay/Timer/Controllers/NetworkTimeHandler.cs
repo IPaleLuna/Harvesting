@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using PaleLuna.Network;
 using Unity.Collections;
 using Unity.Netcode;
 using Unity.VisualScripting;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace Harvesting.Game.GameTimer
 {
-    public class NetworkTimeHandler : NetworkBehaviour, ITimeController
+    public class NetworkTimeHandler : NetworkLunaBehaviour, ITimeController
     {
         [SerializeField]
         private int _gameTimeInSeconds;
@@ -18,27 +19,23 @@ namespace Harvesting.Game.GameTimer
         
         private GameTimer _gameTimer;
     
-        public bool isInit { get; private set; }
         private bool _isAwait = false;
 
-        public override void OnNetworkSpawn()
+        public override void InitNetworkBehaviour()
         {
-            if (!IsServer)
-            {
-                isInit = true;
-                return;
-            }
+            if (!IsServer) return;
+            
+            print("Init");
+
             _gameTimer = new GameTimer(_gameTimeInSeconds, _afterGameTimeInSeconds);
     
             _gameTimer.onGameTimerFinished += () => GlobalTimeEvents.onGameTimerFinished?.Invoke();
             _gameTimer.onAfterGameTimerFinished += () => GlobalTimeEvents.onAfterGameTimerFinished?.Invoke();
             _gameTimer.onTick += (time) => UpdateTimerClientRpc(NetTimeStruct.Convert(time));
             
-            isInit = true;
-            
             if(_autoRun) StartGameTimer();
         }
-    
+
         public void StartGameTimer()
         {
             if(!IsServer) return;
