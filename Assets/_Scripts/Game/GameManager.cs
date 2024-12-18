@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour, IStartable, IService
 
         _timeController = ServiceManager.Instance
             .LocalServices.Get<TimeHandler>()
-            .timeController;
+            ?.timeController;
 
         _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
         
