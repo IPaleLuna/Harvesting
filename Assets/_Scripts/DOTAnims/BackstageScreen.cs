@@ -54,7 +54,7 @@ public class BackstageScreen : MonoBehaviour
     public void FadeOut(UnityAction callback)
     {
         _tween?.Kill();
-        _tween = _image.DOColor(_originColor, _animDurationInSeconds).OnComplete(() => callback.Invoke()).Play();
+        _tween = _image.DOColor(_originColor, _animDurationInSeconds).OnComplete(callback.Invoke).Play();
     }
     #endregion
 
