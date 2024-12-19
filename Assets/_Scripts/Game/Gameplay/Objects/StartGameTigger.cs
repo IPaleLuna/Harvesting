@@ -36,9 +36,15 @@ public class StartGameTigger : NetworkLunaBehaviour
         if (other.GetComponent<NetworkPlayerView>() == null || !IsServer) return;
         
         playerCounter++;
+        
+        print($"{playerCounter}/{NetworkManager.ConnectedClients.Count}");
 
         if ((_isDebug || playerCounter > 1) && playerCounter == NetworkManager.ConnectedClients.Count)
+        {
             _tickCounter.Start();
+            print("StartGameTigger");            
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)
