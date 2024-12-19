@@ -43,4 +43,10 @@ public class NetworkAppleSpawnerHandler : NetworkLunaBehaviour
     {
         _spawner.Spawn();
     }
+
+    public override void OnDestroy()
+    {
+        _tickHolder.ShutDown();
+        base.OnDestroy();
+    }
 }
