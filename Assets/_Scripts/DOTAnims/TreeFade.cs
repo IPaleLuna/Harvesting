@@ -41,29 +41,25 @@ public class TreeFade : MonoBehaviour, IStartable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag(_PLAYER_TAG))
-        {
-            _playerStayInTree++;
+        if (!collision.gameObject.GetComponent<PlayerController>()) return;
+        
+        _playerStayInTree++;
 
-            if(_playerStayInTree == 1)
-            {
-                _tween?.Kill();
-                _tween = _spriteRenderer?.DOColor(_targetColor, _duration).Play();
-            }
-        }
+        if (_playerStayInTree != 1) return;
+            
+        _tween?.Kill();
+        _tween = _spriteRenderer?.DOColor(_targetColor, _duration).Play();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(_PLAYER_TAG))
-        {
-            _playerStayInTree--;
-            if (_playerStayInTree == 0)
-            {
-                _tween?.Kill();
-                _spriteRenderer?.DOColor(_originColor, _duration).Play();
-            }
-        }
+        if (!collision.gameObject.GetComponent<PlayerController>()) return;
+        _playerStayInTree--;
+        
+        if (_playerStayInTree != 0) return;
+        
+        _tween?.Kill();
+        _spriteRenderer?.DOColor(_originColor, _duration).Play();
     }
 
     private void OnDestroy()
