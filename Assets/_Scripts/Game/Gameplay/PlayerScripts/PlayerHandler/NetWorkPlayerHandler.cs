@@ -3,6 +3,7 @@ using Harvesting.Collectable.Apple;
 using PaleLuna.Architecture.Loops;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Harvesting.PlayerHandler
 {
@@ -13,6 +14,9 @@ namespace Harvesting.PlayerHandler
         [SerializeField]
         private NetworkPlayerView _networkPlayerView;
     
+        [SerializeField]
+        private GameObject _playerCamera;
+        
         private PlayerHandler _playerHandler;
     
         private GameLoops _gameLoops;
@@ -39,8 +43,6 @@ namespace Harvesting.PlayerHandler
                 Destroy(this);
                 return;
             }
-            
-            print(OwnerClientId);
             
             _playerHandler = new(_playerController);
             _playerHandler.EnableControl();
