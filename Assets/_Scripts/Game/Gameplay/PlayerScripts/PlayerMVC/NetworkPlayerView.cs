@@ -12,22 +12,13 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
     [SerializeField]
     private NetWorkAnimController networkAnimator;
 
-
-    [Header("UI")]
-    [SerializeField]
-    private TextMeshProUGUI _playerScoreText;
-
     private readonly NetworkVariable<Vector2> _movementDirection = new(
         Vector2.zero,
         NetworkVariableReadPermission.Everyone,
         NetworkVariableWritePermission.Owner
         );
 
-    private readonly NetworkVariable<int> _skinIndex = new(
-        0,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server
-        );
+    private readonly NetworkVariable<int> _skinIndex = new();
 
 
     public override void OnNetworkSpawn()
@@ -42,14 +33,14 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
             ApplySpriteLib(newValue);
         };
 
-        if (!IsClient) return;
         SetAnim(_movementDirection.Value);
         ApplySpriteLib(_skinIndex.Value);
     }
 
     public void UpdateScore(int score)
     {
-        _playerScoreText.text = NumToStringBuffer.GetIntToStringHash(score);
+        if(IsOwner)
+            GameEvents.onPlayerUndateScoreEvent.Invoke(score);
     }
 
     public void UpdateDirection(Vector2 direction)
@@ -65,7 +56,6 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
 
     public void SetNewSkin(int skinIndex)
     {
-        print($"value skin: {skinIndex}");
         _skinIndex.Value = skinIndex;
     }
 
@@ -79,7 +69,6 @@ public class NetworkPlayerView : NetworkBehaviour, IPlayerView
     }
     public void ApplySpriteLib(int index)
     {
-        print("Change");
         networkAnimator.SetSpriteLib(index);
     }
 }
