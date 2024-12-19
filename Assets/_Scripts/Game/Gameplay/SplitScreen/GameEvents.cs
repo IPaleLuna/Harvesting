@@ -7,6 +7,8 @@ public class GameEvents : MonoBehaviour
     public static readonly UnityEvent<PlayerController> playerPickApple = new();
     public static readonly UnityEvent<MonoAppleController> appleWasDeactivated = new();
     
+    public static readonly UnityEvent<int> onPlayerUndateScoreEvent = new();
+    
     public static readonly UnityEvent<bool> gameOnPauseEvent = new();
     
     public static readonly UnityEvent exitSessionEvent = new();
