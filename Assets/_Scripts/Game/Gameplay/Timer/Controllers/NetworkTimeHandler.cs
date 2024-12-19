@@ -25,8 +25,6 @@ namespace Harvesting.Game.GameTimer
         {
             if (!IsServer) return;
             
-            print("Init");
-
             _gameTimer = new GameTimer(_gameTimeInSeconds, _afterGameTimeInSeconds);
     
             _gameTimer.onGameTimerFinished += () => GlobalTimeEvents.onGameTimerFinished?.Invoke();
