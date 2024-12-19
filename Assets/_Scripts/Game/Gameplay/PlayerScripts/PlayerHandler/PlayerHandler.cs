@@ -19,8 +19,6 @@ namespace Harvesting.PlayerHandler
         
             _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
         
-            GameEvents.timeOutEvent.AddListener(DisableControl);
-        
             _playerController.SetUpMovement();
         }
 
