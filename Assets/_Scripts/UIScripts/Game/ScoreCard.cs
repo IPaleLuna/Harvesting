@@ -35,7 +35,7 @@ public class ScoreCard : MonoBehaviour
 
     public void SetText(string text)
     {
-        _scoreLabel.SetText(text);
+        _scoreLabel.SetText( "x" + text);
     }
     public void PlayAnim()
     {
