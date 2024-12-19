@@ -24,6 +24,8 @@ namespace Harvesting.PlayerHandler
         {
             _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
             _gameLoops.pausablesHolder.Registration(this);
+            
+            GameEvents.timeOutEvent.AddListener(_playerHandler.DisableControl);
         
             _playerHandler = new(_playerController);
         }
