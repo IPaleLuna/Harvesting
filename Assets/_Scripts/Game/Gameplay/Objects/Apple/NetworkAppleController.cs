@@ -2,6 +2,7 @@ using System;
 using NaughtyAttributes;
 using Services;
 using Unity.Netcode;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 namespace Harvesting.Collectable.Apple
@@ -33,6 +34,7 @@ namespace Harvesting.Collectable.Apple
                 return;                
             }
             
+            GameEvents.timeOutEvent.AddListener(OnTimeOut);
             onAppleDeactivate += RequestToReturnAppleServerRpc;
             _apple.SetUpTickHolder(OnTimeToChangeState);
         }
@@ -76,6 +78,7 @@ namespace Harvesting.Collectable.Apple
                 .LocalServices.Get<AppleSpawner>()
                 ?.ReturnToPool(GetComponent<AppleHandler>());
         }
+        
         #endregion
 
         #region [ Client RPC ]
@@ -109,6 +112,14 @@ namespace Harvesting.Collectable.Apple
         #endregion
 
         #endregion
+
+        private void OnTimeOut()
+        {
+            if(!IsSpawned) return;
+            _apple = null;
+            onAppleDeactivate -= RequestToReturnAppleServerRpc;
+            GetComponent<NetworkObject>().Despawn(true);
+        }
     }
 }
 
