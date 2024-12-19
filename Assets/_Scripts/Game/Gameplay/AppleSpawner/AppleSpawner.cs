@@ -78,8 +78,6 @@ public class AppleSpawner : IService
     {
         _treeStep = Mathf.RoundToInt(1 / _model.percentageTreesSpawn);
         _totalSteps = Mathf.RoundToInt(_model.appleTrees.Count * _model.percentageTreesSpawn);
-        
-        Debug.Log($"steps: {_treeStep}/{_totalSteps}");
     }
 
     private AppleTree PeekRandomTree(int currentStep)
