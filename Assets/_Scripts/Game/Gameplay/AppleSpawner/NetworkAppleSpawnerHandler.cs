@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Harvesting.Utility.Spawner;
-using Unity.Netcode;
+using PaleLuna.Network;
 using UnityEngine;
 
-public class NetworkAppleSpawnerHandler : NetworkBehaviour
+public class NetworkAppleSpawnerHandler : NetworkLunaBehaviour
 {
     [SerializeField]
     private AppleSpawnerModel _model;
@@ -14,7 +13,7 @@ public class NetworkAppleSpawnerHandler : NetworkBehaviour
     
     private AppleSpawner _spawner;
 
-    public override void OnNetworkSpawn()
+    public override void InitNetworkBehaviour()
     {
         if (!IsServer)
         {
@@ -27,8 +26,8 @@ public class NetworkAppleSpawnerHandler : NetworkBehaviour
         _spawner = new AppleSpawner(_model, new NetSpawner<AppleHandler>());
 
         _ = FirstSpawn();
-
     }
+
 
     private async UniTask FirstSpawn()
     {
@@ -44,5 +43,4 @@ public class NetworkAppleSpawnerHandler : NetworkBehaviour
     {
         _spawner.Spawn();
     }
-    
 }
