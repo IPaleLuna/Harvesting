@@ -3,7 +3,6 @@ using Harvesting.Collectable.Apple;
 using PaleLuna.Architecture.Loops;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Harvesting.PlayerHandler
 {
@@ -40,7 +39,6 @@ namespace Harvesting.PlayerHandler
             {
                 _playerController.Remove();
                 _objectsToDestroyIfNotOwner.ForEach(Destroy);
-                Destroy(this);
                 return;
             }
             
@@ -50,13 +48,20 @@ namespace Harvesting.PlayerHandler
     
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(collision.gameObject.TryGetComponent(out NetworkAppleController apple))
-            {
-                _playerController.AddScore(apple.cost);
-                apple.HideApple();
-            }
+            if(!IsOwner) return;
+
+            if (!collision.gameObject.TryGetComponent(out NetworkAppleController apple)) return;
+            
+            _playerController.AddScore(apple.cost);
+            apple.HideApple();
         }
 
+        [ClientRpc(RequireOwnership = false)]
+        public void SetPlayerPositionClientRpc(Vector3 position, ClientRpcParams clientRpcParams = default)
+        {
+            transform.position = position;
+        }
+        
         public override void OnDestroy()
         {
             _playerHandler?.OnDestroyThis();
