@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Harvesting.Utility.Spawner
 {
@@ -9,6 +10,7 @@ namespace Harvesting.Utility.Spawner
         {
             var obj = Object.Instantiate(prefab, parent, true);
             obj.GetComponent<NetworkObject>().Spawn();
+            obj.GetComponent<NetworkObject>().DestroyWithScene = true;
             
             obj.gameObject.SetActive(isActive);
             
