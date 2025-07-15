@@ -4,26 +4,17 @@ using UnityEngine;
 public class SwitchPlayerCount : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] _lastPlayerCards;
+    private GameObject[] _playerCards;
 
     public void OnModeChange(IOptionalData<int> data)
     {
-        PlayerCount gameMode = (PlayerCount)data.GetData(PlayerPrefsKeys.PLAYER_COUNT_KEY);
-
-        switch (gameMode)
-        {
-            case PlayerCount.Two:
-                SwitchCards(false);
-                break;
-            case PlayerCount.Four:
-                SwitchCards(true);
-                break;
-        }
+        int playerAmount = data.GetData(StringKeys.PLAYER_COUNT_KEY);
+        SetPlayerCards(playerAmount);
     }
-    
-    private void SwitchCards(bool flag)
+
+    private void SetPlayerCards(int cardsToActive)
     {
-        for (int i = 0; i < _lastPlayerCards.Length; i++)
-            _lastPlayerCards[i].SetActive(flag);
+        for (int i = 0; i < _playerCards.Length; i++)
+            _playerCards[i].SetActive(i < cardsToActive);
     }
 }

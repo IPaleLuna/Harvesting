@@ -1,13 +1,22 @@
+using PaleLuna.Architecture.GameComponent;
+using PaleLuna.Architecture.Services;
+using Services;
 using UnityEngine;
 
-public class SetPlayerCountMode : MonoBehaviour
+public class SetPlayerCountMode : MonoBehaviour, IStartable
 {
-    private void Start()
+    private const int DEFAULT_PLAYER_COUNT = 2;
+
+    private bool _isStarted = false;
+    public bool IsStarted => _isStarted;
+
+    public void OnStart()
     {
-        PlayerPrefs.SetInt(PlayerPrefsKeys.PLAYER_COUNT_KEY, (int)PlayerCount.Two);
+        PlayerPrefs.SetInt(StringKeys.PLAYER_COUNT_KEY, DEFAULT_PLAYER_COUNT);
     }
+
     public void OnModeChange(IOptionalData<int> data)
     {
-        PlayerPrefs.SetInt(PlayerPrefsKeys.PLAYER_COUNT_KEY, data.GetData(PlayerPrefsKeys.PLAYER_COUNT_KEY));
+        PlayerPrefs.SetInt(StringKeys.PLAYER_COUNT_KEY, data.GetData(StringKeys.PLAYER_COUNT_KEY));
     }
 }

@@ -1,27 +1,26 @@
 using Cysharp.Threading.Tasks;
 using PaleLuna.Architecture.Initializer;
+using PaleLuna.Architecture.Services;
+using Services;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
-public class PlayerSpawner : MonoBehaviour, IInitializer
+public class PlayerSpawner : InitializerBaseMono
 {
     [SerializeReference]
     private List<Transform> _spawnPoints;
 
-    private InitStatus _status = InitStatus.Shutdown;
-    public InitStatus status => _status;
-
     private string _playerPrefabsPath = "Prefabs/Players/Player";
     private int _playerCount = 0;
 
-    public void StartInit()
+    public override void StartInit()
     {
         _status = InitStatus.Initialization;
 
-        _playerCount = PlayerPrefs.GetInt(PlayerPrefsKeys.PLAYER_COUNT_KEY);
+        _playerCount = PlayerPrefs.GetInt(StringKeys.PLAYER_COUNT_KEY);
 
         _ = InitPlayers();
     }
@@ -49,13 +48,36 @@ public class PlayerSpawner : MonoBehaviour, IInitializer
     {
         PlayerInput playerInput = Instantiate(playerPrefab).GetComponentInChildren<PlayerInput>();
 
-        if (playerInput.playerIndex < 2)
+        if (playerInput.playerIndex < 3)
             playerInput.SwitchCurrentControlScheme(playerInput.currentControlScheme, Keyboard.current);
 
         int point = Random.Range(0, _spawnPoints.Count);
         playerInput.transform.position = _spawnPoints[point].position;
 
+        SplitScreen(playerInput.GetComponentInChildren<Camera>(), playerInput.playerIndex);
+
         _spawnPoints.RemoveAt(point);
+    }
+
+    private void SplitScreen(Camera playerCam, int id)
+    {
+
+        if (_playerCount <= 3)
+            SplitScreenVertical(playerCam, id);
+        else
+            SplitScreenVH(playerCam, id);
+    }
+
+    private void SplitScreenVertical(Camera playerCam, int id)
+    {
+        float width = 1f / _playerCount;
+        playerCam.rect = new Rect(id * width, 0, width, 1);
+    }
+    private void SplitScreenVH(Camera playerCam, int id)
+    {
+        float x = (id % 2 == 0) ? 0 : 0.5f;
+        float y = (id < 2) ? 0.5f : 0;
+        playerCam.rect = new Rect(x, y, 0.5f, 0.5f);
     }
 
 }

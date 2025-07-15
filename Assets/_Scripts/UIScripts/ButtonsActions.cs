@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class ButtonsActions : MonoBehaviour
 {
+    [SerializeField]
+    private BackstageScreen _startScreen;
+    [SerializeField]
+    private BackgrounMusic _backgrounMusic;
+
     public void StartGame()
     {
-        ServiceManager.Instance
+        _backgrounMusic.SmoothStop();
+        
+        _startScreen.FadeOut(() =>
+        {
+            ServiceManager.Instance
             .GlobalServices.Get<SceneLoaderService>()
-            .LoadScene(2);
-    }
-    public void Exit()
-    {
-        Application.Quit();
+            .LoadScene("GameScene");
+        });
     }
 }

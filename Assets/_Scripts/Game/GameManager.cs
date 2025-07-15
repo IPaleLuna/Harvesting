@@ -1,44 +1,80 @@
+using Harvesting.Game.GameTimer;
 using PaleLuna.Architecture.GameComponent;
+using PaleLuna.Architecture.Loops;
 using PaleLuna.Architecture.Services;
-using PaleLuna.Timers.Implementations;
+using PaleLuna.Patterns.State.Game;
 using Services;
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour, IStartable, IService
 {
     [SerializeField]
-    private int gameTimeInSeconds = 120;
+    private BackstageScreen _startScreen;
+
     [SerializeField]
-    private SpaceKeyListener _spaceListener;
+    private ITimeController _timeController;
+    
+    private GameLoops _gameLoops;
 
-    private AsyncTimer _timer;
-
-    private bool _isStart = false;
-    public bool IsStarted => _isStart;
-    public AsyncTimer timer => _timer;
+    public bool IsStarted { get; private set; } = false;
 
     public void OnStart()
     {
-        if (_isStart) return;
-        _isStart = true;
+        if (IsStarted) return;
+        IsStarted = true;
 
+        _timeController = ServiceManager.Instance
+            .LocalServices.Get<TimeHandler>()
+            .timeController;
 
-        _timer = new(gameTimeInSeconds, OnTimeOut);
+        _gameLoops = ServiceManager.Instance.GlobalServices.Get<GameLoops>();
+        
+        GameEvents.gameOnPauseEvent.AddListener(OnPause);
+        GameEvents.exitSessionEvent.AddListener(OnExit);
 
-        _timer.Start();
+        GlobalTimeEvents.onGameTimerFinished += OnTimeOut;
+        GlobalTimeEvents.onAfterGameTimerFinished += LoadNextScene;
     }
 
     private void OnTimeOut()
     {
         GameEvents.timeOutEvent.Invoke();
 
-        _spaceListener.spaceAction.performed += RestartGame;
+        _timeController.StartAfterGameTimer();
     }
 
-    public void RestartGame(InputAction.CallbackContext context)
+    private void OnPause(bool isPaused)
     {
-        ServiceManager.Instance.GlobalServices.Get<SceneLoaderService>().LoadScene(1);
+        print(isPaused);
+        if(isPaused)
+        {
+            _timeController.Pause();
+            _gameLoops.stateHolder.ChangeState<PauseState>();
+        }
+        else
+        {
+            _timeController.Resume();
+            _gameLoops.stateHolder.ChangeState<PlayState>();
+        }
+    }
+    private void OnExit()
+    {
+        OnPause(true);
+        
+        ServiceManager.Instance.GlobalServices.Get<SceneLoaderService>().LoadSceneAsync(1, false);
+        _startScreen.FadeOut(() =>
+            ServiceManager.Instance.GlobalServices.Get<SceneLoaderService>().AllowNextScene()
+            );
+    }
+
+    private void LoadNextScene()
+    {
+        ServiceManager.Instance.LocalServices.Get<ScoreHolder>().OnGameEnd();
+        ServiceManager.Instance.GlobalServices.Get<SceneLoaderService>().LoadSceneAsync(3, false);
+
+        _startScreen.FadeOut(() =>
+        {
+            ServiceManager.Instance.GlobalServices.Get<SceneLoaderService>().AllowNextScene();
+        });
     }
 }
